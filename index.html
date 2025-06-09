@@ -549,16 +549,15 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Rental Tool Selection</title>
+<title>Rental Tool Auto WhatsApp</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
   :root {
     --color-black: #000000;
     --color-white: #ffffff;
     --color-gray: #6b7280;
-    --color-light: #f9fafb;
-    --color-card-bg: #ffffff;
+    --color-light: #ffffff;
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --transition-duration: 0.3s;
@@ -566,7 +565,7 @@
     --shadow-light: 0 4px 8px rgba(0,0,0,0.05);
   }
 
-  /* Reset and base */
+  /* Reset */
   *, *::before, *::after {
     box-sizing: border-box;
   }
@@ -583,50 +582,53 @@
     padding: 4rem 1rem 6rem;
   }
 
+  /* Container */
   .container {
     max-width: 480px;
     width: 100%;
     background: var(--color-white);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-light);
-    padding: 2rem 2.5rem;
+    padding: 3rem 3rem 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
+  /* Headline */
   h1 {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-weight: 700;
+    margin: 0 0 2rem 0;
     color: var(--color-black);
-    margin-bottom: 2rem;
+    line-height: 1.1;
     text-align: center;
   }
 
-  /* Rental Tool Button */
+  /* Rental Tool toggle button */
   button.rental-button {
     background-color: var(--color-black);
     color: var(--color-white);
-    font-weight: 600;
-    font-size: 1.25rem;
-    padding: 1rem 2.5rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 1rem 3rem;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
     user-select: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
     transition:
       background-color var(--transition-duration) ease,
       transform var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
     outline-offset: 3px;
     width: 100%;
-    max-width: 320px;
+    max-width: 360px;
   }
   button.rental-button:hover,
   button.rental-button:focus-visible {
     background-color: #222222;
-    outline: none;
     transform: scale(1.05);
+    outline: none;
   }
   button.rental-button:focus-visible {
     outline: 3px solid #444444aa;
@@ -634,18 +636,20 @@
 
   /* Rental options panel */
   .rental-options {
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     width: 100%;
-    background: var(--color-card-bg);
+    background: var(--color-white);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-light);
-    padding: 1.5rem 2rem;
+    padding: 2rem 2.5rem;
     display: none;
     flex-direction: column;
+    gap: 1.25rem;
+    animation: fadeInSlideDown 0.35s ease forwards;
   }
+
   .rental-options.visible {
     display: flex;
-    animation: fadeInSlideDown 0.4s ease forwards;
   }
 
   @keyframes fadeInSlideDown {
@@ -659,69 +663,73 @@
     }
   }
 
-  /* Rental option item */
+  /* Rental option items */
   .rental-option {
     display: flex;
     align-items: center;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #e5e7eb;
-  }
-  .rental-option:last-child {
-    border-bottom: none;
-  }
-
-  .rental-option input[type="radio"] {
-    accent-color: var(--color-black);
-    margin-right: 1rem;
-    width: 1.25rem;
-    height: 1.25rem;
-    cursor: pointer;
-  }
-
-  .rental-label {
-    font-size: 1rem;
-    color: var(--color-black);
-    font-weight: 500;
-    user-select: none;
-  }
-
-  /* Submit button */
-  button.submit-button {
-    margin-top: 2rem;
-    background-color: var(--color-black);
-    color: var(--color-white);
-    font-weight: 600;
-    font-size: 1.15rem;
-    padding: 0.85rem 2rem;
-    border: none;
+    padding: 0.75rem 1rem;
     border-radius: 0.5rem;
+    border: 2px solid transparent;
     cursor: pointer;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-black);
     user-select: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    width: 100%;
-    max-width: 320px;
-    transition:
-      background-color var(--transition-duration) ease,
-      transform var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
-    outline-offset: 3px;
+    transition: background-color var(--transition-duration) ease,
+                border-color var(--transition-duration) ease;
   }
-  button.submit-button:hover,
-  button.submit-button:focus-visible {
-    background-color: #222222;
-    outline: none;
-    transform: scale(1.05);
+
+  .rental-option:hover,
+  .rental-option:focus-within {
+    background-color: #f0f0f0;
+    border-color: var(--color-black);
   }
-  button.submit-button:focus-visible {
-    outline: 3px solid #444444aa;
+
+  /* Radio inputs hidden but accessible */
+  .rental-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Custom radio style */
+  .rental-option .custom-radio {
+    width: 20px;
+    height: 20px;
+    border: 2.5px solid var(--color-gray);
+    border-radius: 50%;
+    margin-right: 1rem;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    position: relative;
+    transition: border-color var(--transition-duration) ease;
+  }
+  .rental-option input[type="radio"]:checked + .custom-radio {
+    border-color: var(--color-black);
+  }
+  .rental-option input[type="radio"]:checked + .custom-radio::after {
+    content: '';
+    position: absolute;
+    top: 3.5px;
+    left: 3.5px;
+    width: 9px;
+    height: 9px;
+    background-color: var(--color-black);
+    border-radius: 50%;
   }
 
   /* Responsive */
   @media (max-width: 400px) {
     .container {
-      padding: 1.5rem 1.5rem;
+      padding: 2rem 1.5rem;
     }
     h1 {
-      font-size: 2rem;
+      font-size: 2.75rem;
+    }
+    button.rental-button {
+      font-size: 1.25rem;
+      padding: 0.85rem 2.25rem;
+      max-width: 100%;
     }
   }
 </style>
@@ -732,75 +740,79 @@
     <button type="button" class="rental-button" aria-expanded="false" aria-controls="rental-options" aria-haspopup="listbox" id="rentalButton">
       Rental Tool
     </button>
-    <section id="rental-options" class="rental-options" role="listbox" tabindex="-1" aria-labelledby="rentalButton">
-      <label class="rental-option" role="option" aria-selected="false" for="option1">
-        <input type="radio" name="rental" id="option1" value="Unlocktool RM10 6hr/RTC" />
-        <span class="rental-label">Unlocktool RM10 6hr/RTC</span>
+    <section id="rental-options" class="rental-options" role="listbox" tabindex="-1" aria-labelledby="rentalButton" aria-live="polite">
+      <!-- RENTAL OPTIONS -->
+      <label class="rental-option" role="option" aria-selected="false" tabindex="0" for="option1">
+        <input type="radio" id="option1" name="rental" value="Unlocktool RM10 6hr/RTC" />
+        <span class="custom-radio" aria-hidden="true"></span>
+        Unlocktool RM10 6hr/RTC
       </label>
-      <label class="rental-option" role="option" aria-selected="false" for="option2">
-        <input type="radio" name="rental" id="option2" value="RM10 6hr/TSM tool" />
-        <span class="rental-label">RM10 6hr/TSM tool</span>
+      <label class="rental-option" role="option" aria-selected="false" tabindex="0" for="option2">
+        <input type="radio" id="option2" name="rental" value="RM10 6hr/TSM tool" />
+        <span class="custom-radio" aria-hidden="true"></span>
+        RM10 6hr/TSM tool
       </label>
-      <label class="rental-option" role="option" aria-selected="false" for="option3">
-        <input type="radio" name="rental" id="option3" value="RM10 1days/Pandora tool" />
-        <span class="rental-label">RM10 1days/Pandora tool</span>
+      <label class="rental-option" role="option" aria-selected="false" tabindex="0" for="option3">
+        <input type="radio" id="option3" name="rental" value="RM10 1days/Pandora tool" />
+        <span class="custom-radio" aria-hidden="true"></span>
+        RM10 1days/Pandora tool
       </label>
-      <label class="rental-option" role="option" aria-selected="false" for="option4">
-        <input type="radio" name="rental" id="option4" value="RM100 10days/Sigma tool" />
-        <span class="rental-label">RM100 10days/Sigma tool</span>
+      <label class="rental-option" role="option" aria-selected="false" tabindex="0" for="option4">
+        <input type="radio" id="option4" name="rental" value="RM100 10days/Sigma tool" />
+        <span class="custom-radio" aria-hidden="true"></span>
+        RM100 10days/Sigma tool
       </label>
-      <label class="rental-option" role="option" aria-selected="false" for="option5">
-        <input type="radio" name="rental" id="option5" value="RM150 10days" />
-        <span class="rental-label">RM150 10days</span>
+      <label class="rental-option" role="option" aria-selected="false" tabindex="0" for="option5">
+        <input type="radio" id="option5" name="rental" value="RM150 10days" />
+        <span class="custom-radio" aria-hidden="true"></span>
+        RM150 10days
       </label>
-      <button type="button" class="submit-button" id="submitRental" aria-label="Submit rental selection">Submit</button>
     </section>
   </main>
 
-  <script>
-    const rentalButton = document.getElementById('rentalButton');
-    const optionsPanel = document.getElementById('rental-options');
-    const radioButtons = optionsPanel.querySelectorAll('input[type="radio"]');
-    const submitButton = document.getElementById('submitRental');
-    const whatsappNumber = '60178040403';
+<script>
+  const rentalButton = document.getElementById('rentalButton');
+  const optionsPanel = document.getElementById('rental-options');
+  const radioButtons = optionsPanel.querySelectorAll('input[type="radio"]');
+  const whatsappNumber = '60178040403';
 
-    rentalButton.addEventListener('click', () => {
-      const isVisible = optionsPanel.classList.toggle('visible');
-      rentalButton.setAttribute('aria-expanded', isVisible);
-      if (isVisible) {
-        radioButtons[0].focus();
-      }
-    });
+  rentalButton.addEventListener('click', () => {
+    const isVisible = optionsPanel.classList.toggle('visible');
+    rentalButton.setAttribute('aria-expanded', isVisible);
+    if (isVisible) {
+      optionsPanel.focus();
+    }
+  });
 
-    radioButtons.forEach(radio => {
-      radio.addEventListener('change', () => {
-        radioButtons.forEach(rb => {
-          const label = rb.closest('label');
-          if(rb.checked) {
-            label.setAttribute('aria-selected', 'true');
-          } else {
-            label.setAttribute('aria-selected', 'false');
-          }
-        });
+  // Update aria-selected on label, open whatsapp on selection
+  radioButtons.forEach(radio => {
+    radio.addEventListener('change', () => {
+      radioButtons.forEach(rb => {
+        const label = rb.closest('label');
+        if (rb.checked) {
+          label.setAttribute('aria-selected', 'true');
+
+          const message = `I want to rent: ${rb.value}`;
+          const encodedMessage = encodeURIComponent(message);
+          const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+          // Open WhatsApp link in a new tab/window
+          window.open(whatsappURL, '_blank', 'noopener');
+
+          // Optionally hide options after selection
+          optionsPanel.classList.remove('visible');
+          rentalButton.setAttribute('aria-expanded', false);
+        } else {
+          label.setAttribute('aria-selected', 'false');
+        }
       });
     });
-
-    submitButton.addEventListener('click', () => {
-      // Find selected option
-      const selectedOption = Array.from(radioButtons).find(rb => rb.checked);
-      if (!selectedOption) {
-        alert('Please select a rental option before submitting.');
-        return;
-      }
-      const message = `I want to rent: ${selectedOption.value}`;
-      const encodedMessage = encodeURIComponent(message);
-      // Open whatsapp link in new tab
-      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-      window.open(whatsappURL, '_blank');
-    });
-  </script>
+  });
+</script>
 </body>
 </html>
+
+
 
 
 
