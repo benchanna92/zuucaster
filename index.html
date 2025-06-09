@@ -1,621 +1,425 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zuu Caster Center - Multi-Service</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --color-bg: #f9f9fb;
-      --color-white: #ffffff;
-      --color-light-gray: #e6e6eb;
-      --color-gray-text: #4a4a4a;
-      --color-accent: #0071e3;
-      --color-accent-hover: #005bb5;
-      --border-radius: 12px;
-      --shadow-subtle: rgba(0, 0, 0, 0.05);
-      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-      --transition-speed: 0.3s;
-      --max-width: 900px;
-      --spacing: 24px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Service Center zuu caster - Unlock & Tool Rental</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
+  :root {
+    --color-primary: #111827;
+    --color-secondary: #6b7280;
+    --color-accent: #2563eb;
+    --color-bg: #ffffff;
+    --color-card-bg: #f9fafb;
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+    --radius: 0.75rem;
+    --shadow-soft: 0 4px 12px rgba(0,0,0,0.07);
+    --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
 
-    body {
-      margin: 0;
-      background-color: var(--color-bg);
-      font-family: var(--font-family);
-      color: var(--color-gray-text);
-      font-size: 17px;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: var(--spacing);
-      user-select: none;
-    }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+    line-height: 1.6;
+  }
 
-    header {
-      width: 100%;
-      max-width: var(--max-width);
-      padding-bottom: var(--spacing);
-      margin-bottom: var(--spacing);
-      border-bottom: 1px solid var(--color-light-gray);
-    }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 
-    .logo {
-      font-weight: 700;
-      font-size: 1.75rem;
-      color: var(--color-gray-text);
-      letter-spacing: 0.05em;
-      user-select: none;
-      text-align: center;
-    }
+  header {
+    position: sticky;
+    top: 0;
+    background: var(--color-bg);
+    padding: 1rem 0;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    z-index: 20;
+  }
+  .nav-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    user-select: none;
+  }
 
-    main {
-      width: 100%;
-      max-width: var(--max-width);
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing);
-    }
+  main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 4rem;
+  }
 
-    section.card {
-      background: var(--color-white);
-      border-radius: var(--border-radius);
-      box-shadow: 0 4px 8px var(--shadow-subtle);
-      padding: var(--spacing);
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      transition: box-shadow var(--transition-speed), transform var(--transition-speed);
-      user-select: none;
-    }
-    section.card:hover,
-    section.card:focus-within {
-      box-shadow: 0 8px 20px rgba(0, 113, 227, 0.15);
-      outline: none;
-    }
+  .card {
+    background: var(--color-card-bg);
+    border-radius: var(--radius);
+    padding: 3rem 2.5rem;
+    box-shadow: var(--shadow-soft);
+    max-width: 480px;
+    width: 100%;
+    user-select: none;
+  }
 
-    section.card h2 {
-      margin: 0;
-      font-weight: 700;
-      font-size: 1.6rem;
-      color: var(--color-gray-text);
-      user-select: none;
-    }
+  h1 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 2.75rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
 
-    label {
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: var(--color-gray-text);
-      user-select: text;
-      font-size: 1rem;
-    }
+  .desc {
+    font-size: 1.125rem;
+    color: var(--color-secondary);
+    margin-bottom: 2rem;
+  }
 
-    select, input[type="text"] {
-      font-family: inherit;
-      font-size: 1rem;
-      padding: 10px 14px;
-      border: 1.5px solid var(--color-light-gray);
-      border-radius: var(--border-radius);
-      width: 100%;
-      color: var(--color-gray-text);
-      transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
-      user-select: text;
-    }
-    select:focus, input[type="text"]:focus {
-      border-color: var(--color-accent);
-      outline: none;
-      box-shadow: 0 0 8px rgba(0, 113, 227, 0.35);
-      background-color: var(--color-white);
-    }
+  /* Toggle Buttons for different services */
+  .toggle-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .toggle-button {
+    flex: 1;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius);
+    padding: 0.75rem 0;
+    font-size: 1.25rem;
+    color: var(--color-accent);
+    background: transparent;
+    transition: background-color var(--transition), color var(--transition);
+  }
+  .toggle-button:hover,
+  .toggle-button:focus {
+    background-color: var(--color-accent);
+    color: white;
+    outline: none;
+  }
+  .toggle-button.active {
+    background-color: var(--color-accent);
+    color: white;
+    cursor: default;
+  }
 
-    .code-display {
-      font-family: 'SF Mono', 'Consolas', 'Courier New', monospace;
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: var(--color-accent);
-      user-select: text;
-      margin-top: 10px;
-    }
+  /* Option lists container */
+  .option-section {
+    text-align: left;
+  }
+  .option-label {
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+  }
+  .option-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(120px,1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .option-button {
+    background: white;
+    color: var(--color-primary);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color var(--transition), color var(--transition), transform var(--transition);
+    user-select: none;
+    border: none;
+  }
+  .option-button:hover,
+  .option-button:focus {
+    background-color: var(--color-accent);
+    color: white;
+    transform: scale(1.05);
+    outline: none;
+  }
+  .option-button.selected {
+    background-color: var(--color-accent);
+    color: white;
+    cursor: default;
+    transform: none;
+  }
 
-    .send-whatsapp-button {
-      align-self: flex-start;
-      background-color: var(--color-accent);
-      color: var(--color-white);
-      font-weight: 700;
-      font-size: 1.1rem;
-      padding: 12px 28px;
-      border: none;
-      border-radius: var(--border-radius);
-      cursor: pointer;
-      transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
-      user-select: none;
-      box-shadow: 0 6px 16px rgba(0, 113, 227, 0.5);
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 10px;
-    }
-    .send-whatsapp-button:hover,
-    .send-whatsapp-button:focus {
-      background-color: var(--color-accent-hover);
-      box-shadow: 0 8px 24px rgba(0, 87, 175, 0.6);
-      outline: none;
-      color: var(--color-white);
-      text-decoration: none;
-    }
-    .send-whatsapp-button:focus-visible {
-      outline-offset: 4px;
-      outline: 3px solid #bbd6ff;
-    }
+  /* Detail input for APPLE ID FORGET */
+  .detail-group {
+    margin-bottom: 1.5rem;
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+  }
+  input[type="text"], select {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    border-radius: var(--radius);
+    border: 1.5px solid #d1d5db;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    color: var(--color-primary);
+    transition: border-color var(--transition);
+  }
+  input[type="text"]:focus, select:focus {
+    border-color: var(--color-accent);
+    outline: none;
+  }
 
-    @media (max-width: 600px) {
-      body {
-        padding: 16px;
-      }
-      section.card {
-        padding: 16px;
-      }
+  /* Generate button */
+  .generate-btn {
+    display: block;
+    width: 100%;
+    background-color: var(--color-accent);
+    color: white;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.25rem;
+    padding: 0.85rem 0;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5);
+    transition: background-color var(--transition), transform var(--transition);
+  }
+  .generate-btn:hover,
+  .generate-btn:focus {
+    background-color: #1d4ed8;
+    outline: none;
+    transform: scale(1.05);
+  }
+
+  /* Result display */
+  .result {
+    margin-top: 2rem;
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    user-select: text;
+  }
+  .result small {
+    display: block;
+    font-weight: 400;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    color: var(--color-secondary);
+  }
+
+  @media (min-width: 640px) {
+    h1 {
+      font-size: 3.5rem;
     }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo">Service Center</div>
-  </header>
-  <main>
-    <!-- FRP Bypass Section -->
-    <section id="frp-bypass" class="card" tabindex="0" aria-labelledby="frp-bypass-heading">
-      <h2 id="frp-bypass-heading">FRP Bypass &amp; Password Reset</h2>
-      <label for="frp-model">Select Model</label>
-      <select id="frp-model" aria-required="true" aria-describedby="frp-help">
-        <option value="" disabled selected>Select your model</option>
-        <option value="REALME">REALME</option>
-        <option value="SAMSUNG">SAMSUNG</option>
-        <option value="OPPO">OPPO</option>
-        <option value="XIAOMI">XIAOMI</option>
-        <option value="HONOR">HONOR</option>
-        <option value="REDMI">REDMI</option>
-        <option value="HUAWEI">HUAWEI</option>
-        <option value="ONEPLUS">ONEPLUS</option>
-        <option value="TECNO">TECNO</option>
-        <option value="INFINIX">INFINIX</option>
-        <option value="VIVO">VIVO</option>
-        <option value="IPHONE">IPHONE</option>
-        <option value="IPAD">IPAD</option>
-      </select>
-      <p id="frp-help" style="font-size: 0.9rem; color: #6b7280; margin-top: 0.25rem; user-select:none;">
-        After selecting your model, a unique 4-digit code will be generated for WhatsApp.
-      </p>
-      <p class="code-display" aria-live="polite" aria-atomic="true" id="frp-code"></p>
-      <a href="#" id="send-whatsapp-frp" class="send-whatsapp-button" role="button" aria-disabled="true" tabindex="-1" target="_blank" rel="noopener noreferrer">
-        Send Code to WhatsApp
-      </a>
-    </section>
+<header role="banner">
+  <nav class="nav-wrapper" aria-label="Primary navigation">
+    <div class="logo" tabindex="0">Service Center</div>
+  </nav>
+</header>
+<main role="main" class="container" aria-live="polite">
+  <section class="card" aria-labelledby="page-title">
+    <h1 id="page-title">Unlock & Tool Rental Services</h1>
+    <p class="desc" id="page-desc">Select a service, fill in the details, generate a 4-digit code, and send it to WhatsApp.</p>
 
-    <!-- Screen Lock Section -->
-    <section id="screen-lock" class="card" tabindex="0" aria-labelledby="screen-lock-heading">
-      <h2 id="screen-lock-heading">Screen Lock Services</h2>
-      <label for="screen-lock-model">Select Model</label>
-      <select id="screen-lock-model" aria-required="true" aria-describedby="screen-lock-help">
-        <option value="" disabled selected>Select Model</option>
-        <option value="OPPO">OPPO</option>
-        <option value="REALME">REALME</option>
-        <option value="XIAOMI">XIAOMI</option>
-        <option value="SAMSUNG">SAMSUNG</option>
-        <option value="ONEPLUS">ONEPLUS</option>
-        <option value="REDMI">REDMI</option>
-        <option value="OTHER">OTHER</option>
-      </select>
-      <p id="screen-lock-help" style="font-size: 0.9rem; color: #6b7280; margin-top: 0.25rem; user-select:none;">
-        After selecting a model, a unique 4-digit code will be generated for WhatsApp.
-      </p>
-      <p class="code-display" aria-live="polite" aria-atomic="true" id="screen-lock-code"></p>
-      <a href="#" id="send-whatsapp-screen-lock" class="send-whatsapp-button" role="button" aria-disabled="true" tabindex="-1" target="_blank" rel="noopener noreferrer">
-        Send Code to WhatsApp
-      </a>
-    </section>
+    <div class="toggle-buttons" role="tablist" aria-label="Service selection">
+      <button class="toggle-button active" id="telco-tab" role="tab" aria-selected="true" aria-controls="telco-section" tabindex="0">TELCO UNLOCK</button>
+      <button class="toggle-button" id="frp-tab" role="tab" aria-selected="false" aria-controls="frp-section" tabindex="-1">FRP UNLOCK</button>
+      <button class="toggle-button" id="apple-id-tab" role="tab" aria-selected="false" aria-controls="apple-id-section" tabindex="-1">APPLE ID FORGET</button>
+      <button class="toggle-button" id="rent-tool-tab" role="tab" aria-selected="false" aria-controls="rent-tool-section" tabindex="-1">RENT TOOL</button>
+      <button class="toggle-button" id="blist-hide-tab" role="tab" aria-selected="false" aria-controls="blist-hide-section" tabindex="-1">B/LIST HIDE</button>
+    </div>
 
-    <!-- Forget Apple ID Section -->
-    <section id="forget-apple-id" class="card" tabindex="0" aria-labelledby="forget-apple-id-heading">
-      <h2 id="forget-apple-id-heading">Forget Apple ID</h2>
-      <label for="apple-id-model">Model</label>
-      <input type="text" id="apple-id-model" aria-required="true" placeholder="Enter model" autocomplete="off" />
-      <label for="apple-id-status">Model Status</label>
-      <select id="apple-id-status" aria-required="true" aria-describedby="apple-id-status-help">
-        <option value="" disabled selected>Select Status</option>
-        <option value="LOST">LOST</option>
-        <option value="CLEAN">CLEAN</option>
-      </select>
-      <p id="apple-id-status-help" style="font-size: 0.9rem; color: #6b7280; margin-top: 0.25rem; user-select:none;">
-        Choose the model status.
-      </p>
-      <label for="apple-id-location">Location</label>
-      <input type="text" id="apple-id-location" aria-required="true" placeholder="Enter location" autocomplete="off" />
-      <p class="code-display" aria-live="polite" aria-atomic="true" id="forget-apple-id-case"></p>
-      <a href="#" id="send-whatsapp-forget-apple-id" class="send-whatsapp-button" role="button" aria-disabled="true" tabindex="-1" target="_blank" rel="noopener noreferrer">
-        Send Case to WhatsApp
-      </a>
-    </section>
-  </main>
+    <!-- TELCO UNLOCK -->
+    <div id="telco-section" role="tabpanel" aria-labelledby="telco-tab">
+      <div class="option-section" aria-label="Telco unlock phone model selection">
+        <p class="option-label">Select Model</p>
+        <div class="option-grid" id="telco-models">
+          <button class="option-button" data-model="SAMSUNG" type="button">SAMSUNG</button>
+          <button class="option-button" data-model="HONOR" type="button">HONOR</button>
+          <button class="option-button" data-model="REDMI" type="button">REDMI</button>
+          <button class="option-button" data-model="XIAOMI" type="button">XIAOMI</button>
+          <button class="option-button" data-model="VIVO" type="button">VIVO</button>
+          <button class="option-button" data-model="INFINIX" type="button">INFINIX</button>
+          <button class="option-button" data-model="TECNO" type="button">TECNO</button>
+          <button class="option-button" data-model="HUAWEI" type="button">HUAWEI</button>
+          <button class="option-button" data-model="OPPO" type="button">OPPO</button>
+          <button class="option-button" data-model="REALME" type="button">REALME</button>
+        </div>
+      </div>
+      <button class="generate-btn" id="telco-generate" type="button" disabled>Generate 4-Digit Code & Send to WhatsApp</button>
+    </div>
 
-  <script>
-    const whatsappNumber = '+60178040403';
+    <!-- FRP UNLOCK -->
+    <div id="frp-section" role="tabpanel" aria-labelledby="frp-tab" hidden>
+      <div class="option-section" aria-label="FRP unlock phone model selection">
+        <p class="option-label">Select Model</p>
+        <div class="option-grid" id="frp-models">
+          <button class="option-button" data-model="SAMSUNG" type="button">SAMSUNG</button>
+          <button class="option-button" data-model="REALME" type="button">REALME</button>
+          <button class="option-button" data-model="OPPO" type="button">OPPO</button>
+          <button class="option-button" data-model="XIAOMI" type="button">XIAOMI</button>
+          <button class="option-button" data-model="HONOR" type="button">HONOR</button>
+          <button class="option-button" data-model="VIVO" type="button">VIVO</button>
+        </div>
+      </div>
+      <div class="detail-group">
+        <label for="frp-detail">Details (Fill in the detail info):</label>
+        <input type="text" id="frp-detail" placeholder="Enter device/lock details here..." required />
+      </div>
+      <button class="generate-btn" id="frp-generate" type="button" disabled>Generate 4-Digit Code & Send to WhatsApp</button>
+    </div>
 
-    // Screen Lock Interaction
-    const screenLockModel = document.getElementById('screen-lock-model');
-    const screenLockCode = document.getElementById('screen-lock-code');
-    const sendWhatsAppScreenLock = document.getElementById('send-whatsapp-screen-lock');
+    <!-- APPLE ID FORGET -->
+    <div id="apple-id-section" role="tabpanel" aria-labelledby="apple-id-tab" hidden>
+      <div class="detail-group">
+        <label for="apple-model">Model:</label>
+        <input type="text" id="apple-model" placeholder="Enter model here..." required />
+      </div>
+      <div class="detail-group">
+        <label for="apple-status">Status:</label>
+        <select id="apple-status" required>
+          <option value="" disabled selected>Select status</option>
+          <option value="LOST">LOST</option>
+          <option value="CLEAN">CLEAN</option>
+        </select>
+      </div>
+      <div class="detail-group">
+        <label for="apple-imei">IMEI:</label>
+        <input type="text" id="apple-imei" placeholder="Enter IMEI here..." required />
+      </div>
+      <button class="generate-btn" id="apple-id-generate" type="button">Generate 4-Digit Code & Send to WhatsApp</button>
+    </div>
 
-    function generate4DigitCode() {
-      return Math.floor(1000 + Math.random() * 9000);
-    }
+    <!-- RENT TOOL -->
+    <div id="rent-tool-section" role="tabpanel" aria-labelledby="rent-tool-tab" hidden>
+      <div class="detail-group">
+        <label for="tool-select">Select Tool:</label>
+        <select id="tool-select" required>
+          <option value="" disabled selected>Select tool</option>
+          <option value="UNLOCKTOOL">UNLOCKTOOL</option>
+          <option value="RTC">RTC</option>
+          <option value="PANDORA">PANDORA</option>
+        </select>
+      </div>
+      <div class="detail-group">
+        <label for="time-select">Select Time:</label>
+        <select id="time-select" required>
+          <option value="" disabled selected>Select time</option>
+          <option value="6HR">6 HR</option>
+          <option value="12HR">12 HR</option>
+          <option value="1DAY">1 DAY</option>
+          <option value="1MONTH">1 MONTH</option>
+        </select>
+      </div>
+      <button class="generate-btn" id="rent-tool-generate" type="button">Generate 4-Digit Code & Send to WhatsApp</button>
+    </div>
 
-    function updateWhatsAppScreenLock(model, code) {
-      const msg = `Hello, I am requesting Screen Lock service.\nModel: ${model}\nCode: ${code}`;
-      const encodedMsg = encodeURIComponent(msg);
-      const phoneDigits = whatsappNumber.replace(/\D/g, '');
-      return `https://wa.me/${phoneDigits}?text=${encodedMsg}`;
-    }
+    <!-- B/LIST HIDE PERMANENTLY -->
+    <div id="blist-hide-section" role="tabpanel" aria-labelledby="blist-hide-tab" hidden>
+      <div class="detail-group">
+        <label for="ic-number">IC/No:</label>
+        <input type="text" id="ic-number" placeholder="Enter IC/No here..." required />
+      </div>
+      <button class="generate-btn" id="blist-hide-generate" type="button">Generate 4-Digit Code & Send to WhatsApp</button>
+    </div>
 
-    function resetScreenLock() {
-      screenLockCode.textContent = '';
-      sendWhatsAppScreenLock.href = '#';
-      sendWhatsAppScreenLock.setAttribute('aria-disabled', 'true');
-      sendWhatsAppScreenLock.tabIndex = -1;
-    }
+    <div class="result" id="result" role="alert" aria-live="polite"></div>
+  </section>
+</main>
 
-    screenLockModel.addEventListener('change', () => {
-      const model = screenLockModel.value;
-      if (model) {
-        const code = generate4DigitCode();
-        screenLockCode.textContent = `Your generated 4-digit code: ${code}`;
-        sendWhatsAppScreenLock.href = updateWhatsAppScreenLock(model, code);
-        sendWhatsAppScreenLock.removeAttribute('aria-disabled');
-        sendWhatsAppScreenLock.tabIndex = 0;
-      } else {
-        resetScreenLock();
-      }
-    });
+<script>
+(function(){
+  const whatsappNumber = '60178040403';
 
-    resetScreenLock();
+  // Elements
+  const telcoTab = document.getElementById('telco-tab');
+  const frpTab = document.getElementById('frp-tab');
+  const appleIdTab = document.getElementById('apple-id-tab');
+  const rentToolTab = document.getElementById('rent-tool-tab');
+  const blistHideTab = document.getElementById('blist-hide-tab');
 
-    // FRP Bypass Interaction
-    const frpModel = document.getElementById('frp-model');
-    const frpCode = document.getElementById('frp-code');
-    const sendWhatsAppFrp = document.getElementById('send-whatsapp-frp');
+  const telcoSection = document.getElementById('telco-section');
+  const frpSection = document.getElementById('frp-section');
+  const appleIdSection = document.getElementById('apple-id-section');
+  const rentToolSection = document.getElementById('rent-tool-section');
+  const blistHideSection = document.getElementById('blist-hide-section');
 
-    function updateWhatsAppFrp(model, code) {
-      const msg = `Hello, I am requesting FRP bypass service.\nModel: ${model}\nCode: ${code}`;
-      const encodedMsg = encodeURIComponent(msg);
-      const phoneDigits = whatsappNumber.replace(/\D/g, '');
-      return `https://wa.me/${phoneDigits}?text=${encodedMsg}`;
-    }
+  const telcoModels = telcoSection.querySelectorAll('.option-button');
+  const frpModels = frpSection.querySelectorAll('.option-button');
+  const appleModelInput = document.getElementById('apple-model');
+  const appleStatusSelect = document.getElementById('apple-status');
+  const appleImeiInput = document.getElementById('apple-imei');
+  const toolSelect = document.getElementById('tool-select');
+  const timeSelect = document.getElementById('time-select');
+  const icNumberInput = document.getElementById('ic-number');
 
-    function resetFrp() {
-      frpCode.textContent = '';
-      sendWhatsAppFrp.href = '#';
-      sendWhatsAppFrp.setAttribute('aria-disabled', 'true');
-      sendWhatsAppFrp.tabIndex = -1;
-    }
+  const telcoGenerateBtn = document.getElementById('telco-generate');
+  const frpGenerateBtn = document.getElementById('frp-generate');
+  const appleIdGenerateBtn = document.getElementById('apple-id-generate');
+  const rentToolGenerateBtn = document.getElementById('rent-tool-generate');
+  const blistHideGenerateBtn = document.getElementById('blist-hide-generate');
 
-    frpModel.addEventListener('change', () => {
-      const model = frpModel.value;
-      if (model) {
-        const code = generate4DigitCode();
-        frpCode.textContent = `Your generated 4-digit code: ${code}`;
-        sendWhatsAppFrp.href = updateWhatsAppFrp(model, code);
-        sendWhatsAppFrp.removeAttribute('aria-disabled');
-        sendWhatsAppFrp.tabIndex = 0;
-      } else {
-        resetFrp();
-      }
-    });
+  const resultEl = document.getElementById('result');
 
-    resetFrp();
+  // State
+  let activeTab = 'telco'; // 'telco', 'frp', 'apple-id', 'rent-tool', 'blist-hide'
+  let telcoSelectedModel = null;
+  let frpSelectedModel = null;
 
-    // Forget Apple ID Interaction
-    const appleIdModel = document.getElementById('apple-id-model');
-    const appleIdStatus = document.getElementById('apple-id-status');
-    const appleIdLocation = document.getElementById('apple-id-location');
-    const forgetAppleIdCase = document.getElementById('forget-apple-id-case');
-    const sendWhatsAppForgetApple = document.getElementById('send-whatsapp-forget-apple-id');
+  // Generate 4-digit code padded with zeros
+  function generateCode() {
+    const num = Math.floor(Math.random() * 10000);
+    return num.toString().padStart(4, '0');
+  }
 
-    let currentCaseNumber = null;
+  // Switch tab
+  function switchTab(tab) {
+    if(tab === activeTab) return;
 
-    function updateWhatsAppForgetApple(model, status, location, caseNum) {
-      const msg = `Hello, I am requesting Forget Apple ID service.\nModel: ${model}\nStatus: ${status}\nLocation: ${location}\nCase Number: ${caseNum}`;
-      const encodedMsg = encodeURIComponent(msg);
-      const phoneDigits = whatsappNumber.replace(/\D/g, '');
-      return `https://wa.me/${phoneDigits}?text=${encodedMsg}`;
-    }
+    telcoSection.hidden = true;
+    frpSection.hidden = true;
+    appleIdSection.hidden = true;
+    rentToolSection.hidden = true;
+    blistHideSection.hidden = true;
 
-    function validateForgetAppleInputs() {
-      return appleIdModel.value.trim() !== '' &&
-             (appleIdStatus.value === 'LOST' || appleIdStatus.value === 'CLEAN') &&
-             appleIdLocation.value.trim() !== '';
-    }
-
-    function resetForgetApple() {
-      currentCaseNumber = null;
-      forgetAppleIdCase.textContent = '';
-      sendWhatsAppForgetApple.href = '#';
-      sendWhatsAppForgetApple.setAttribute('aria-disabled', 'true');
-      sendWhatsAppForgetApple.tabIndex = -1;
-    }
-
-    function handleForgetAppleInputs() {
-      if (validateForgetAppleInputs()) {
-        if (!currentCaseNumber) {
-          currentCaseNumber = generate4DigitCode();
-        }
-        forgetAppleIdCase.textContent = `Your generated case number: ${currentCaseNumber}`;
-        sendWhatsAppForgetApple.href = updateWhatsAppForgetApple(
-          appleIdModel.value.trim(),
-          appleIdStatus.value,
-          appleIdLocation.value.trim(),
-          currentCaseNumber
-        );
-        sendWhatsAppForgetApple.removeAttribute('aria-disabled');
-        sendWhatsAppForgetApple.tabIndex = 0;
-      } else {
-        resetForgetApple();
-      }
-    }
-
-    appleIdModel.addEventListener('input', handleForgetAppleInputs);
-    appleIdStatus.addEventListener('change', handleForgetAppleInputs);
-    appleIdLocation.addEventListener('input', handleForgetAppleInputs);
-
-    resetForgetApple();
-  </script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Service Center - Telco & Tool Services</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --color-bg: #ffffff;
-      --color-text-primary: #111827;
-      --color-text-secondary: #6b7280;
-      --color-accent: #2563eb;
-      --color-accent-hover: #1d4ed8;
-      --color-card-bg: #f9fafb;
-      --border-radius: 0.75rem;
-      --max-width: 1200px;
-      --transition-speed: 0.3s;
-      --header-height: 64px;
-      --color-border: #e5e7eb;
-      --spacing: 2rem;
-      --font-family: 'Inter', sans-serif;
-    }
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      background-color: var(--color-bg);
-      color: var(--color-text-secondary);
-      font-family: var(--font-family);
-      font-size: 17px;
-      line-height: 1.5;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: var(--spacing);
-    }
-    header {
-      width: 100%;
-      max-width: var(--max-width);
-      height: var(--header-height);
-      background: var(--color-bg);
-      border-bottom: 1px solid var(--color-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
-      margin-bottom: var(--spacing);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .logo {
-      font-weight: 700;
-      font-size: 1.75rem;
-      color: var(--color-text-primary);
-      letter-spacing: 0.05em;
-    }
-    main {
-      width: 100%;
-      max-width: var(--max-width);
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing);
-    }
-    section.card {
-      background-color: var(--color-card-bg);
-      border-radius: var(--border-radius);
-      padding: 2rem 2.5rem;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      transition: box-shadow var(--transition-speed), transform var(--transition-speed);
-    }
-    section.card:hover,
-    section.card:focus-within {
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-      transform: translateY(-3px);
-      outline: none;
-    }
-    h2 {
-      margin: 0 0 1rem 0;
-      font-weight: 700;
-      font-size: 1.8rem;
-      color: var(--color-text-primary);
-      user-select: none;
-    }
-    label {
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-      color: var(--color-text-primary);
-      font-size: 1rem;
-      user-select: text;
-    }
-    select, input[type="text"] {
-      font-family: inherit;
-      font-size: 1rem;
-      padding: 0.6rem 1rem;
-      border-radius: var(--border-radius);
-      border: 1.5px solid var(--color-border);
-      width: 100%;
-      color: var(--color-text-primary);
-      transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
-    }
-    select:focus, input[type="text"]:focus {
-      outline: none;
-      border-color: var(--color-accent);
-      box-shadow: 0 0 10px var(--color-accent);
-      background-color: #fff;
-    }
-    .send-whatsapp-button {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.8rem 2rem;
-      font-weight: 700;
-      font-size: 1.1rem;
-      background-color: var(--color-accent);
-      color: #fff;
-      border-radius: var(--border-radius);
-      text-decoration: none;
-      cursor: pointer;
-      transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
-      user-select: none;
-      box-shadow: 0 7px 20px rgba(37, 99, 235, 0.5);
-      text-align: center;
-    }
-    .send-whatsapp-button:hover,
-    .send-whatsapp-button:focus {
-      background-color: var(--color-accent-hover);
-      box-shadow: 0 9px 25px rgba(26, 70, 150, 0.7);
-      color: #fff;
-      outline: none;
-      text-decoration: none;
-    }
-    .send-whatsapp-button:focus-visible {
-      outline-offset: 3px;
-      outline: 3px solid #93c5fd;
-      border-radius: var(--border-radius);
-    }
-    .code-display {
-      font-family: 'SF Mono', 'Consolas', monospace;
-      font-weight: 700;
-      font-size: 1.25rem;
-      color: var(--color-accent);
-      user-select: text;
-      margin-top: 0.5rem;
-    }
-    @media (max-width: 600px) {
-      body {
-        padding: 1rem;
-      }
-      section.card {
-        padding: 1.5rem 1.5rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header>
-
-    <div class="logo">Service Center</div>
-  </header>
-  <main>
-    <!-- Telco & Auth Downgrade -->
-    <section id="telco-auth" class="card" tabindex="0" aria-labelledby="telco-auth-heading">
-      <h2 id="telco-auth-heading">Telco & Auth Downgrade</h2>
-      <label for="telco-model">Model</label>
-      <select id="telco-model" aria-required="true">
-        <option value="" disabled selected>Select Model</option>
-        <option value="REALME">REALME</option>
-        <option value="SAMSUNG">SAMSUNG</option>
-        <option value="OPPO">OPPO</option>
-        <option value="XIAOMI">XIAOMI</option>
-      </select>
-      <label for="telco-details">Details Model</label>
-      <input type="text" id="telco-details" placeholder="Enter details" aria-required="true" autocomplete="off" />
-      <p class="code-display" aria-live="polite" aria-atomic="true" id="telco-auth-code"></p>
-      <a href="#" id="send-whatsapp-telco" class="send-whatsapp-button" aria-disabled="true" tabindex="-1" target="_blank" rel="noopener noreferrer" role="button">
-        Send Telco Info to WhatsApp
-      </a>
-    </section>
-
-    <!-- Hide B/List Telco -->
-    <section id="hide-blacklist" class="card" tabindex="0" aria-labelledby="hide-blacklist-heading">
-      <h2 id="hide-blacklist-heading">Hide B/List Telco</h2>
-      <label for="blist-check">Checking Free Blacklist I/C</label>
-      <select id="blist-check" aria-required="true">
-        <option value="" disabled selected>Select Option</option>
-        <option value="YES">YES</option>
-        <option value="NO">NO</option>
-      </select>
-      <label for="ic-no">IC No</label>
-      <input type="text" id="ic-no" placeholder="Enter IC Number" aria-required="true" autocomplete="off" />
-      <p class="code-display" aria-live="polite" aria-atomic="true" id="hide-blacklist-code"></p>
-      <a href="#" id="send-whatsapp-blist" class="send-whatsapp-button" aria-disabled="true" tabindex="-1" target="_blank" rel="noopener noreferrer" role="button">
-        Send Blacklist Info to WhatsApp
-      </a>
-    </section>
-
-    <!-- Tool Rent -->
-    <section id="tool-rent" class="card" tabindex="0" aria-labelledby="tool-rent-heading">
-      <h2 id="tool-rent-heading">Tool Rent</h2>
-      <label for="tool-select">Tool</label>
-      <select id="tool-select" aria-required="true">
-        <option value="" disabled selected>Select Tool</option>
-        <option value="UNLOCKTOOL">UNLOCKTOOL</option>
-        <option value="RTC">RTC</option>
-        <option value="PANDORA">PANDORA</option>
-        <option value="TSM">TSM</option>
-        <option value="AMT">AMT</option>
-        <option value="SIGMA">SIGMA</option>
-      </select>
-      <label for="tool-time">Time</label>
-      <select id="tool-time" aria-required="true">
-        <option value="" disabled selected>Select Time</option>
-        <option value="6HR">6HR</option>
-        <option value="12HR">12HR</option>
-        <option value="1DAY">1DAY</option>
-        <option value="10DAYS">10DAYS</option>
-        <option value="1MONTH">1MONTH</option>
-      </select>
-      <p class="code-display" aria-live="polite" aria-atomic="true" id="tool-rent-code"></p>
-      <a href="#" id="send-whatsapp-tool-rent" class="send-whatsapp-button" aria-disabled="true" tabindex="-1" target="_blank" rel="noopener noreferrer" role="button">
-        Send Tool Rent Info to WhatsApp
-      </a>
-    </section>
-  </main>
-
-  <script>
-    const whatsappNumber = '+60178040403';
-
-    // Utility: Generate 4-digit code
-    function generate4DigitCode() {
-      return Math.floor(1000 + Math.random() * 9000);
-    }
+    if(tab === 'telco') {
+      telcoTab.classList.add('active');
+      telcoTab.setAttribute('aria-selected', 'true');
+      telcoTab.tabIndex = 0;
+      frpTab.classList.remove('active');
+      frpTab.setAttribute('aria-selected', 'false');
+      frpTab.tabIndex = -1;
+      appleIdTab.classList.remove('
