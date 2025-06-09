@@ -1,1207 +1,382 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zuucaster Service</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <title>Zuu Caster Center - Multi-Service</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --color-red: #d32f2f;
-      --color-red-dark: #b71c1c;
-      --color-white: #fff;
-      --color-gray-light: #f9f9f9;
-      --color-gray-medium: #6b7280;
-      --font-primary: 'Poppins', sans-serif;
-      --transition-speed: 0.3s;
+      --color-bg: #f9f9fb;
+      --color-white: #ffffff;
+      --color-light-gray: #e6e6eb;
+      --color-gray-text: #4a4a4a;
+      --color-accent: #0071e3;
+      --color-accent-hover: #005bb5;
       --border-radius: 12px;
-      --shadow-light: rgba(0,0,0,0.1);
-      --shadow-dark: rgba(0,0,0,0.2);
-      --max-container-width: 1080px;
+      --shadow-subtle: rgba(0, 0, 0, 0.05);
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      --transition-speed: 0.3s;
+      --max-width: 900px;
+      --spacing: 24px;
     }
-    /* Reset and base styles */
+
     *, *::before, *::after {
       box-sizing: border-box;
     }
+
     body {
       margin: 0;
-      font-family: var(--font-primary);
-      background-color: var(--color-white);
-      color: var(--color-gray-medium);
-      line-height: 1.6;
+      background-color: var(--color-bg);
+      font-family: var(--font-family);
+      color: var(--color-gray-text);
+      font-size: 17px;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-    }
-    a {
-      color: var(--color-red);
-      text-decoration: none;
-      transition: color var(--transition-speed);
-    }
-    a:hover,
-    a:focus {
-      color: var(--color-red-dark);
-      outline: none;
-    }
-    h1 {
-      color: var(--color-red);
-      font-weight: 600;
-      font-size: 2rem;
-      text-align: center;
-      margin-bottom: 1.6rem;
+      align-items: center;
+      padding: var(--spacing);
       user-select: none;
     }
-    .container {
-      max-width: var(--max-container-width);
-      margin: 0 auto;
-      padding: 0 1rem;
-      width: 100%;
-    }
-    /* Header */
+
     header {
-      background: var(--color-white);
-      padding: 2rem 1.5rem;
-      box-shadow: 0 2px 8px var(--shadow-light);
-      position: sticky;
-      top: 0;
-      z-index: 1100;
-    }
-    .site-title {
-      color: var(--color-red);
-      font-weight: 600;
-      font-size: 1.8rem;
-      letter-spacing: 1.2px;
-      user-select: none;
-      text-align: center;
-    }
-    /* Services List */
-    ul.services-list {
-      list-style: none;
-      margin: 0 auto 2.5rem auto;
-      padding: 0;
-      max-width: 720px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.8rem;
-    }
-    ul.services-list li {
-      background: var(--color-white);
-      border-radius: var(--border-radius);
-      padding: 1.5rem 1.2rem;
-      box-shadow: 0 2px 10px var(--shadow-light);
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: var(--color-red);
-      text-align: center;
-      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-      user-select: none;
-      cursor: default;
-    }
-    ul.services-list li:hover,
-    ul.services-list li:focus-within {
-      transform: scale(1.03);
-      box-shadow: 0 8px 24px rgba(211,47,47,0.45);
-      outline: none;
-    }
-    /* Button Unlocked Now */
-    .btn-unlock {
-      display: block;
-      max-width: 240px;
-      margin: 0 auto 3rem auto;
-      padding: 1rem 1.6rem;
-      background-color: var(--color-red);
-      color: var(--color-white);
-      font-weight: 700;
-      font-size: 1.25rem;
-      border-radius: var(--border-radius);
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(211, 47, 47, 0.4);
-      transition: background-color var(--transition-speed), box-shadow var(--transition-speed), transform var(--transition-speed);
-      user-select: none;
-      text-align: center;
-      line-height: 1.2;
-    }
-    .btn-unlock:hover,
-    .btn-unlock:focus {
-      background-color: var(--color-red-dark);
-      box-shadow: 0 6px 18px rgba(183, 28, 28, 0.6);
-      outline: none;
-      transform: scale(1.05);
-    }
-    .btn-unlock:active {
-      transform: scale(0.97);
-      box-shadow: 0 3px 8px rgba(183, 28, 28, 0.8);
-    }
-    /* Modal Overlay */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.3);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1200;
-      padding: 1rem;
-    }
-    .modal-overlay.active {
-      display: flex;
-    }
-    /* Modal content */
-    .modal {
-      background: var(--color-white);
-      border-radius: var(--border-radius);
-      box-shadow: 0 10px 30px var(--shadow-dark);
       width: 100%;
-      max-width: 480px;
-      padding: 2.5rem 2rem 2rem 2rem;
-      position: relative;
-      max-height: 90vh;
-      overflow-y: auto;
-      font-size: 1rem;
-      color: var(--color-gray-medium);
-      -webkit-overflow-scrolling: touch;
+      max-width: var(--max-width);
+      padding-bottom: var(--spacing);
+      margin-bottom: var(--spacing);
+      border-bottom: 1px solid var(--color-light-gray);
     }
-    .modal h2 {
-      font-size: 1.8rem;
+
+    .logo {
       font-weight: 700;
-      color: var(--color-red);
-      margin-top: 0;
-      margin-bottom: 1rem;
+      font-size: 1.75rem;
+      color: var(--color-gray-text);
+      letter-spacing: 0.05em;
       user-select: none;
       text-align: center;
-    }
-    /* Close button */
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: transparent;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--color-red);
-      cursor: pointer;
-      transition: color var(--transition-speed);
-      user-select: none;
-    }
-    .modal-close:hover,
-    .modal-close:focus {
-      color: var(--color-red-dark);
-      outline: none;
-    }
-    /* Form styles */
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-    label {
-      font-weight: 600;
-      color: var(--color-red);
-      user-select: none;
-    }
-    select, input[type="text"] {
-      font-family: var(--font-primary);
-      font-size: 1rem;
-      padding: 0.65rem 1rem;
-      border: 1.5px solid var(--color-gray-light);
-      border-radius: 8px;
-      outline-offset: 2px;
-      outline-color: transparent;
-      transition: border-color var(--transition-speed);
-    }
-    select:focus, input[type="text"]:focus {
-      border-color: var(--color-red);
-      outline-color: var(--color-red);
-    }
-    /* Radio buttons container */
-    .radio-group {
-      display: flex;
-      gap: 1.5rem;
-    }
-    .radio-label {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-weight: 600;
-      color: var(--color-red);
-      cursor: pointer;
-      user-select: none;
-    }
-    /* Smaller text inside radio label for actual option */
-    .radio-label input {
-      cursor: pointer;
-      margin: 0;
-      width: 1rem;
-      height: 1rem;
-    }
-    /* Case number readonly field */
-    input[readonly] {
-      background-color: var(--color-gray-light);
-      color: var(--color-gray-medium);
-      cursor: not-allowed;
-    }
-    /* Submit button */
-    button.submit-btn {
-      background-color: var(--color-red);
-      color: var(--color-white);
-      font-weight: 700;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: var(--border-radius);
-      padding: 1rem;
-      cursor: pointer;
-      transition: background-color var(--transition-speed), box-shadow var(--transition-speed), transform var(--transition-speed);
-      box-shadow: 0 4px 12px rgba(211, 47, 47, 0.5);
-      user-select: none;
-    }
-    button.submit-btn:hover,
-    button.submit-btn:focus {
-      background-color: var(--color-red-dark);
-      box-shadow: 0 6px 18px rgba(183, 28, 28, 0.7);
-      outline: none;
-      transform: scale(1.05);
-    }
-    button.submit-btn:active {
-      transform: scale(0.97);
-      box-shadow: 0 3px 8px rgba(183, 28, 28, 0.9);
-    }
-    /* Responsive */
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.6rem;
-      }
-      ul.services-list {
-        grid-template-columns: 1fr;
-      }
-      .btn-unlock {
-        max-width: 100%;
-        font-size: 1.1rem;
-        padding: 0.85rem 1.2rem;
-        margin-bottom: 2rem;
-      }
-      .modal {
-        padding: 2rem 1.5rem 1.5rem 1.5rem;
-      }
-      .radio-group {
-        gap: 1rem;
-      }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        transition: none !important;
-        animation-duration: 0 !important;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header role="banner">
-    <div class="container">
-      <h1 class="site-title" aria-label="Service Locks and Repairs Website">Zuu Caster Service&Repair</h1>
-    </div>
-  </header>
-  <main role="main" class="container" aria-label="List of service offerings">
-    <h1>Our Services</h1>
-    <ul class="services-list" role="list">
-      <li tabindex="0">SCREEN LOCK</li>
-      <li tabindex="0">GOOGLE LOCK</li>
-      <li tabindex="0">NETWORK LOCK</li>
-      <li tabindex="0">BOOTLOADER LOCK</li>
-      <li tabindex="0">IPHONE IDLOCK</li>
-      <li tabindex="0">IPHONE TELCO LOCK</li>
-      <li tabindex="0">HONOR GOOGLE LOCK / FRP</li>
-      <li tabindex="0">WEBSITE DESIGN</li>
-      <li tabindex="0">FRP BYPASS & PASSWORD RESET</li>
-      <li tabindex="0">FORGET APPLE ID</li>
-      <li tabindex="0">IPAD BYPASS</li>
-      <li tabindex="0">UPGRADE STORAGE</li>
-      <li tabindex="0">SCREEN REPLACEMENT</li>
-      <li tabindex="0">GLASS REPLACEMENT</li>
-      <li tabindex="0">COMPUTER SERVICE</li>
-      <li tabindex="0">BUILT CUSTOM COMPUTER</li>
-      <li tabindex="0">LAPTOP SERVICE</li>
-    </ul>
-    <button class="btn-unlock" id="unlock-btn" type="button" aria-haspopup="dialog" aria-controls="unlock-modal" aria-expanded="false">Unlocked Now</button>
-  </main>
-
-   All rights reserved.
-  </footer>
-  <!-- Modal -->
-  <div class="modal-overlay" id="unlock-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1" aria-hidden="true">
-    <div class="modal" role="document">
-      <button class="modal-close" id="modal-close" aria-label="Close form">&times;</button>
-      <h2 id="modal-title">Unlock Request</h2>
-      <form id="unlock-form" novalidate>
-        <label for="model-select">MODEL</label>
-        <select id="model-select" name="model" required aria-required="true">
-          <option value="" disabled selected>Select model</option>
-          <option value="SAMSUNG">SAMSUNG</option>
-          <option value="OPPO">OPPO</option>
-          <option value="REALME">REALME</option>
-          <option value="XIAOMI">XIAOMI</option>
-          <option value="REDMI">REDMI</option>
-          <option value="HONOR">HONOR</option>
-          <option value="HUAWEI">HUAWEI</option>
-          <option value="TECHNO">TECHNO</option>
-          <option value="INFINIX">INFINIX</option>
-          <option value="PIXEL">PIXEL</option>
-          <option value="ONEPLUS">ONEPLUS</option>
-        </select>
-
-        <label for="issue-select">ISSUE</label>
-        <select id="issue-select" name="issue" required aria-required="true">
-          <option value="" disabled selected>Select issue</option>
-          <option value="TELCO">TELCO</option>
-          <option value="SOFTWARE BRICK">SOFTWARE BRICK</option>
-          <option value="GOOGLE">GOOGLE</option>
-          <option value="XIAOMI ACCOUNT">XIAOMI ACCOUNT</option>
-          <option value="XIAOMI FRP">XIAOMI FRP</option>
-          <option value="HONOR FRP">HONOR FRP</option>
-          <option value="HUAWEI ID">HUAWEI ID</option>
-          <option value="OTHER">OTHER</option>
-        </select>
-
-        <label for="location-input">YOUR LOCATION</label>
-        <input id="location-input" type="text" name="location" placeholder="Enter your location" required aria-required="true" autocomplete="address-level2" />
-
-        <fieldset>
-          <legend>HAVE LAPTOP/PC</legend>
-          <div class="radio-group" role="radiogroup" aria-required="true" aria-labelledby="laptop-legend">
-            <label class="radio-label" for="laptop-yes">
-              <input type="radio" id="laptop-yes" name="laptop" value="YES" required />YES
-            </label>
-            <label class="radio-label" for="laptop-no">
-              <input type="radio" id="laptop-no" name="laptop" value="NO" required />NO
-            </label>
-          </div>
-        </fieldset>
-
-        <label for="case-number-input">CASE # (auto-generated)</label>
-        <input id="case-number-input" type="text" name="caseNumber" readonly aria-readonly="true" aria-label="Auto-generated case number"/>
-
-        <button type="submit" class="submit-btn" aria-describedby="submission-desc">Submit Request</button>
-        <p id="submission-desc" class="visually-hidden">Submitting this form will send your unlock request to WhatsApp.</p>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    (() => {
-      const btnUnlock = document.getElementById('unlock-btn');
-      const modal = document.getElementById('unlock-modal');
-      const modalCloseBtn = document.getElementById('modal-close');
-      const form = document.getElementById('unlock-form');
-      const caseNumberInput = document.getElementById('case-number-input');
-
-      // Accessibility: Save last focused element
-      let lastFocusedElement;
-
-      // Utility: Generate random 4-digit
-      function generateCaseNumber() {
-        return Math.floor(1000 + Math.random() * 9000).toString();
-      }
-
-      // Open modal
-      function openModal() {
-        lastFocusedElement = document.activeElement;
-        modal.classList.add('active');
-        modal.setAttribute('aria-hidden', 'false');
-        btnUnlock.setAttribute('aria-expanded', 'true');
-        // Generate case number
-        caseNumberInput.value = generateCaseNumber();
-        // Focus first form field
-        document.getElementById('model-select').focus();
-        // Trap focus within modal
-        trapFocus(modal);
-      }
-      // Close modal
-      function closeModal() {
-        modal.classList.remove('active');
-        modal.setAttribute('aria-hidden', 'true');
-        btnUnlock.setAttribute('aria-expanded', 'false');
-        // Restore focus
-        if(lastFocusedElement) lastFocusedElement.focus();
-      }
-
-      // Trap focus inside modal
-      function trapFocus(element) {
-        const focusableSelectors = [
-          'a[href]',
-          'area[href]',
-          'input:not([disabled])',
-          'select:not([disabled])',
-          'textarea:not([disabled])',
-          'button:not([disabled])',
-          'iframe',
-          '[tabindex]:not([tabindex="-1"])',
-          '[contenteditable]'
-        ];
-        const focusableElements = Array.from(element.querySelectorAll(focusableSelectors.join(','))).filter(el => el.offsetWidth > 0 || el.offsetHeight > 0 || el === document.activeElement);
-        if(focusableElements.length === 0) return;
-
-        let firstEl = focusableElements[0];
-        let lastEl = focusableElements[focusableElements.length -1];
-
-        element.addEventListener('keydown', e => {
-          if(e.key === 'Tab' || e.keyCode === 9) {
-            if(e.shiftKey) { // Shift + Tab
-              if(document.activeElement === firstEl) {
-                e.preventDefault();
-                lastEl.focus();
-              }
-            } else { // Tab
-              if(document.activeElement === lastEl) {
-                e.preventDefault();
-                firstEl.focus();
-              }
-            }
-          }
-          if(e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
-            e.preventDefault();
-            closeModal();
-          }
-        });
-      }
-
-      // Form submit handler
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        // Collect values
-        const model = form.model.value;
-        const issue = form.issue.value;
-        const location = form.location.value.trim();
-        const laptop = form.laptop.value;
-        const caseNum = form.caseNumber.value;
-
-        // Validate (HTML5 validations handle most, plus trimming)
-
-        // Format text for WhatsApp
-        const messageParts = [
-          `Unlock Request - Case #${caseNum}`,
-          `Model: ${model}`,
-          `Issue: ${issue}`,
-          `Location: ${location}`,
-          `Have Laptop/PC: ${laptop}`
-        ];
-
-        const encodedMessage = encodeURIComponent(messageParts.join('\n'));
-
-        const whatsappNumber = '+60178040403';
-        // Format WhatsApp URL (using https://wa.me/ with text query)
-        const waURL = `https://wa.me/${whatsappNumber.replace(/\D/g, '')}?text=${encodedMessage}`;
-
-        // Open in new tab
-        window.open(waURL, '_blank');
-
-        // Close modal after submit
-        closeModal();
-
-        // Optional: reset form (not cleared so user can resubmit if needed)
-        form.reset();
-      });
-
-      // Open modal on button click
-      btnUnlock.addEventListener('click', openModal);
-
-      // Close modal handlers
-      modalCloseBtn.addEventListener('click', closeModal);
-
-      // Close modal on overlay click (only if clicking outside modal content)
-      modal.addEventListener('click', e => {
-        if(e.target === modal) {
-          closeModal();
-        }
-      });
-
-      // Close modal on pressing Escape key globally (alternative to focus trap)
-      document.addEventListener('keydown', e => {
-        if(e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
-          if(modal.classList.contains('active')) {
-            closeModal();
-          }
-        }
-      });
-    })();
-  </script>
-
-  <style>
-    /* Visually hidden for aria descriptions */
-    .visually-hidden {
-      position: absolute !important;
-      height: 1px; 
-      width: 1px; 
-      overflow: hidden;
-      clip: rect(1px, 1px, 1px, 1px);
-      white-space: nowrap;
-      border: 0;
-      padding: 0;
-      margin: -1px;
-    }
-  </style>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Rental Tool Auto WhatsApp</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
-  :root {
-    --color-black: #000000;
-    --color-white: #ffffff;
-    --color-gray: #6b7280;
-    --color-light: #ffffff;
-    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    --transition-duration: 0.3s;
-    --border-radius: 0.75rem;
-    --shadow-light: 0 4px 8px rgba(0,0,0,0.05);
-  }
-
-  /* Reset */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-  body, html {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    background-color: var(--color-light);
-    font-family: var(--font-family);
-    color: var(--color-gray);
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 4rem 1rem 6rem;
-  }
-
-  /* Container */
-  .container {
-    max-width: 480px;
-    width: 100%;
-    background: var(--color-white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-light);
-    padding: 3rem 3rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* Headline */
-  h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin: 0 0 2rem 0;
-    color: var(--color-black);
-    line-height: 1.1;
-    text-align: center;
-  }
-
-  /* Rental Tool toggle button */
-  button.rental-button {
-    background-color: var(--color-black);
-    color: var(--color-white);
-    font-weight: 700;
-    font-size: 1.5rem;
-    padding: 1rem 3rem;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    user-select: none;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    transition:
-      background-color var(--transition-duration) ease,
-      transform var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
-    outline-offset: 3px;
-    width: 100%;
-    max-width: 360px;
-  }
-  button.rental-button:hover,
-  button.rental-button:focus-visible {
-    background-color: #222222;
-    transform: scale(1.05);
-    outline: none;
-  }
-  button.rental-button:focus-visible {
-    outline: 3px solid #444444aa;
-  }
-
-  /* Rental options panel */
-  .rental-options {
-    margin-top: 2.5rem;
-    width: 100%;
-    background: var(--color-white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-light);
-    padding: 2rem 2.5rem;
-    display: none;
-    flex-direction: column;
-    gap: 1.25rem;
-    animation: fadeInSlideDown 0.35s ease forwards;
-  }
-
-  .rental-options.visible {
-    display: flex;
-  }
-
-  @keyframes fadeInSlideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Rental option items */
-  .rental-option {
-    display: flex;
-    align-items: center;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-    border: 2px solid transparent;
-    cursor: pointer;
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--color-black);
-    user-select: none;
-    transition: background-color var(--transition-duration) ease,
-                border-color var(--transition-duration) ease;
-  }
-
-  .rental-option:hover,
-  .rental-option:focus-within {
-    background-color: #f0f0f0;
-    border-color: var(--color-black);
-  }
-
-  /* Radio inputs hidden but accessible */
-  .rental-option input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  /* Custom radio style */
-  .rental-option .custom-radio {
-    width: 20px;
-    height: 20px;
-    border: 2.5px solid var(--color-gray);
-    border-radius: 50%;
-    margin-right: 1rem;
-    flex-shrink: 0;
-    box-sizing: border-box;
-    position: relative;
-    transition: border-color var(--transition-duration) ease;
-  }
-  .rental-option input[type="radio"]:checked + .custom-radio {
-    border-color: var(--color-black);
-  }
-  .rental-option input[type="radio"]:checked + .custom-radio::after {
-    content: '';
-    position: absolute;
-    top: 3.5px;
-    left: 3.5px;
-    width: 9px;
-    height: 9px;
-    background-color: var(--color-black);
-    border-radius: 50%;
-  }
-
-  /* Responsive */
-  @media (max-width: 400px) {
-    .container {
-      padding: 2rem 1.5rem;
-    }
-    h1 {
-      font-size: 2.75rem;
-    }
-    button.rental-button {
-      font-size: 1.25rem;
-      padding: 0.85rem 2.25rem;
-      max-width: 100%;
-    }
-  }
-</style>
-</head>
-<body>
-  <main class="container" role="main" aria-label="Rental tool selection container">
-    <h1>Rental Tool</h1>
-    <button type="button" class="rental-button" aria-expanded="false" aria-controls="rental-options" aria-haspopup="listbox" id="rentalButton">
-      Rental Tool
-    </button>
-    <section id="rental-options" class="rental-options" role="listbox" tabindex="-1" aria-labelledby="rentalButton" aria-live="polite">
-      <!-- RENTAL OPTIONS -->
-      <label class="rental-option" role="option" aria-selected="false" tabindex="0" for="option1">
-        <input type="radio" id="option1" name="rental" value="Unlocktool RM10 6hr/RTC" />
-        <span class="custom-radio" aria-hidden="true"></span>
-        Unlocktool RM10 6hr/RTC
-      </label>
-      <label class="rental-option" role="option" aria-selected="false" tabindex="0" for="option2">
-        <input type="radio" id="option2" name="rental" value="RM10 6hr/TSM tool" />
-        <span class="custom-radio" aria-hidden="true"></span>
-        RM10 6hr/TSM tool
-      </label>
-      <label class="rental-option" role="option" aria-selected="false" tabindex="0" for="option3">
-        <input type="radio" id="option3" name="rental" value="RM150 10days/Pandora tool" />
-        <span class="custom-radio" aria-hidden="true"></span>
-        RM150 10days/Pandora tool
-      </label>
-      <label class="rental-option" role="option" aria-selected="false" tabindex="0" for="option4">
-        <input type="radio" id="option4" name="rental" value="RM100 10days/Sigma tool" />
-        <span class="custom-radio" aria-hidden="true"></span>
-        RM100 10days/Sigma tool
-      </label>
-      <label class="rental-option" role="option" aria-selected="false" tabindex="0" for="option5">
-        <input type="radio" id="option5" name="rental" value="RM150 Pandora 10days" />
-        <span class="custom-radio" aria-hidden="true"></span>
-        RM150 10days
-      </label>
-    </section>
-  </main>
-
-<script>
-  const rentalButton = document.getElementById('rentalButton');
-  const optionsPanel = document.getElementById('rental-options');
-  const radioButtons = optionsPanel.querySelectorAll('input[type="radio"]');
-  const whatsappNumber = '60178040403';
-
-  rentalButton.addEventListener('click', () => {
-    const isVisible = optionsPanel.classList.toggle('visible');
-    rentalButton.setAttribute('aria-expanded', isVisible);
-    if (isVisible) {
-      optionsPanel.focus();
-    }
-  });
-
-  // Update aria-selected on label, open whatsapp on selection
-  radioButtons.forEach(radio => {
-    radio.addEventListener('change', () => {
-      radioButtons.forEach(rb => {
-        const label = rb.closest('label');
-        if (rb.checked) {
-          label.setAttribute('aria-selected', 'true');
-
-          const message = `I want to rent: ${rb.value}`;
-          const encodedMessage = encodeURIComponent(message);
-          const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-          // Open WhatsApp link in a new tab/window
-          window.open(whatsappURL, '_blank', 'noopener');
-
-          // Optionally hide options after selection
-          optionsPanel.classList.remove('visible');
-          rentalButton.setAttribute('aria-expanded', false);
-        } else {
-          label.setAttribute('aria-selected', 'false');
-        }
-      });
-    });
-  });
-</script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Blacklist Telco Options</title>
-  <style>
-    :root {
-      --bg-color: #ffffff;
-      --text-color: #374151;
-      --heading-color: #111827;
-      --button-bg: #000000;
-      --button-hover-bg: #111111;
-      --button-radius: 0.75rem;
-      --transition-speed: 0.3s;
-      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      --input-bg: #f9fafb;
-      --input-border: #d1d5db;
-      --input-focus-border: #2563eb;
-      --body-text-color: #6b7280;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background-color: var(--bg-color);
-      color: var(--body-text-color);
-      font-family: var(--font-family);
-      font-size: 18px;
-      line-height: 1.5;
-      display: flex;
-      min-height: 100vh;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 4rem 1rem 6rem;
     }
 
     main {
-      max-width: 600px;
       width: 100%;
-      text-align: center;
+      max-width: var(--max-width);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing);
     }
 
-    h1 {
-      font-weight: 700;
-      font-size: 48px;
-      margin-bottom: 3rem;
-      color: var(--heading-color);
+    section.card {
+      background: var(--color-white);
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 8px var(--shadow-subtle);
+      padding: var(--spacing);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: box-shadow var(--transition-speed), transform var(--transition-speed);
       user-select: none;
     }
-
-    .button {
-      background-color: var(--button-bg);
-      color: white;
-      border: none;
-      border-radius: var(--button-radius);
-      padding: 1rem 2.5rem;
-      font-size: 1.25rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition:
-        background-color var(--transition-speed) ease,
-        transform var(--transition-speed) ease;
-      user-select: none;
-      box-shadow: 0 4px 10px rgb(0 0 0 / 0.15);
-      letter-spacing: 0.02em;
-    }
-
-    .button:hover,
-    .button:focus-visible {
-      background-color: var(--button-hover-bg);
-      transform: scale(1.05);
+    section.card:hover,
+    section.card:focus-within {
+      box-shadow: 0 8px 20px rgba(0, 113, 227, 0.15);
       outline: none;
-      box-shadow: 0 6px 14px rgb(0 0 0 / 0.25);
     }
 
-    .button:focus-visible {
-      outline: 2px solid #2563eb;
-      outline-offset: 4px;
-    }
-
-    form {
-      margin-top: 3rem;
-      text-align: left;
-      background: var(--input-bg);
-      border-radius: var(--button-radius);
-      padding: 2rem 2.5rem;
-      box-shadow: 0 4px 10px rgb(0 0 0 / 0.07);
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-      color: var(--text-color);
-      font-weight: 600;
-      font-size: 1rem;
+    section.card h2 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--color-gray-text);
       user-select: none;
-      display: none;
-    }
-
-    form.visible {
-      display: block;
     }
 
     label {
-      display: block;
-      margin-bottom: 0.5rem;
       font-weight: 600;
-      color: var(--heading-color);
+      margin-bottom: 6px;
+      color: var(--color-gray-text);
       user-select: text;
-    }
-
-    select,
-    input[type="text"] {
-      width: 100%;
-      padding: 0.65rem 0.75rem;
       font-size: 1rem;
-      border-radius: 0.5rem;
-      border: 1.5px solid var(--input-border);
-      background-color: white;
-      transition: border-color 0.3s ease;
-      font-family: var(--font-family);
-      outline-offset: 2px;
+    }
+
+    select, input[type="text"] {
+      font-family: inherit;
+      font-size: 1rem;
+      padding: 10px 14px;
+      border: 1.5px solid var(--color-light-gray);
+      border-radius: var(--border-radius);
+      width: 100%;
+      color: var(--color-gray-text);
+      transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
       user-select: text;
     }
-
-    select:focus,
-    input[type="text"]:focus {
-      border-color: var(--input-focus-border);
+    select:focus, input[type="text"]:focus {
+      border-color: var(--color-accent);
       outline: none;
-      box-shadow: 0 0 0 3px rgb(59 130 246 / 0.3);
+      box-shadow: 0 0 8px rgba(0, 113, 227, 0.35);
+      background-color: var(--color-white);
     }
 
-    .form-group + .form-group {
-      margin-top: 1.75rem;
-    }
-
-    .submit-button {
-      margin-top: 2.5rem;
-      background-color: var(--button-bg);
-      color: white;
-      border: none;
-      border-radius: var(--button-radius);
-      padding: 1rem 2.5rem;
-      font-size: 1.125rem;
+    .code-display {
+      font-family: 'SF Mono', 'Consolas', 'Courier New', monospace;
       font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--color-accent);
+      user-select: text;
+      margin-top: 10px;
+    }
+
+    .send-whatsapp-button {
+      align-self: flex-start;
+      background-color: var(--color-accent);
+      color: var(--color-white);
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 12px 28px;
+      border: none;
+      border-radius: var(--border-radius);
       cursor: pointer;
-      transition:
-        background-color var(--transition-speed) ease,
-        transform var(--transition-speed) ease;
+      transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
       user-select: none;
-      box-shadow: 0 4px 10px rgb(0 0 0 / 0.15);
-      letter-spacing: 0.02em;
-      width: 100%;
+      box-shadow: 0 6px 16px rgba(0, 113, 227, 0.5);
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
     }
-
-    .submit-button:hover,
-    .submit-button:focus-visible {
-      background-color: var(--button-hover-bg);
-      transform: scale(1.05);
+    .send-whatsapp-button:hover,
+    .send-whatsapp-button:focus {
+      background-color: var(--color-accent-hover);
+      box-shadow: 0 8px 24px rgba(0, 87, 175, 0.6);
       outline: none;
-      box-shadow: 0 6px 14px rgb(0 0 0 / 0.25);
+      color: var(--color-white);
+      text-decoration: none;
     }
-
-    .submit-button:focus-visible {
-      outline: 2px solid #2563eb;
+    .send-whatsapp-button:focus-visible {
       outline-offset: 4px;
+      outline: 3px solid #bbd6ff;
     }
 
+    @media (max-width: 600px) {
+      body {
+        padding: 16px;
+      }
+      section.card {
+        padding: 16px;
+      }
+    }
   </style>
 </head>
 <body>
+  <header>
+    <div class="logo">Service Center</div>
+  </header>
   <main>
-    <h1>Blacklist Telco</h1>
-    <button class="button" id="toggleButton" aria-expanded="false" aria-controls="optionForm" type="button">
-      Show Options
-    </button>
+    <!-- FRP Bypass Section -->
+    <section id="frp-bypass" class="card" tabindex="0" aria-labelledby="frp-bypass-heading">
+      <h2 id="frp-bypass-heading">FRP Bypass &amp; Password Reset</h2>
+      <label for="frp-model">Select Model</label>
+      <select id="frp-model" aria-required="true" aria-describedby="frp-help">
+        <option value="" disabled selected>Select your model</option>
+        <option value="REALME">REALME</option>
+        <option value="SAMSUNG">SAMSUNG</option>
+        <option value="OPPO">OPPO</option>
+        <option value="XIAOMI">XIAOMI</option>
+        <option value="HONOR">HONOR</option>
+        <option value="REDMI">REDMI</option>
+        <option value="HUAWEI">HUAWEI</option>
+        <option value="ONEPLUS">ONEPLUS</option>
+        <option value="TECNO">TECNO</option>
+        <option value="INFINIX">INFINIX</option>
+        <option value="VIVO">VIVO</option>
+        <option value="IPHONE">IPHONE</option>
+        <option value="IPAD">IPAD</option>
+      </select>
+      <p id="frp-help" style="font-size: 0.9rem; color: #6b7280; margin-top: 0.25rem; user-select:none;">
+        After selecting your model, a unique 4-digit code will be generated for WhatsApp.
+      </p>
+      <p class="code-display" aria-live="polite" aria-atomic="true" id="frp-code"></p>
+      <a href="#" id="send-whatsapp-frp" class="send-whatsapp-button" role="button" aria-disabled="true" tabindex="-1" target="_blank" rel="noopener noreferrer">
+        Send Code to WhatsApp
+      </a>
+    </section>
 
-    <form id="optionForm" aria-hidden="true" aria-label="Option selection form">
-      <div class="form-group">
-        <label for="optionSelect">Option - Kekal / Sementara</label>
-        <select id="optionSelect" name="optionSelect" required>
-          <option value="" disabled selected>Select an option</option>
-          <option value="Kekal">Kekal</option>
-          <option value="Sementara">Sementara</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="icNumber">IC Number (full)</label>
-        <input type="text" id="icNumber" name="icNumber" placeholder="Enter full IC number" pattern="[0-9]+" inputmode="numeric" maxlength="12" autocomplete="off" required />
-      </div>
-      <button type="submit" class="submit-button" aria-label="Submit to WhatsApp">
-        Submit
-      </button>
-    </form>
+    <!-- Screen Lock Section -->
+    <section id="screen-lock" class="card" tabindex="0" aria-labelledby="screen-lock-heading">
+      <h2 id="screen-lock-heading">Screen Lock Services</h2>
+      <label for="screen-lock-model">Select Model</label>
+      <select id="screen-lock-model" aria-required="true" aria-describedby="screen-lock-help">
+        <option value="" disabled selected>Select Model</option>
+        <option value="OPPO">OPPO</option>
+        <option value="REALME">REALME</option>
+        <option value="XIAOMI">XIAOMI</option>
+        <option value="SAMSUNG">SAMSUNG</option>
+        <option value="ONEPLUS">ONEPLUS</option>
+        <option value="REDMI">REDMI</option>
+        <option value="OTHER">OTHER</option>
+      </select>
+      <p id="screen-lock-help" style="font-size: 0.9rem; color: #6b7280; margin-top: 0.25rem; user-select:none;">
+        After selecting a model, a unique 4-digit code will be generated for WhatsApp.
+      </p>
+      <p class="code-display" aria-live="polite" aria-atomic="true" id="screen-lock-code"></p>
+      <a href="#" id="send-whatsapp-screen-lock" class="send-whatsapp-button" role="button" aria-disabled="true" tabindex="-1" target="_blank" rel="noopener noreferrer">
+        Send Code to WhatsApp
+      </a>
+    </section>
+
+    <!-- Forget Apple ID Section -->
+    <section id="forget-apple-id" class="card" tabindex="0" aria-labelledby="forget-apple-id-heading">
+      <h2 id="forget-apple-id-heading">Forget Apple ID</h2>
+      <label for="apple-id-model">Model</label>
+      <input type="text" id="apple-id-model" aria-required="true" placeholder="Enter model" autocomplete="off" />
+      <label for="apple-id-status">Model Status</label>
+      <select id="apple-id-status" aria-required="true" aria-describedby="apple-id-status-help">
+        <option value="" disabled selected>Select Status</option>
+        <option value="LOST">LOST</option>
+        <option value="CLEAN">CLEAN</option>
+      </select>
+      <p id="apple-id-status-help" style="font-size: 0.9rem; color: #6b7280; margin-top: 0.25rem; user-select:none;">
+        Choose the model status.
+      </p>
+      <label for="apple-id-location">Location</label>
+      <input type="text" id="apple-id-location" aria-required="true" placeholder="Enter location" autocomplete="off" />
+      <p class="code-display" aria-live="polite" aria-atomic="true" id="forget-apple-id-case"></p>
+      <a href="#" id="send-whatsapp-forget-apple-id" class="send-whatsapp-button" role="button" aria-disabled="true" tabindex="-1" target="_blank" rel="noopener noreferrer">
+        Send Case to WhatsApp
+      </a>
+    </section>
   </main>
+
   <script>
-    const toggleButton = document.getElementById('toggleButton');
-    const optionForm = document.getElementById('optionForm');
+    const whatsappNumber = '+60178040403';
 
-    toggleButton.addEventListener('click', () => {
-      const showing = optionForm.classList.toggle('visible');
-      optionForm.setAttribute('aria-hidden', (!showing).toString());
-      toggleButton.setAttribute('aria-expanded', showing.toString());
-      toggleButton.textContent = showing ? 'Hide Options' : 'Show Options';
+    // Screen Lock Interaction
+    const screenLockModel = document.getElementById('screen-lock-model');
+    const screenLockCode = document.getElementById('screen-lock-code');
+    const sendWhatsAppScreenLock = document.getElementById('send-whatsapp-screen-lock');
+
+    function generate4DigitCode() {
+      return Math.floor(1000 + Math.random() * 9000);
+    }
+
+    function updateWhatsAppScreenLock(model, code) {
+      const msg = `Hello, I am requesting Screen Lock service.\nModel: ${model}\nCode: ${code}`;
+      const encodedMsg = encodeURIComponent(msg);
+      const phoneDigits = whatsappNumber.replace(/\D/g, '');
+      return `https://wa.me/${phoneDigits}?text=${encodedMsg}`;
+    }
+
+    function resetScreenLock() {
+      screenLockCode.textContent = '';
+      sendWhatsAppScreenLock.href = '#';
+      sendWhatsAppScreenLock.setAttribute('aria-disabled', 'true');
+      sendWhatsAppScreenLock.tabIndex = -1;
+    }
+
+    screenLockModel.addEventListener('change', () => {
+      const model = screenLockModel.value;
+      if (model) {
+        const code = generate4DigitCode();
+        screenLockCode.textContent = `Your generated 4-digit code: ${code}`;
+        sendWhatsAppScreenLock.href = updateWhatsAppScreenLock(model, code);
+        sendWhatsAppScreenLock.removeAttribute('aria-disabled');
+        sendWhatsAppScreenLock.tabIndex = 0;
+      } else {
+        resetScreenLock();
+      }
     });
 
-    optionForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const option = document.getElementById('optionSelect').value;
-      const icNumber = document.getElementById('icNumber').value.trim();
+    resetScreenLock();
 
-      if (!option) {
-        alert('Please select an option: Kekal or Sementara.');
-        return;
+    // FRP Bypass Interaction
+    const frpModel = document.getElementById('frp-model');
+    const frpCode = document.getElementById('frp-code');
+    const sendWhatsAppFrp = document.getElementById('send-whatsapp-frp');
+
+    function updateWhatsAppFrp(model, code) {
+      const msg = `Hello, I am requesting FRP bypass service.\nModel: ${model}\nCode: ${code}`;
+      const encodedMsg = encodeURIComponent(msg);
+      const phoneDigits = whatsappNumber.replace(/\D/g, '');
+      return `https://wa.me/${phoneDigits}?text=${encodedMsg}`;
+    }
+
+    function resetFrp() {
+      frpCode.textContent = '';
+      sendWhatsAppFrp.href = '#';
+      sendWhatsAppFrp.setAttribute('aria-disabled', 'true');
+      sendWhatsAppFrp.tabIndex = -1;
+    }
+
+    frpModel.addEventListener('change', () => {
+      const model = frpModel.value;
+      if (model) {
+        const code = generate4DigitCode();
+        frpCode.textContent = `Your generated 4-digit code: ${code}`;
+        sendWhatsAppFrp.href = updateWhatsAppFrp(model, code);
+        sendWhatsAppFrp.removeAttribute('aria-disabled');
+        sendWhatsAppFrp.tabIndex = 0;
+      } else {
+        resetFrp();
       }
-      if (!icNumber || !/^\d{1,12}$/.test(icNumber)) {
-        alert('Please enter a valid IC number (digits only, up to 12 characters).');
-        return;
-      }
-
-      // Prepare WhatsApp URL with message
-      const message = `Option: ${option}, IC Number: ${icNumber}`;
-      const phoneNumber = '60178040403';
-      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-      // Open WhatsApp URL in new tab/window
-      window.open(url, '_blank', 'noopener,noreferrer');
     });
+
+    resetFrp();
+
+    // Forget Apple ID Interaction
+    const appleIdModel = document.getElementById('apple-id-model');
+    const appleIdStatus = document.getElementById('apple-id-status');
+    const appleIdLocation = document.getElementById('apple-id-location');
+    const forgetAppleIdCase = document.getElementById('forget-apple-id-case');
+    const sendWhatsAppForgetApple = document.getElementById('send-whatsapp-forget-apple-id');
+
+    let currentCaseNumber = null;
+
+    function updateWhatsAppForgetApple(model, status, location, caseNum) {
+      const msg = `Hello, I am requesting Forget Apple ID service.\nModel: ${model}\nStatus: ${status}\nLocation: ${location}\nCase Number: ${caseNum}`;
+      const encodedMsg = encodeURIComponent(msg);
+      const phoneDigits = whatsappNumber.replace(/\D/g, '');
+      return `https://wa.me/${phoneDigits}?text=${encodedMsg}`;
+    }
+
+    function validateForgetAppleInputs() {
+      return appleIdModel.value.trim() !== '' &&
+             (appleIdStatus.value === 'LOST' || appleIdStatus.value === 'CLEAN') &&
+             appleIdLocation.value.trim() !== '';
+    }
+
+    function resetForgetApple() {
+      currentCaseNumber = null;
+      forgetAppleIdCase.textContent = '';
+      sendWhatsAppForgetApple.href = '#';
+      sendWhatsAppForgetApple.setAttribute('aria-disabled', 'true');
+      sendWhatsAppForgetApple.tabIndex = -1;
+    }
+
+    function handleForgetAppleInputs() {
+      if (validateForgetAppleInputs()) {
+        if (!currentCaseNumber) {
+          currentCaseNumber = generate4DigitCode();
+        }
+        forgetAppleIdCase.textContent = `Your generated case number: ${currentCaseNumber}`;
+        sendWhatsAppForgetApple.href = updateWhatsAppForgetApple(
+          appleIdModel.value.trim(),
+          appleIdStatus.value,
+          appleIdLocation.value.trim(),
+          currentCaseNumber
+        );
+        sendWhatsAppForgetApple.removeAttribute('aria-disabled');
+        sendWhatsAppForgetApple.tabIndex = 0;
+      } else {
+        resetForgetApple();
+      }
+    }
+
+    appleIdModel.addEventListener('input', handleForgetAppleInputs);
+    appleIdStatus.addEventListener('change', handleForgetAppleInputs);
+    appleIdLocation.addEventListener('input', handleForgetAppleInputs);
+
+    resetForgetApple();
   </script>
 </body>
 </html>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Bottom Banner Promotion - Sliding RGB Text</title>
-<style>
-  /* Import Inter font from Google Fonts */
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
-
-  :root {
-    --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    --banner-bg: #ffffff;
-    --banner-shadow: rgba(0, 0, 0, 0.1);
-    --banner-height: 5.5rem;
-  }
-
-  /* Reset and base styles */
-  body {
-    margin: 0;
-    padding-bottom: var(--banner-height); /* Reserve space for banner */
-    background: var(--banner-bg);
-    font-family: var(--font-family);
-    color: #374151; /* neutral gray */
-    min-height: 100vh;
-  }
-
-  /* Bottom Banner Container */
-  .bottom-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: var(--banner-height);
-    background: var(--banner-bg);
-    box-shadow: 0 -4px 10px var(--banner-shadow);
-    border-top-left-radius: 0.75rem;
-    border-top-right-radius: 0.75rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    z-index: 10000;
-  }
-
-  .banner-inner {
-    max-width: 1200px;
-    width: 100%;
-    position: relative;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  /* Scroll wrapper to clip the text */
-  .scrolling-text-wrapper {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-  }
-
-  /* The sliding text container */
-  .scrolling-text {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    white-space: nowrap;
-    will-change: transform;
-    animation: slide-left 30s linear infinite; /* sped up from 15s to 30s */
-    font-weight: 700;
-    font-size: 3rem; /* 48px */
-    font-family: var(--font-family);
-    user-select: none;
-  }
-
-  /* Repeat the text twice for seamless animation */
-  .scrolling-text > span {
-    margin-right: 3rem; /* spacing between repeats */
-    display: inline-flex;
-  }
-
-  /* Color segments */
-  .color-red {
-    color: rgb(220, 38, 38); /* red-600 */
-  }
-  .color-blue {
-    color: rgb(37, 99, 235); /* blue-600 */
-  }
-  .color-green {
-    color: rgb(22, 163, 74); /* green-600 */
-  }
-
-  /* Animation keyframes sliding from right to left */
-  @keyframes slide-left {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  /* Responsive font size adjustments */
-  @media (max-width: 640px) {
-    .scrolling-text {
-      font-size: 2rem; /* 32px */
-    }
-  }
-  @media (max-width: 400px) {
-    .scrolling-text {
-      font-size: 1.5rem; /* 24px */
-    }
-  }
-
-</style>
-</head>
-<body>
-
-<!-- Bottom Banner -->
-<section class="bottom-banner" role="region" aria-label="Promotion banner">
-  <div class="banner-inner">
-    <div class="scrolling-text-wrapper" tabindex="0">
-      <div class="scrolling-text" aria-live="polite" aria-atomic="true">
-        <span>
-          <span class="color-red">Samsung</span>&nbsp;
-          <span class="color-blue">FRP</span>&nbsp;
-          <span class="color-green">RM70</span>&nbsp;
-          <span>/</span>&nbsp;
-          <span class="color-red">Xiaomi</span>&nbsp;
-          <span class="color-blue">FRP</span>&nbsp;
-          <span class="color-green">RM50</span>
-        </span>
-        <span aria-hidden="true">
-          <span class="color-red">Samsung</span>&nbsp;
-          <span class="color-blue">FRP</span>&nbsp;
-          <span class="color-green">RM70</span>&nbsp;
-          <span>/</span>&nbsp;
-          <span class="color-red">Xiaomi</span>&nbsp;
-          <span class="color-blue">FRP</span>&nbsp;
-          <span class="color-green">RM50</span>
-        </span>
-      </div>
-    </div>
-  </div>
-</section>
-
-</body>
-</html>
-
-<footer role="contentinfo">
-    &copy; 2024 Service Locks & Repairs
-
-
-
-
-
-
