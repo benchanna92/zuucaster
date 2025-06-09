@@ -812,6 +812,241 @@
 </body>
 </html>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blacklist Telco Options</title>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #374151;
+      --heading-color: #111827;
+      --button-bg: #000000;
+      --button-hover-bg: #111111;
+      --button-radius: 0.75rem;
+      --transition-speed: 0.3s;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      --input-bg: #f9fafb;
+      --input-border: #d1d5db;
+      --input-focus-border: #2563eb;
+      --body-text-color: #6b7280;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--body-text-color);
+      font-family: var(--font-family);
+      font-size: 18px;
+      line-height: 1.5;
+      display: flex;
+      min-height: 100vh;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 4rem 1rem 6rem;
+    }
+
+    main {
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 48px;
+      margin-bottom: 3rem;
+      color: var(--heading-color);
+      user-select: none;
+    }
+
+    .button {
+      background-color: var(--button-bg);
+      color: white;
+      border: none;
+      border-radius: var(--button-radius);
+      padding: 1rem 2.5rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition:
+        background-color var(--transition-speed) ease,
+        transform var(--transition-speed) ease;
+      user-select: none;
+      box-shadow: 0 4px 10px rgb(0 0 0 / 0.15);
+      letter-spacing: 0.02em;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      background-color: var(--button-hover-bg);
+      transform: scale(1.05);
+      outline: none;
+      box-shadow: 0 6px 14px rgb(0 0 0 / 0.25);
+    }
+
+    .button:focus-visible {
+      outline: 2px solid #2563eb;
+      outline-offset: 4px;
+    }
+
+    form {
+      margin-top: 3rem;
+      text-align: left;
+      background: var(--input-bg);
+      border-radius: var(--button-radius);
+      padding: 2rem 2.5rem;
+      box-shadow: 0 4px 10px rgb(0 0 0 / 0.07);
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--text-color);
+      font-weight: 600;
+      font-size: 1rem;
+      user-select: none;
+      display: none;
+    }
+
+    form.visible {
+      display: block;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--heading-color);
+      user-select: text;
+    }
+
+    select,
+    input[type="text"] {
+      width: 100%;
+      padding: 0.65rem 0.75rem;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      border: 1.5px solid var(--input-border);
+      background-color: white;
+      transition: border-color 0.3s ease;
+      font-family: var(--font-family);
+      outline-offset: 2px;
+      user-select: text;
+    }
+
+    select:focus,
+    input[type="text"]:focus {
+      border-color: var(--input-focus-border);
+      outline: none;
+      box-shadow: 0 0 0 3px rgb(59 130 246 / 0.3);
+    }
+
+    .form-group + .form-group {
+      margin-top: 1.75rem;
+    }
+
+    .submit-button {
+      margin-top: 2.5rem;
+      background-color: var(--button-bg);
+      color: white;
+      border: none;
+      border-radius: var(--button-radius);
+      padding: 1rem 2.5rem;
+      font-size: 1.125rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition:
+        background-color var(--transition-speed) ease,
+        transform var(--transition-speed) ease;
+      user-select: none;
+      box-shadow: 0 4px 10px rgb(0 0 0 / 0.15);
+      letter-spacing: 0.02em;
+      width: 100%;
+    }
+
+    .submit-button:hover,
+    .submit-button:focus-visible {
+      background-color: var(--button-hover-bg);
+      transform: scale(1.05);
+      outline: none;
+      box-shadow: 0 6px 14px rgb(0 0 0 / 0.25);
+    }
+
+    .submit-button:focus-visible {
+      outline: 2px solid #2563eb;
+      outline-offset: 4px;
+    }
+
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Blacklist Telco</h1>
+    <button class="button" id="toggleButton" aria-expanded="false" aria-controls="optionForm" type="button">
+      Show Options
+    </button>
+
+    <form id="optionForm" aria-hidden="true" aria-label="Option selection form">
+      <div class="form-group">
+        <label for="optionSelect">Option - Kekal / Sementara</label>
+        <select id="optionSelect" name="optionSelect" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="Kekal">Kekal</option>
+          <option value="Sementara">Sementara</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="icNumber">IC Number (full)</label>
+        <input type="text" id="icNumber" name="icNumber" placeholder="Enter full IC number" pattern="[0-9]+" inputmode="numeric" maxlength="12" autocomplete="off" required />
+      </div>
+      <button type="submit" class="submit-button" aria-label="Submit to WhatsApp">
+        Submit
+      </button>
+    </form>
+  </main>
+  <script>
+    const toggleButton = document.getElementById('toggleButton');
+    const optionForm = document.getElementById('optionForm');
+
+    toggleButton.addEventListener('click', () => {
+      const showing = optionForm.classList.toggle('visible');
+      optionForm.setAttribute('aria-hidden', (!showing).toString());
+      toggleButton.setAttribute('aria-expanded', showing.toString());
+      toggleButton.textContent = showing ? 'Hide Options' : 'Show Options';
+    });
+
+    optionForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const option = document.getElementById('optionSelect').value;
+      const icNumber = document.getElementById('icNumber').value.trim();
+
+      if (!option) {
+        alert('Please select an option: Kekal or Sementara.');
+        return;
+      }
+      if (!icNumber || !/^\d{1,12}$/.test(icNumber)) {
+        alert('Please enter a valid IC number (digits only, up to 12 characters).');
+        return;
+      }
+
+      // Prepare WhatsApp URL with message
+      const message = `Option: ${option}, IC Number: ${icNumber}`;
+      const phoneNumber = '60178040403';
+      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+      // Open WhatsApp URL in new tab/window
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+  </script>
+</body>
+</html>
+
 
 
 
