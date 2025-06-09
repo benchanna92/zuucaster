@@ -84,7 +84,7 @@
     margin-bottom: 0.3rem;
     color: var(--color-text);
   }
-  select, input[type="text"], input[type="number"] {
+  select, input[type="text"] {
     width: 100%;
     padding: 0.5rem 0.75rem;
     font-size: 1rem;
@@ -95,7 +95,7 @@
     outline-offset: 2px;
     outline-color: transparent;
   }
-  select:focus, input[type="text"]:focus, input[type="number"]:focus {
+  select:focus, input[type="text"]:focus {
     border-color: var(--color-primary);
     outline-color: var(--color-primary);
   }
@@ -118,12 +118,6 @@
   .hidden {
     display: none;
   }
-  .info-text {
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-    margin-top: -0.75rem;
-    margin-bottom: 0.75rem;
-  }
 </style>
 </head>
 <body>
@@ -134,7 +128,9 @@
     <button class="service-btn" role="tab" aria-selected="false" id="btn-telco" aria-controls="form-telco">TELCO UNLOCK</button>
     <button class="service-btn" role="tab" aria-selected="false" id="btn-apple" aria-controls="form-apple">APPLE ID FORGET</button>
     <button class="service-btn" role="tab" aria-selected="false" id="btn-rent" aria-controls="form-rent">RENT TOOL</button>
-    <button class="service-btn" role="tab" aria-selected="false" id="btn-blist" aria-controls="form-blist">B/LIST HIDE PERMANENTLY</button>
+    <button class="service-btn" role="tab" aria-selected="false" id="btn-blist" aria-controls="form-blist">B/LIST HIDE</button>
+    <button class="service-btn" role="tab" aria-selected="false" id="btn-check" aria-controls="form-check">CHECK TELCO</button>
+    <button class="service-btn" role="tab" aria-selected="false" id="btn-file" aria-controls="form-file">FILE REQUEST</button>
   </nav>
 
   <!-- FRP / GOOGLE FORM -->
@@ -220,6 +216,41 @@
     <input type="text" id="blist-icno" name="blist-icno" placeholder="Enter IC or No" required autocomplete="off" />
     <button type="submit" class="submit-btn" aria-label="Submit B/List Hide Permanently service form">Generate Code & Send WhatsApp</button>
   </form>
+
+  <!-- CHECK TELCO FORM -->
+  <form id="form-check" class="hidden" aria-labelledby="btn-check">
+    <label for="check-model">Select Model</label>
+    <select id="check-model" name="check-model" required>
+      <option value="" disabled selected>Select model</option>
+      <option value="Apple">Apple</option>
+      <option value="Oppo">Oppo</option>
+      <option value="Samsung">Samsung</option>
+      <option value="Realme">Realme</option>
+    </select>
+    <button type="submit" class="submit-btn" aria-label="Submit Check Telco service form">Generate Code & Send WhatsApp</button>
+  </form>
+
+  <!-- FILE REQUEST FORM -->
+  <form id="form-file" class="hidden" aria-labelledby="btn-file">
+    <label for="file-model">Select Model</label>
+    <select id="file-model" name="file-model" required>
+      <option value="" disabled selected>Select model</option>
+      <option value="Oppo">Oppo</option>
+      <option value="Realme">Realme</option>
+      <option value="Vivo">Vivo</option>
+      <option value="Samsung">Samsung</option>
+      <option value="OnePlus">OnePlus</option>
+      <option value="Tecno">Tecno</option>
+      <option value="Redmi">Redmi</option>
+      <option value="Infinix">Infinix</option>
+      <option value="Xiaomi">Xiaomi</option>
+      <option value="Nokia">Nokia</option>
+    </select>
+
+    <label for="file-other">Other Model</label>
+    <input type="text" id="file-other" name="file-other" placeholder="Enter other model" required autocomplete="off" />
+    <button type="submit" class="submit-btn" aria-label="Submit File Request service form">Generate Code & Send WhatsApp</button>
+  </form>
 </main>
 
 <script>
@@ -234,6 +265,8 @@
       'btn-apple': document.getElementById('form-apple'),
       'btn-rent': document.getElementById('form-rent'),
       'btn-blist': document.getElementById('form-blist'),
+      'btn-check': document.getElementById('form-check'),
+      'btn-file': document.getElementById('form-file'),
     };
 
     let activeBtnId = 'btn-frp';
@@ -285,6 +318,15 @@
           msg += 'Service: B/List Hide Permanently%0A';
           msg += `IC/No: ${formData.get('blist-icno')}%0A`;
           break;
+        case 'btn-check':
+          msg += 'Service: Check Telco%0A';
+          msg += `Model: ${formData.get('check-model')}%0A`;
+          break;
+        case 'btn-file':
+          msg += 'Service: File Request/Auth Flash%0A';
+          msg += `Model: ${formData.get('file-model')}%0A`;
+          msg += `Other Model: ${formData.get('file-other')}%0A`;
+          break;
       }
       msg += 'Thank you!';
       return msg;
@@ -309,4 +351,3 @@
 </script>
 </body>
 </html>
-
