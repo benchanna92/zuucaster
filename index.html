@@ -296,29 +296,26 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Bottom Banner Promotion</title>
+<title>Small Bottom Banner Promotion</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap');
 
   :root {
     --banner-bg: #ffffff;
-    --banner-radius: 0.75rem 0.75rem 0 0;
-    --banner-shadow: rgba(0, 0, 0, 0.08);
-    --banner-height: 4.5rem;
+    --banner-radius: 0.5rem 0.5rem 0 0;
+    --banner-shadow: rgba(0, 0, 0, 0.05);
+    --banner-height: 3rem;
   }
 
-  /* Reset and base */
   body {
     margin: 0;
-    padding-bottom: var(--banner-height); /* Avoid content overlap */
+    padding-bottom: var(--banner-height);
     font-family: 'Outfit', sans-serif;
-    font-size: 16px;
     background-color: var(--banner-bg);
     color: #6b7280;
     min-height: 100vh;
   }
 
-  /* Banner fixed at bottom */
   .banner {
     position: fixed;
     bottom: 0;
@@ -326,28 +323,26 @@
     right: 0;
     height: var(--banner-height);
     background-color: var(--banner-bg);
-    box-shadow: 0 -4px 12px var(--banner-shadow);
+    box-shadow: 0 -2px 8px var(--banner-shadow);
     border-radius: var(--banner-radius);
     display: flex;
     align-items: center;
     overflow: hidden;
-    padding: 0 1.5rem;
+    padding: 0 1rem;
     z-index: 9999;
     user-select: none;
   }
 
-  /* Wrapper for the scrolling text */
   .banner-text-wrapper {
     overflow: hidden;
     white-space: nowrap;
     width: 100%;
   }
 
-  /* The scrolling text */
   .banner-text {
     display: inline-block;
     font-weight: 700;
-    font-size: clamp(1.75rem, 4vw, 3rem); /* 28px to 48px */
+    font-size: clamp(1.25rem, 3vw, 2rem); /* about 20px to 32px */
     background: linear-gradient(90deg,
       rgb(255, 0, 0),
       rgb(0, 255, 0),
@@ -359,11 +354,10 @@
     animation:
       rgbShift 6s ease infinite,
       slideRightToLeft 20s linear infinite;
-    padding-left: 100%; /* start fully off to right */
+    padding-left: 100%;
     will-change: transform;
   }
 
-  /* RGB gradient cycling */
   @keyframes rgbShift {
     0% {
       background-position: 0% 50%;
@@ -376,7 +370,6 @@
     }
   }
 
-  /* Text moves from right to left continuously */
   @keyframes slideRightToLeft {
     0% {
       transform: translateX(0);
@@ -386,20 +379,18 @@
     }
   }
 
-  /* Keyboard focus visible */
   .banner:focus-within {
-    outline: 1px solid #4f46e5;
+    outline: 3px solid #4f46e5;
     outline-offset: 4px;
   }
 
-  /* Responsive adjustments */
-  @media (max-width: 400px) {
+  @media (max-width: 600px) {
     .banner {
       height: 2.5rem;
-      padding: 0 1rem;
+      padding: 0 0.75rem;
     }
     .banner-text {
-      font-size: 2rem;
+      font-size: 1.5rem;
       padding-left: 100%;
     }
   }
@@ -410,11 +401,12 @@
 <div class="banner" role="banner" aria-label="Promotion Banner" tabindex="0">
   <div class="banner-text-wrapper" aria-live="polite" aria-atomic="true">
     <span class="banner-text" aria-label="Samsung FRP all device RM70 promotion">
-      Samsung frp all device Rm70 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Samsung frp all device rm70&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </span>
   </div>
 </div>
 
 </body>
 </html>
+
 
