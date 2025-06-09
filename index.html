@@ -716,6 +716,224 @@
 </body>
 </html>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Service Ghaib Telco - WhatsApp Submission</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;800&display=swap');
+
+  :root {
+    --color-bg: #ffffff;
+    --color-text-primary: #111827;
+    --color-text-secondary: #6b7280;
+    --color-input-border: #d1d5db;
+    --color-input-focus: #2563eb;
+    --color-button-bg: #000000;
+    --color-button-text: #ffffff;
+    --border-radius: 0.75rem;
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --font-family: 'Inter', sans-serif;
+  }
+
+  /* Hacker RGB neon glow animation */
+  @keyframes hackerRGBGlow {
+    0% {
+      box-shadow:
+        0 0 6px #ff0000,
+        0 0 12px #00ff00,
+        0 0 18px #0000ff;
+    }
+    33% {
+      box-shadow:
+        0 0 12px #00ff00,
+        0 0 18px #0000ff,
+        0 0 24px #ff0000;
+    }
+    66% {
+      box-shadow:
+        0 0 18px #0000ff,
+        0 0 24px #ff0000,
+        0 0 30px #00ff00;
+    }
+    100% {
+      box-shadow:
+        0 0 6px #ff0000,
+        0 0 12px #00ff00,
+        0 0 18px #0000ff;
+    }
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 64px 16px 80px;
+  }
+
+  main.container {
+    max-width: 1200px;
+    width: 100%;
+    background: #f9fafb;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 20px var(--shadow-light);
+    padding: 48px 40px;
+    box-sizing: border-box;
+  }
+
+  h1 {
+    font-weight: 800;
+    font-size: 48px;
+    margin: 0 0 40px;
+    user-select: none;
+    line-height: 1.1;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  label {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--color-text-primary);
+    text-align: left;
+  }
+
+  select, input[type="text"] {
+    width: 100%;
+    font-size: 18px;
+    padding: 12px 16px;
+    border: 1.5px solid var(--color-input-border);
+    border-radius: var(--border-radius);
+    background: white;
+    color: var(--color-text-primary);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+  }
+
+  select:focus, input[type="text"]:focus {
+    border-color: var(--color-input-focus);
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(37 99 235 / 0.3);
+  }
+
+  select option[disabled] {
+    color: #9ca3af;
+  }
+
+  button.submit-button {
+    width: max-content;
+    background-color: var(--color-button-bg);
+    color: var(--color-button-text);
+    font-weight: 700;
+    font-size: 20px;
+    padding: 14px 48px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    animation: hackerRGBGlow 4s linear infinite;
+    transition: transform 0.2s ease;
+    user-select: none;
+    align-self: flex-start;
+  }
+
+  button.submit-button:hover,
+  button.submit-button:focus {
+    transform: scale(1.05);
+    outline: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    main.container {
+      padding: 32px 24px;
+    }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 32px;
+    }
+    select, input[type="text"] {
+      font-size: 16px;
+      padding: 10px 14px;
+    }
+    button.submit-button {
+      font-size: 18px;
+      padding: 12px 36px;
+    }
+  }
+</style>
+</head>
+<body>
+  <main class="container" role="main" aria-labelledby="title">
+    <h1 id="title">Service Ghaib telco</h1>
+    <form id="serviceForm" aria-label="Service Ghaib telco submission form">
+      <div>
+        <label for="optionSelect">Option selection</label>
+        <select id="optionSelect" name="optionSelect" required aria-required="true" aria-describedby="optionHelp">
+          <option value="" disabled selected>Select an option</option>
+          <option value="kekal">kekal</option>
+          <option value="sementara">sementara</option>
+        </select>
+      </div>
+      <div>
+        <label for="icNumber">Ic number</label>
+        <input
+          type="text"
+          id="icNumber"
+          name="icNumber"
+          placeholder="Fill your IC number"
+          autocomplete="off"
+          required
+          aria-required="true"
+          aria-describedby="icHelp"
+        />
+      </div>
+      <button type="submit" class="submit-button" aria-label="Send details to WhatsApp">Submit</button>
+    </form>
+  </main>
+  <script>
+    document.getElementById('serviceForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const optionValue = this.optionSelect.value.trim();
+      const icNumber = this.icNumber.value.trim();
+
+      if (!optionValue) {
+        alert('Please select an option.');
+        this.optionSelect.focus();
+        return;
+      }
+      if (!icNumber) {
+        alert('Please fill your IC number.');
+        this.icNumber.focus();
+        return;
+      }
+
+      // Construct message for WhatsApp
+      const message = `Service Ghaib telco details:\nOption selection: ${optionValue}\nIC number: ${icNumber}`;
+      const encodedMessage = encodeURIComponent(message);
+      const phoneNumber = '60178040403';
+      const waLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+      window.open(waLink, '_blank', 'noopener');
+    });
+  </script>
+</body>
+</html>
+
 
 
  <footer id="contact">
