@@ -643,7 +643,6 @@
     display: none;
     flex-direction: column;
   }
-
   .rental-options.visible {
     display: flex;
     animation: fadeInSlideDown 0.4s ease forwards;
@@ -686,6 +685,36 @@
     user-select: none;
   }
 
+  /* Submit button */
+  button.submit-button {
+    margin-top: 2rem;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-weight: 600;
+    font-size: 1.15rem;
+    padding: 0.85rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 320px;
+    transition:
+      background-color var(--transition-duration) ease,
+      transform var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
+    outline-offset: 3px;
+  }
+  button.submit-button:hover,
+  button.submit-button:focus-visible {
+    background-color: #222222;
+    outline: none;
+    transform: scale(1.05);
+  }
+  button.submit-button:focus-visible {
+    outline: 3px solid #444444aa;
+  }
+
   /* Responsive */
   @media (max-width: 400px) {
     .container {
@@ -724,6 +753,7 @@
         <input type="radio" name="rental" id="option5" value="RM150 10days" />
         <span class="rental-label">RM150 10days</span>
       </label>
+      <button type="button" class="submit-button" id="submitRental" aria-label="Submit rental selection">Submit</button>
     </section>
   </main>
 
@@ -731,16 +761,17 @@
     const rentalButton = document.getElementById('rentalButton');
     const optionsPanel = document.getElementById('rental-options');
     const radioButtons = optionsPanel.querySelectorAll('input[type="radio"]');
+    const submitButton = document.getElementById('submitRental');
+    const whatsappNumber = '60178040403';
+
     rentalButton.addEventListener('click', () => {
       const isVisible = optionsPanel.classList.toggle('visible');
       rentalButton.setAttribute('aria-expanded', isVisible);
       if (isVisible) {
-        // Focus first radio for accessibility
         radioButtons[0].focus();
       }
     });
 
-    // Update aria-selected attributes for options on selection
     radioButtons.forEach(radio => {
       radio.addEventListener('change', () => {
         radioButtons.forEach(rb => {
@@ -753,8 +784,24 @@
         });
       });
     });
+
+    submitButton.addEventListener('click', () => {
+      // Find selected option
+      const selectedOption = Array.from(radioButtons).find(rb => rb.checked);
+      if (!selectedOption) {
+        alert('Please select a rental option before submitting.');
+        return;
+      }
+      const message = `I want to rent: ${selectedOption.value}`;
+      const encodedMessage = encodeURIComponent(message);
+      // Open whatsapp link in new tab
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+      window.open(whatsappURL, '_blank');
+    });
   </script>
 </body>
 </html>
+
+
 
 
