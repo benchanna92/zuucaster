@@ -351,3 +351,206 @@
 </script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Memo Alert Note</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+  :root {
+    --color-bg: #ffffff;
+    --color-text-primary: #111827;
+    --color-text-secondary: #6b7280;
+    --color-alert-red: #dc2626;
+    --color-card-bg: #f9fafb;
+    --color-shadow-light: rgba(0, 0, 0, 0.05);
+    --color-shadow-dark: rgba(0, 0, 0, 0.1);
+    --radius-rounded: 0.75rem;
+    --spacing-padding: 2rem;
+    --max-width-container: 1200px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: var(--spacing-padding);
+  }
+
+  .container {
+    max-width: var(--max-width-container);
+    width: 100%;
+  }
+
+  /* Small alert note - pill shaped */
+  .alert-note {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: var(--color-alert-red);
+    color: white;
+    padding: 0.5rem 1.25rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 12px var(--color-shadow-dark);
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+    z-index: 1001;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .alert-note:hover,
+  .alert-note:focus {
+    background-color: #b52626;
+    outline: none;
+  }
+
+  /* Modal background overlay */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(17, 24, 39, 0.6); /* darkish overlay */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .modal-overlay.active {
+    display: flex;
+    animation: fadeInOverlay 0.3s ease forwards;
+  }
+
+  @keyframes fadeInOverlay {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  /* Modal card */
+  .modal-card {
+    background: var(--color-card-bg);
+    padding: 2rem 2.5rem;
+    border-radius: var(--radius-rounded);
+    box-shadow: 0 10px 30px var(--color-shadow-dark);
+    max-width: 450px;
+    width: 90vw;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+    user-select: none;
+  }
+
+  .modal-card h2 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--color-alert-red);
+    margin: 0 0 1rem 0;
+  }
+
+  .modal-card p {
+    font-weight: 500;
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  /* Close button */
+  .close-button {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: color 0.2s ease;
+    user-select: none;
+    padding: 0;
+    line-height: 1;
+  }
+
+  .close-button:hover,
+  .close-button:focus {
+    color: var(--color-alert-red);
+    outline: none;
+  }
+</style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="Main content area">
+    <!-- No other content, only memo alert note -->
+  </div>
+
+  <button class="alert-note" aria-haspopup="dialog" aria-controls="alert-modal" aria-expanded="false" id="alertNoteBtn" title="Open alert message">
+    Alert Note
+  </button>
+
+  <div class="modal-overlay" id="alert-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc" tabindex="-1">
+    <div class="modal-card">
+      <button class="close-button" aria-label="Close alert modal" id="closeModalBtn">&times;</button>
+      <h2 id="modalTitle">Alert</h2>
+      <p id="modalDesc">We do not do any lost, stolen, or found device and we cannot do without loss data sorry for inconvenient.</p>
+    </div>
+  </div>
+
+<script>
+  const alertNoteBtn = document.getElementById('alertNoteBtn');
+  const modalOverlay = document.getElementById('alert-modal');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+
+  function openModal() {
+    modalOverlay.classList.add('active');
+    alertNoteBtn.setAttribute('aria-expanded', 'true');
+    modalOverlay.focus();
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove('active');
+    alertNoteBtn.setAttribute('aria-expanded', 'false');
+    alertNoteBtn.focus();
+  }
+
+  alertNoteBtn.addEventListener('click', () => {
+    openModal();
+  });
+
+  closeModalBtn.addEventListener('click', () => {
+    closeModal();
+  });
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
+  // Close modal if clicking outside the card
+  modalOverlay.addEventListener('click', (e) => {
+    if(e.target === modalOverlay) {
+      closeModal();
+    }
+  });
+</script>
+</body>
+</html>
+
