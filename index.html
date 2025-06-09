@@ -380,3 +380,355 @@
   </script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Service Center - Telco & Tool Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-bg: #ffffff;
+      --color-text-primary: #111827;
+      --color-text-secondary: #6b7280;
+      --color-accent: #2563eb;
+      --color-accent-hover: #1d4ed8;
+      --color-card-bg: #f9fafb;
+      --border-radius: 0.75rem;
+      --max-width: 1200px;
+      --transition-speed: 0.3s;
+      --header-height: 64px;
+      --color-border: #e5e7eb;
+      --spacing: 2rem;
+      --font-family: 'Inter', sans-serif;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background-color: var(--color-bg);
+      color: var(--color-text-secondary);
+      font-family: var(--font-family);
+      font-size: 17px;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: var(--spacing);
+    }
+    header {
+      width: 100%;
+      max-width: var(--max-width);
+      height: var(--header-height);
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      margin-bottom: var(--spacing);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: var(--color-text-primary);
+      letter-spacing: 0.05em;
+    }
+    main {
+      width: 100%;
+      max-width: var(--max-width);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing);
+    }
+    section.card {
+      background-color: var(--color-card-bg);
+      border-radius: var(--border-radius);
+      padding: 2rem 2.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: box-shadow var(--transition-speed), transform var(--transition-speed);
+    }
+    section.card:hover,
+    section.card:focus-within {
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px);
+      outline: none;
+    }
+    h2 {
+      margin: 0 0 1rem 0;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: var(--color-text-primary);
+      user-select: none;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: var(--color-text-primary);
+      font-size: 1rem;
+      user-select: text;
+    }
+    select, input[type="text"] {
+      font-family: inherit;
+      font-size: 1rem;
+      padding: 0.6rem 1rem;
+      border-radius: var(--border-radius);
+      border: 1.5px solid var(--color-border);
+      width: 100%;
+      color: var(--color-text-primary);
+      transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+    }
+    select:focus, input[type="text"]:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      box-shadow: 0 0 10px var(--color-accent);
+      background-color: #fff;
+    }
+    .send-whatsapp-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.8rem 2rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      background-color: var(--color-accent);
+      color: #fff;
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+      user-select: none;
+      box-shadow: 0 7px 20px rgba(37, 99, 235, 0.5);
+      text-align: center;
+    }
+    .send-whatsapp-button:hover,
+    .send-whatsapp-button:focus {
+      background-color: var(--color-accent-hover);
+      box-shadow: 0 9px 25px rgba(26, 70, 150, 0.7);
+      color: #fff;
+      outline: none;
+      text-decoration: none;
+    }
+    .send-whatsapp-button:focus-visible {
+      outline-offset: 3px;
+      outline: 3px solid #93c5fd;
+      border-radius: var(--border-radius);
+    }
+    .code-display {
+      font-family: 'SF Mono', 'Consolas', monospace;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--color-accent);
+      user-select: text;
+      margin-top: 0.5rem;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+      section.card {
+        padding: 1.5rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Service Center</div>
+  </header>
+  <main>
+    <!-- Telco & Auth Downgrade -->
+    <section id="telco-auth" class="card" tabindex="0" aria-labelledby="telco-auth-heading">
+      <h2 id="telco-auth-heading">Telco & Auth Downgrade</h2>
+      <label for="telco-model">Model</label>
+      <select id="telco-model" aria-required="true">
+        <option value="" disabled selected>Select Model</option>
+        <option value="REALME">REALME</option>
+        <option value="SAMSUNG">SAMSUNG</option>
+        <option value="OPPO">OPPO</option>
+        <option value="XIAOMI">XIAOMI</option>
+      </select>
+      <label for="telco-details">Details Model</label>
+      <input type="text" id="telco-details" placeholder="Enter details" aria-required="true" autocomplete="off" />
+      <p class="code-display" aria-live="polite" aria-atomic="true" id="telco-auth-code"></p>
+      <a href="#" id="send-whatsapp-telco" class="send-whatsapp-button" aria-disabled="true" tabindex="-1" target="_blank" rel="noopener noreferrer" role="button">
+        Send Telco Info to WhatsApp
+      </a>
+    </section>
+
+    <!-- Hide B/List Telco -->
+    <section id="hide-blacklist" class="card" tabindex="0" aria-labelledby="hide-blacklist-heading">
+      <h2 id="hide-blacklist-heading">Hide B/List Telco</h2>
+      <label for="blist-check">Checking Free Blacklist I/C</label>
+      <select id="blist-check" aria-required="true">
+        <option value="" disabled selected>Select Option</option>
+        <option value="YES">YES</option>
+        <option value="NO">NO</option>
+      </select>
+      <label for="ic-no">IC No</label>
+      <input type="text" id="ic-no" placeholder="Enter IC Number" aria-required="true" autocomplete="off" />
+      <p class="code-display" aria-live="polite" aria-atomic="true" id="hide-blacklist-code"></p>
+      <a href="#" id="send-whatsapp-blist" class="send-whatsapp-button" aria-disabled="true" tabindex="-1" target="_blank" rel="noopener noreferrer" role="button">
+        Send Blacklist Info to WhatsApp
+      </a>
+    </section>
+
+    <!-- Tool Rent -->
+    <section id="tool-rent" class="card" tabindex="0" aria-labelledby="tool-rent-heading">
+      <h2 id="tool-rent-heading">Tool Rent</h2>
+      <label for="tool-select">Tool</label>
+      <select id="tool-select" aria-required="true">
+        <option value="" disabled selected>Select Tool</option>
+        <option value="UNLOCKTOOL">UNLOCKTOOL</option>
+        <option value="RTC">RTC</option>
+        <option value="PANDORA">PANDORA</option>
+        <option value="TSM">TSM</option>
+        <option value="AMT">AMT</option>
+        <option value="SIGMA">SIGMA</option>
+      </select>
+      <label for="tool-time">Time</label>
+      <select id="tool-time" aria-required="true">
+        <option value="" disabled selected>Select Time</option>
+        <option value="6HR">6HR</option>
+        <option value="12HR">12HR</option>
+        <option value="1DAY">1DAY</option>
+        <option value="10DAYS">10DAYS</option>
+        <option value="1MONTH">1MONTH</option>
+      </select>
+      <p class="code-display" aria-live="polite" aria-atomic="true" id="tool-rent-code"></p>
+      <a href="#" id="send-whatsapp-tool-rent" class="send-whatsapp-button" aria-disabled="true" tabindex="-1" target="_blank" rel="noopener noreferrer" role="button">
+        Send Tool Rent Info to WhatsApp
+      </a>
+    </section>
+  </main>
+
+  <script>
+    const whatsappNumber = '+60178040403';
+
+    // Utility: Generate 4-digit code
+    function generate4DigitCode() {
+      return Math.floor(1000 + Math.random() * 9000);
+    }
+
+    // Telco & Auth Downgrade
+    const telcoModel = document.getElementById('telco-model');
+    const telcoDetails = document.getElementById('telco-details');
+    const telcoAuthCode = document.getElementById('telco-auth-code');
+    const sendWhatsAppTelco = document.getElementById('send-whatsapp-telco');
+
+    function updateWhatsAppTelco(model, details, code) {
+      const msg = `Telco & Auth Downgrade Request:\nModel: ${model}\nDetails: ${details}\nCase No: ${code}`;
+      const encodedMsg = encodeURIComponent(msg);
+      const phoneDigits = whatsappNumber.replace(/\D/g, '');
+      return `https://wa.me/${phoneDigits}?text=${encodedMsg}`;
+    }
+
+    function validateTelcoInputs() {
+      return telcoModel.value !== "" && telcoDetails.value.trim() !== "";
+    }
+
+    function handleTelcoInputs() {
+      if (validateTelcoInputs()) {
+        let code = generate4DigitCode();
+        telcoAuthCode.textContent = `Your 4-digit case code: ${code}`;
+        sendWhatsAppTelco.href = updateWhatsAppTelco(telcoModel.value, telcoDetails.value.trim(), code);
+        sendWhatsAppTelco.removeAttribute('aria-disabled');
+        sendWhatsAppTelco.tabIndex = 0;
+      } else {
+        telcoAuthCode.textContent = '';
+        sendWhatsAppTelco.href = '#';
+        sendWhatsAppTelco.setAttribute('aria-disabled', 'true');
+        sendWhatsAppTelco.tabIndex = -1;
+      }
+    }
+
+    telcoModel.addEventListener('change', handleTelcoInputs);
+    telcoDetails.addEventListener('input', handleTelcoInputs);
+
+    handleTelcoInputs();
+
+    // Hide B/List Telco
+    const blistCheck = document.getElementById('blist-check');
+    const icNo = document.getElementById('ic-no');
+    const hideBlacklistCode = document.getElementById('hide-blacklist-code');
+    const sendWhatsAppBlist = document.getElementById('send-whatsapp-blist');
+
+    function updateWhatsAppBlist(check, ic, code) {
+      const msg = `Hide B/List Telco Request:\nChecking Free Blacklist I/C: ${check}\nIC No: ${ic}\nCase No: ${code}`;
+      const encodedMsg = encodeURIComponent(msg);
+      const phoneDigits = whatsappNumber.replace(/\D/g, '');
+      return `https://wa.me/${phoneDigits}?text=${encodedMsg}`;
+    }
+
+    function validateBlistInputs() {
+      return blistCheck.value !== "" && icNo.value.trim() !== "";
+    }
+
+    function handleBlistInputs() {
+      if (validateBlistInputs()) {
+        let code = generate4DigitCode();
+        hideBlacklistCode.textContent = `Your 4-digit case code: ${code}`;
+        sendWhatsAppBlist.href = updateWhatsAppBlist(blistCheck.value, icNo.value.trim(), code);
+        sendWhatsAppBlist.removeAttribute('aria-disabled');
+        sendWhatsAppBlist.tabIndex = 0;
+      } else {
+        hideBlacklistCode.textContent = '';
+        sendWhatsAppBlist.href = '#';
+        sendWhatsAppBlist.setAttribute('aria-disabled', 'true');
+        sendWhatsAppBlist.tabIndex = -1;
+      }
+    }
+
+    blistCheck.addEventListener('change', handleBlistInputs);
+    icNo.addEventListener('input', handleBlistInputs);
+
+    handleBlistInputs();
+
+    // Tool Rent
+    const toolSelect = document.getElementById('tool-select');
+    const toolTime = document.getElementById('tool-time');
+    const toolRentCode = document.getElementById('tool-rent-code');
+    const sendWhatsAppToolRent = document.getElementById('send-whatsapp-tool-rent');
+
+    function updateWhatsAppToolRent(tool, time, code) {
+      const msg = `Tool Rent Request:\nTool: ${tool}\nTime: ${time}\nCode: ${code}`;
+      const encodedMsg = encodeURIComponent(msg);
+      const phoneDigits = whatsappNumber.replace(/\D/g, '');
+      return `https://wa.me/${phoneDigits}?text=${encodedMsg}`;
+    }
+
+    function validateToolRentInputs() {
+      return toolSelect.value !== "" && toolTime.value !== "";
+    }
+
+    function handleToolRentInputs() {
+      if (validateToolRentInputs()) {
+        let code = generate4DigitCode();
+        toolRentCode.textContent = `Your 4-digit code: ${code}`;
+        sendWhatsAppToolRent.href = updateWhatsAppToolRent(toolSelect.value, toolTime.value, code);
+        sendWhatsAppToolRent.removeAttribute('aria-disabled');
+        sendWhatsAppToolRent.tabIndex = 0;
+      } else {
+        toolRentCode.textContent = '';
+        sendWhatsAppToolRent.href = '#';
+        sendWhatsAppToolRent.setAttribute('aria-disabled', 'true');
+        sendWhatsAppToolRent.tabIndex = -1;
+      }
+    }
+
+    toolSelect.addEventListener('change', handleToolRentInputs);
+    toolTime.addEventListener('change', handleToolRentInputs);
+
+    handleToolRentInputs();
+  </script>
+</body>
+</html>
