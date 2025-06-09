@@ -1,434 +1,546 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unlock & Repair Services</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-
-        :root {
-            --color-bg: #f9f9f9;
-            --color-primary: #0071e3;
-            --color-text-primary: #111;
-            --color-text-secondary: #555;
-            --color-border: #e0e0e0;
-            --spacing: 1.5rem;
-            --border-radius: 8px;
-            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
-            --transition-speed: 0.3s ease-out;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            background: var(--color-bg);
-            color: var(--color-text-primary);
-            line-height: 1.6;
-        }
-
-        header {
-            padding: var(--spacing);
-            text-align: center;
-            background: white;
-            box-shadow: var(--shadow-light);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2rem;
-            color: var(--color-primary);
-        }
-
-        main {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: var(--spacing);
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-light);
-        }
-
-        .hero {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .hero h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: left;
-        }
-
-        .service-list li {
-            margin: 0.5rem 0;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: var(--color-primary);
-            color: white;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: background var(--transition-speed);
-            text-align: center;
-            font-size: 1rem;
-            margin-top: 1rem;
-        }
-
-        .btn-primary:hover {
-            background: darkblue;
-        }
-
-        /* Modal styles */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-
-        .modal {
-            background: white;
-            padding: var(--spacing);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-light);
-            width: 90%;
-            max-width: 500px;
-        }
-
-        .modal h3 {
-            margin-top: 0;
-        }
-
-        label {
-            display: block;
-            margin: 0.5rem 0 0.25rem;
-        }
-
-        select, input[type="text"], input[type="radio"] {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            border: 1px solid var(--color-border);
-            border-radius: var(--border-radius);
-        }
-
-        .btn-submit {
-            background: var(--color-primary);
-            color: white;
-            border: none;
-            padding: 0.75rem;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: background var(--transition-speed);
-            width: 100%;
-        }
-
-        .btn-submit:hover {
-            background: darkblue;
-        }
-
-        /* Floating WhatsApp button */
-        #whatsapp-float {
-            position: middle;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25D366;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            z-index: 1000;
-        }
-
-        #whatsapp-float svg {
-            width: 28px;
-            height: 28px;
-            fill: white;
-        }
-
-        @media (max-width: 600px) {
-            .btn-primary {
-                width: 100%;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Service Locks & Repairs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-red: #d32f2f;
+      --color-red-dark: #b71c1c;
+      --color-white: #fff;
+      --color-gray-light: #f9f9f9;
+      --color-gray-medium: #6b7280;
+      --font-primary: 'Poppins', sans-serif;
+      --transition-speed: 0.3s;
+      --border-radius: 12px;
+      --shadow-light: rgba(0,0,0,0.1);
+      --shadow-dark: rgba(0,0,0,0.2);
+      --max-container-width: 1080px;
+    }
+    /* Reset and base styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: var(--font-primary);
+      background-color: var(--color-white);
+      color: var(--color-gray-medium);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a {
+      color: var(--color-red);
+      text-decoration: none;
+      transition: color var(--transition-speed);
+    }
+    a:hover,
+    a:focus {
+      color: var(--color-red-dark);
+      outline: none;
+    }
+    h1 {
+      color: var(--color-red);
+      font-weight: 600;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 1.6rem;
+      user-select: none;
+    }
+    .container {
+      max-width: var(--max-container-width);
+      margin: 0 auto;
+      padding: 0 1rem;
+      width: 100%;
+    }
+    /* Header */
+    header {
+      background: var(--color-white);
+      padding: 2rem 1.5rem;
+      box-shadow: 0 2px 8px var(--shadow-light);
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+    }
+    .site-title {
+      color: var(--color-red);
+      font-weight: 600;
+      font-size: 1.8rem;
+      letter-spacing: 1.2px;
+      user-select: none;
+      text-align: center;
+    }
+    /* Services List */
+    ul.services-list {
+      list-style: none;
+      margin: 0 auto 2.5rem auto;
+      padding: 0;
+      max-width: 720px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+    ul.services-list li {
+      background: var(--color-white);
+      border-radius: var(--border-radius);
+      padding: 1.5rem 1.2rem;
+      box-shadow: 0 2px 10px var(--shadow-light);
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--color-red);
+      text-align: center;
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+      user-select: none;
+      cursor: default;
+    }
+    ul.services-list li:hover,
+    ul.services-list li:focus-within {
+      transform: scale(1.03);
+      box-shadow: 0 8px 24px rgba(211,47,47,0.45);
+      outline: none;
+    }
+    /* Button Unlocked Now */
+    .btn-unlock {
+      display: block;
+      max-width: 240px;
+      margin: 0 auto 3rem auto;
+      padding: 1rem 1.6rem;
+      background-color: var(--color-red);
+      color: var(--color-white);
+      font-weight: 700;
+      font-size: 1.25rem;
+      border-radius: var(--border-radius);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(211, 47, 47, 0.4);
+      transition: background-color var(--transition-speed), box-shadow var(--transition-speed), transform var(--transition-speed);
+      user-select: none;
+      text-align: center;
+      line-height: 1.2;
+    }
+    .btn-unlock:hover,
+    .btn-unlock:focus {
+      background-color: var(--color-red-dark);
+      box-shadow: 0 6px 18px rgba(183, 28, 28, 0.6);
+      outline: none;
+      transform: scale(1.05);
+    }
+    .btn-unlock:active {
+      transform: scale(0.97);
+      box-shadow: 0 3px 8px rgba(183, 28, 28, 0.8);
+    }
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1200;
+      padding: 1rem;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    /* Modal content */
+    .modal {
+      background: var(--color-white);
+      border-radius: var(--border-radius);
+      box-shadow: 0 10px 30px var(--shadow-dark);
+      width: 100%;
+      max-width: 480px;
+      padding: 2.5rem 2rem 2rem 2rem;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+      font-size: 1rem;
+      color: var(--color-gray-medium);
+      -webkit-overflow-scrolling: touch;
+    }
+    .modal h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--color-red);
+      margin-top: 0;
+      margin-bottom: 1rem;
+      user-select: none;
+      text-align: center;
+    }
+    /* Close button */
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--color-red);
+      cursor: pointer;
+      transition: color var(--transition-speed);
+      user-select: none;
+    }
+    .modal-close:hover,
+    .modal-close:focus {
+      color: var(--color-red-dark);
+      outline: none;
+    }
+    /* Form styles */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    label {
+      font-weight: 600;
+      color: var(--color-red);
+      user-select: none;
+    }
+    select, input[type="text"] {
+      font-family: var(--font-primary);
+      font-size: 1rem;
+      padding: 0.65rem 1rem;
+      border: 1.5px solid var(--color-gray-light);
+      border-radius: 8px;
+      outline-offset: 2px;
+      outline-color: transparent;
+      transition: border-color var(--transition-speed);
+    }
+    select:focus, input[type="text"]:focus {
+      border-color: var(--color-red);
+      outline-color: var(--color-red);
+    }
+    /* Radio buttons container */
+    .radio-group {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .radio-label {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-weight: 600;
+      color: var(--color-red);
+      cursor: pointer;
+      user-select: none;
+    }
+    /* Smaller text inside radio label for actual option */
+    .radio-label input {
+      cursor: pointer;
+      margin: 0;
+      width: 1rem;
+      height: 1rem;
+    }
+    /* Case number readonly field */
+    input[readonly] {
+      background-color: var(--color-gray-light);
+      color: var(--color-gray-medium);
+      cursor: not-allowed;
+    }
+    /* Submit button */
+    button.submit-btn {
+      background-color: var(--color-red);
+      color: var(--color-white);
+      font-weight: 700;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: var(--border-radius);
+      padding: 1rem;
+      cursor: pointer;
+      transition: background-color var(--transition-speed), box-shadow var(--transition-speed), transform var(--transition-speed);
+      box-shadow: 0 4px 12px rgba(211, 47, 47, 0.5);
+      user-select: none;
+    }
+    button.submit-btn:hover,
+    button.submit-btn:focus {
+      background-color: var(--color-red-dark);
+      box-shadow: 0 6px 18px rgba(183, 28, 28, 0.7);
+      outline: none;
+      transform: scale(1.05);
+    }
+    button.submit-btn:active {
+      transform: scale(0.97);
+      box-shadow: 0 3px 8px rgba(183, 28, 28, 0.9);
+    }
+    /* Responsive */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+      ul.services-list {
+        grid-template-columns: 1fr;
+      }
+      .btn-unlock {
+        max-width: 100%;
+        font-size: 1.1rem;
+        padding: 0.85rem 1.2rem;
+        margin-bottom: 2rem;
+      }
+      .modal {
+        padding: 2rem 1.5rem 1.5rem 1.5rem;
+      }
+      .radio-group {
+        gap: 1rem;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+        animation-duration: 0 !important;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Unlock & Repair Services</h1>
-    </header>
-    <main>
-        <div class="hero">
-            <h2> zuu caster</h2>
-            <ul class="service-list">
-                <li>SAMSUNG - SCREEN LOCK</li>
-                <li>GOOGLE LOCK</li>
-                <li>NETWORK LOCK</li>
-                <li>BOOTLOADER LOCK</li>
-                <li>IPHONE ID LOCK</li>
-                <li>IPHONE TELCO LOCK</li>
-                <li>HONOR GOOGLE LOCK / FRP</li>
-                <li>FRP BYPASS & PASSWORD RESET</li>
-                <li>FORGET APPLE ID</li>
-                <li>IPAD BYPASS</li>
-                <li>UPGRADE STORAGE</li>
-                <li>SCREEN REPLACEMENT</li>
-                <li>GLASS REPLACEMENT</li>
-                <li>COMPUTER SERVICE</li>
-                <li>BUILT CUSTOM COMPUTER</li>
-                <li>LAPTOP SERVICE</li>
-            </ul>
-            <button class="btn-primary" id="get-started">Get Started</button>
-        </div>
-    </main>
-
-    <div class="modal-overlay" id="modal-overlay">
-        <div class="modal">
-            <h3>Service Request Form</h3>
-            <label for="model-select">Model</label>
-            <select id="model-select">
-                <option value="" disabled selected>Select model</option>
-                <option>OPPO</option>
-                <option>REALME</option>
-                <option>HONOR</option>
-                <option>VIVO</option>
-                <option>SAMSUNG</option>
-                <option>XIAOMI</option>
-                <option>TECHNO</option>
-                <option>INFINIX</option>
-                <option>REDMI</option>
-                <option>ONEPLUS</option>
-                <option>PIXEL</option>
-            </select>
-
-            <label for="issue-select">Issue</label>
-            <select id="issue-select">
-                <option value="" disabled selected>Select issue</option>
-                <option>TELCO</option>
-                <option>SOFTWARE BRICK</option>
-                <option>FRP</option>
-                <option>GOOGLE LOCK</option>
-                <option>HUAWEI ID</option>
-                <option>HONOR ID</option>
-                <option>XIAOMI ACCOUNT</option>
-                <option>XIAOMI FRP</option>
-                <option>NETWORK UNLOCK</option>
-            </select>
-
-            <label for="location-input">Your Location</label>
-            <input type="text" id="location-input" placeholder="Enter your location" />
-
-            <label>Case Number</label>
-            <div id="case-number">----</div>
-
-            <label>Laptop/PC?</label>
-            <input type="radio" id="laptop-yes" name="laptop" value="Yes" />
-            <label for="laptop-yes">Yes</label>
-            <input type="radio" id="laptop-no" name="laptop" value="No" />
-            <label for="laptop-no">No</label>
-
-            <button class="btn-submit" id="submit-request">Submit</button>
-        </div>
+  <header role="banner">
+    <div class="container">
+      <h1 class="site-title" aria-label="Service Locks and Repairs Website">Service Locks & Repairs</h1>
     </div>
+  </header>
+  <main role="main" class="container" aria-label="List of service offerings">
+    <h1>Our Services</h1>
+    <ul class="services-list" role="list">
+      <li tabindex="0">SCREEN LOCK</li>
+      <li tabindex="0">GOOGLE LOCK</li>
+      <li tabindex="0">NETWORK LOCK</li>
+      <li tabindex="0">BOOTLOADER LOCK</li>
+      <li tabindex="0">IPHONE IDLOCK</li>
+      <li tabindex="0">IPHONE TELCO LOCK</li>
+      <li tabindex="0">HONOR GOOGLE LOCK / FRP</li>
+      <li tabindex="0">WEBSITE DESIGN</li>
+      <li tabindex="0">FRP BYPASS & PASSWORD RESET</li>
+      <li tabindex="0">FORGET APPLE ID</li>
+      <li tabindex="0">IPAD BYPASS</li>
+      <li tabindex="0">UPGRADE STORAGE</li>
+      <li tabindex="0">SCREEN REPLACEMENT</li>
+      <li tabindex="0">GLASS REPLACEMENT</li>
+      <li tabindex="0">COMPUTER SERVICE</li>
+      <li tabindex="0">BUILT CUSTOM COMPUTER</li>
+      <li tabindex="0">LAPTOP SERVICE</li>
+    </ul>
+    <button class="btn-unlock" id="unlock-btn" type="button" aria-haspopup="dialog" aria-controls="unlock-modal" aria-expanded="false">Unlocked Now</button>
+  </main>
+  <footer role="contentinfo">
+    &copy; 2024 Service Locks & Repairs. All rights reserved.
+  </footer>
+  <!-- Modal -->
+  <div class="modal-overlay" id="unlock-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1" aria-hidden="true">
+    <div class="modal" role="document">
+      <button class="modal-close" id="modal-close" aria-label="Close form">&times;</button>
+      <h2 id="modal-title">Unlock Request</h2>
+      <form id="unlock-form" novalidate>
+        <label for="model-select">MODEL</label>
+        <select id="model-select" name="model" required aria-required="true">
+          <option value="" disabled selected>Select model</option>
+          <option value="SAMSUNG">SAMSUNG</option>
+          <option value="OPPO">OPPO</option>
+          <option value="REALME">REALME</option>
+          <option value="XIAOMI">XIAOMI</option>
+          <option value="REDMI">REDMI</option>
+          <option value="HONOR">HONOR</option>
+          <option value="HUAWEI">HUAWEI</option>
+          <option value="TECHNO">TECHNO</option>
+          <option value="INFINIX">INFINIX</option>
+          <option value="PIXEL">PIXEL</option>
+          <option value="ONEPLUS">ONEPLUS</option>
+        </select>
 
-    <a href="https://wa.me/60178040403" target="_blank" id="whatsapp-float" aria-label="Chat with us on WhatsApp">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20.52 3.48A11.775 11.775 0 0012 0C5.372 0 0 5.372 0 12a11.64 11.64 0 001.73 6.02L0 24l5.84-1.53a11.625 11.625 0 006.161 1.677C18.627 24 24 18.627 24 12a11.78 11.78 0 00-3.48-8.52zm-8.52 17.52a9.452 9.452 0 01-4.844-1.438l-.35-.22-3.42.833.842-3.333-.234-.357a9.414 9.414 0 1118.3 2.796 6.23 6.23 0 01-3.994 3.62zm5.932-7.104c-.29-.145-1.712-.845-1.978-.94-.267-.097-.462-.145-.658.146-.197.29-.758.94-.93 1.133-.17.197-.34.221-.63.074a8.23 8.23 0 01-2.414-1.49 9.148 9.148 0 01-1.69-2.1c-.18-.31 0-.484.135-.63.14-.145.318-.38.476-.573.156-.195.208-.328.31-.547.1-.22 0-.403-.01-.56-.016-.158-.66-1.59-.908-2.18-.237-.577-.48-.5-.658-.51a3.63 3.63 0 00-.68-.057 2.67 2.67 0 00-.63.094c-.204.09-.623.61-.623 1.492 0 .882.637 1.73.726 1.85.09.124 1.252 1.91 3.038 2.677a10.81 10.81 0 002.765 1.38c.366.155.65.132.89.08.275-.063.84-.343.96-.68.117-.34.117-.627.083-.68-.03-.053-.262-.09-.55-.235z"/>
-        </svg>
-    </a>
+        <label for="issue-select">ISSUE</label>
+        <select id="issue-select" name="issue" required aria-required="true">
+          <option value="" disabled selected>Select issue</option>
+          <option value="TELCO">TELCO</option>
+          <option value="SOFTWARE BRICK">SOFTWARE BRICK</option>
+          <option value="GOOGLE">GOOGLE</option>
+          <option value="XIAOMI ACCOUNT">XIAOMI ACCOUNT</option>
+          <option value="XIAOMI FRP">XIAOMI FRP</option>
+          <option value="HONOR FRP">HONOR FRP</option>
+          <option value="HUAWEI ID">HUAWEI ID</option>
+          <option value="OTHER">OTHER</option>
+        </select>
 
-    <script>
-        document.getElementById('get-started').addEventListener('click', function() {
-            document.getElementById('modal-overlay').style.display = 'flex';
-            document.getElementById('case-number').textContent = Math.floor(1000 + Math.random() * 9000);
-        });
+        <label for="location-input">YOUR LOCATION</label>
+        <input id="location-input" type="text" name="location" placeholder="Enter your location" required aria-required="true" autocomplete="address-level2" />
 
-        document.getElementById('submit-request').addEventListener('click', function() {
-            const model = document.getElementById('model-select').value;
-            const issue = document.getElementById('issue-select').value;
-            const location = document.getElementById('location-input').value;
-            const laptop = document.querySelector('input[name="laptop"]:checked') ? document.querySelector('input[name="laptop"]:checked').value : 'Not specified';
-            const caseNumber = document.getElementById('case-number').textContent;
+        <fieldset>
+          <legend>HAVE LAPTOP/PC</legend>
+          <div class="radio-group" role="radiogroup" aria-required="true" aria-labelledby="laptop-legend">
+            <label class="radio-label" for="laptop-yes">
+              <input type="radio" id="laptop-yes" name="laptop" value="YES" required />YES
+            </label>
+            <label class="radio-label" for="laptop-no">
+              <input type="radio" id="laptop-no" name="laptop" value="NO" required />NO
+            </label>
+          </div>
+        </fieldset>
 
-            const message = `Service Request:%0AModel: ${model}%0AIssue: ${issue}%0ALocation: ${location}%0ALaptop/PC: ${laptop}%0ACase Number: ${caseNumber}`;
-            const phoneNumber = '60178040403';
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+        <label for="case-number-input">CASE # (auto-generated)</label>
+        <input id="case-number-input" type="text" name="caseNumber" readonly aria-readonly="true" aria-label="Auto-generated case number"/>
 
-            window.open(whatsappUrl, '_blank', 'noopener');
-            document.getElementById('modal-overlay').style.display = 'none';
-        });
-
-        document.getElementById('modal-overlay').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.style.display = 'none';
-            }
-        });
-    </script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Promotional Banner</title>
-<style>
-  /* Import modern font */
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-
-  :root {
-    --banner-height: 72px;
-    --bg-color: #ffffff;
-    --text-shadow: rgba(0, 0, 0, 0.05);
-    --scroll-duration: 20s; /* Slower sliding speed */
-  }
-
-  body {
-    margin: 0;
-    background-color: var(--bg-color);
-    font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
-    display: flex;
-    justify-content: center;
-    padding: 2rem 1rem;
-  }
-
-  .banner-container {
-    max-width: 1200px;
-    width: 100%;
-  }
-
-  .banner {
-    position: relative;
-    width: 100%;
-    height: var(--banner-height);
-    overflow: hidden;
-    background: var(--bg-color);
-    box-shadow: 0 4px 12px var(--text-shadow);
-    display: flex;
-    align-items: center;
-    border-radius: 0.75rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
-  .scrolling-text {
-    display: inline-block;
-    white-space: nowrap;
-    font-size: 2.5rem;
-    font-weight: 700;
-    animation: slide-left linear infinite;
-    animation-duration: var(--scroll-duration);
-  }
-
-  @keyframes slide-left {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-
-  /* RGB cycling for each letter with wave effect */
-  .scrolling-text span {
-    animation: rgb-cycle 6s linear infinite;
-    display: inline-block;
-    padding: 0 5px;
-    user-select: none;
-  }
-
-  /* Stagger animation delays to create wave */
-  .scrolling-text span:nth-child(3n+1) {
-    animation-delay: 0s;
-  }
-  .scrolling-text span:nth-child(3n+2) {
-    animation-delay: 0.15s;
-  }
-  .scrolling-text span:nth-child(3n+3) {
-    animation-delay: 0.3s;
-  }
-
-  @keyframes rgb-cycle {
-    0%   { color: rgb(255, 0, 0); }
-    20%  { color: rgb(255, 127, 0); }
-    40%  { color: rgb(255, 255, 0); }
-    60%  { color: rgb(0, 255, 0); }
-    80%  { color: rgb(0, 0, 255); }
-    100% { color: rgb(255, 0, 0); }
-  }
-
-  /* Bullet separator styling */
-  .bullet {
-    display: inline-block;
-    color: #999999;
-    user-select: none;
-    padding: 0 10px;
-    font-weight: 700;
-    font-size: 2.5rem;
-    line-height: 1;
-    animation: none;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .scrolling-text {
-      font-size: 1.75rem;
-    }
-    .bullet {
-      font-size: 1.75rem;
-      padding: 0 8px;
-    }
-    .banner {
-      height: 54px;
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-  }
-</style>
-</head>
-<body>
-  <div class="banner-container">
-    <section class="banner" role="region" aria-label="Promotional banner">
-      <div class="scrolling-text" aria-live="polite" aria-atomic="true">
-        <!-- Each letter wrapped in span for color cycling -->
-        <!-- Samsung FRP IMEI RM70 -->
-        <span>S</span><span>a</span><span>m</span><span>s</span><span>u</span><span>n</span><span>g</span><span> </span><span>F</span><span>R</span><span>P</span><span> </span><span>I</span><span>M</span><span>E</span><span>I</span><span> </span><span>R</span><span>M</span><span>7</span><span>0</span>
-        <span class="bullet">•</span>
-        <!-- Xiaomi FRP IMEI RM50 -->
-        <span>X</span><span>i</span><span>a</span><span>o</span><span>m</span><span>i</span><span> </span><span>F</span><span>R</span><span>P</span><span> </span><span>I</span><span>M</span><span>E</span><span>I</span><span> </span><span>R</span><span>M</span><span>5</span><span>0</span>
-        <span class="bullet">•</span>
-        <!-- Limited slot -->
-        <span>L</span><span>i</span><span>m</span><span>i</span><span>t</span><span>e</span><span>d</span><span> </span><span>s</span><span>l</span><span>o</span><span>t</span>
-      </div>
-    </section>
+        <button type="submit" class="submit-btn" aria-describedby="submission-desc">Submit Request</button>
+        <p id="submission-desc" class="visually-hidden">Submitting this form will send your unlock request to WhatsApp.</p>
+      </form>
+    </div>
   </div>
+
+  <script>
+    (() => {
+      const btnUnlock = document.getElementById('unlock-btn');
+      const modal = document.getElementById('unlock-modal');
+      const modalCloseBtn = document.getElementById('modal-close');
+      const form = document.getElementById('unlock-form');
+      const caseNumberInput = document.getElementById('case-number-input');
+
+      // Accessibility: Save last focused element
+      let lastFocusedElement;
+
+      // Utility: Generate random 4-digit
+      function generateCaseNumber() {
+        return Math.floor(1000 + Math.random() * 9000).toString();
+      }
+
+      // Open modal
+      function openModal() {
+        lastFocusedElement = document.activeElement;
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        btnUnlock.setAttribute('aria-expanded', 'true');
+        // Generate case number
+        caseNumberInput.value = generateCaseNumber();
+        // Focus first form field
+        document.getElementById('model-select').focus();
+        // Trap focus within modal
+        trapFocus(modal);
+      }
+      // Close modal
+      function closeModal() {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        btnUnlock.setAttribute('aria-expanded', 'false');
+        // Restore focus
+        if(lastFocusedElement) lastFocusedElement.focus();
+      }
+
+      // Trap focus inside modal
+      function trapFocus(element) {
+        const focusableSelectors = [
+          'a[href]',
+          'area[href]',
+          'input:not([disabled])',
+          'select:not([disabled])',
+          'textarea:not([disabled])',
+          'button:not([disabled])',
+          'iframe',
+          '[tabindex]:not([tabindex="-1"])',
+          '[contenteditable]'
+        ];
+        const focusableElements = Array.from(element.querySelectorAll(focusableSelectors.join(','))).filter(el => el.offsetWidth > 0 || el.offsetHeight > 0 || el === document.activeElement);
+        if(focusableElements.length === 0) return;
+
+        let firstEl = focusableElements[0];
+        let lastEl = focusableElements[focusableElements.length -1];
+
+        element.addEventListener('keydown', e => {
+          if(e.key === 'Tab' || e.keyCode === 9) {
+            if(e.shiftKey) { // Shift + Tab
+              if(document.activeElement === firstEl) {
+                e.preventDefault();
+                lastEl.focus();
+              }
+            } else { // Tab
+              if(document.activeElement === lastEl) {
+                e.preventDefault();
+                firstEl.focus();
+              }
+            }
+          }
+          if(e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
+            e.preventDefault();
+            closeModal();
+          }
+        });
+      }
+
+      // Form submit handler
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Collect values
+        const model = form.model.value;
+        const issue = form.issue.value;
+        const location = form.location.value.trim();
+        const laptop = form.laptop.value;
+        const caseNum = form.caseNumber.value;
+
+        // Validate (HTML5 validations handle most, plus trimming)
+
+        // Format text for WhatsApp
+        const messageParts = [
+          `Unlock Request - Case #${caseNum}`,
+          `Model: ${model}`,
+          `Issue: ${issue}`,
+          `Location: ${location}`,
+          `Have Laptop/PC: ${laptop}`
+        ];
+
+        const encodedMessage = encodeURIComponent(messageParts.join('\n'));
+
+        const whatsappNumber = '+60178040403';
+        // Format WhatsApp URL (using https://wa.me/ with text query)
+        const waURL = `https://wa.me/${whatsappNumber.replace(/\D/g, '')}?text=${encodedMessage}`;
+
+        // Open in new tab
+        window.open(waURL, '_blank');
+
+        // Close modal after submit
+        closeModal();
+
+        // Optional: reset form (not cleared so user can resubmit if needed)
+        form.reset();
+      });
+
+      // Open modal on button click
+      btnUnlock.addEventListener('click', openModal);
+
+      // Close modal handlers
+      modalCloseBtn.addEventListener('click', closeModal);
+
+      // Close modal on overlay click (only if clicking outside modal content)
+      modal.addEventListener('click', e => {
+        if(e.target === modal) {
+          closeModal();
+        }
+      });
+
+      // Close modal on pressing Escape key globally (alternative to focus trap)
+      document.addEventListener('keydown', e => {
+        if(e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
+          if(modal.classList.contains('active')) {
+            closeModal();
+          }
+        }
+      });
+    })();
+  </script>
+
+  <style>
+    /* Visually hidden for aria descriptions */
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px; 
+      width: 1px; 
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+      border: 0;
+      padding: 0;
+      margin: -1px;
+    }
+  </style>
 </body>
 </html>
-
 
