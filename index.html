@@ -544,3 +544,217 @@
 </body>
 </html>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rental Tool Selection</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+  :root {
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-gray: #6b7280;
+    --color-light: #f9fafb;
+    --color-card-bg: #ffffff;
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --transition-duration: 0.3s;
+    --border-radius: 0.75rem;
+    --shadow-light: 0 4px 8px rgba(0,0,0,0.05);
+  }
+
+  /* Reset and base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: var(--color-light);
+    font-family: var(--font-family);
+    color: var(--color-gray);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 4rem 1rem 6rem;
+  }
+
+  .container {
+    max-width: 480px;
+    width: 100%;
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    padding: 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  /* Rental Tool Button */
+  button.rental-button {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-weight: 600;
+    font-size: 1.25rem;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition:
+      background-color var(--transition-duration) ease,
+      transform var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
+    outline-offset: 3px;
+    width: 100%;
+    max-width: 320px;
+  }
+  button.rental-button:hover,
+  button.rental-button:focus-visible {
+    background-color: #222222;
+    outline: none;
+    transform: scale(1.05);
+  }
+  button.rental-button:focus-visible {
+    outline: 3px solid #444444aa;
+  }
+
+  /* Rental options panel */
+  .rental-options {
+    margin-top: 2rem;
+    width: 100%;
+    background: var(--color-card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    padding: 1.5rem 2rem;
+    display: none;
+    flex-direction: column;
+  }
+
+  .rental-options.visible {
+    display: flex;
+    animation: fadeInSlideDown 0.4s ease forwards;
+  }
+
+  @keyframes fadeInSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Rental option item */
+  .rental-option {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .rental-option:last-child {
+    border-bottom: none;
+  }
+
+  .rental-option input[type="radio"] {
+    accent-color: var(--color-black);
+    margin-right: 1rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+  }
+
+  .rental-label {
+    font-size: 1rem;
+    color: var(--color-black);
+    font-weight: 500;
+    user-select: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 400px) {
+    .container {
+      padding: 1.5rem 1.5rem;
+    }
+    h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <main class="container" role="main" aria-label="Rental tool selection container">
+    <h1>Rental Tool</h1>
+    <button type="button" class="rental-button" aria-expanded="false" aria-controls="rental-options" aria-haspopup="listbox" id="rentalButton">
+      Rental Tool
+    </button>
+    <section id="rental-options" class="rental-options" role="listbox" tabindex="-1" aria-labelledby="rentalButton">
+      <label class="rental-option" role="option" aria-selected="false" for="option1">
+        <input type="radio" name="rental" id="option1" value="Unlocktool RM10 6hr/RTC" />
+        <span class="rental-label">Unlocktool RM10 6hr/RTC</span>
+      </label>
+      <label class="rental-option" role="option" aria-selected="false" for="option2">
+        <input type="radio" name="rental" id="option2" value="RM10 6hr/TSM tool" />
+        <span class="rental-label">RM10 6hr/TSM tool</span>
+      </label>
+      <label class="rental-option" role="option" aria-selected="false" for="option3">
+        <input type="radio" name="rental" id="option3" value="RM10 1days/Pandora tool" />
+        <span class="rental-label">RM10 1days/Pandora tool</span>
+      </label>
+      <label class="rental-option" role="option" aria-selected="false" for="option4">
+        <input type="radio" name="rental" id="option4" value="RM100 10days/Sigma tool" />
+        <span class="rental-label">RM100 10days/Sigma tool</span>
+      </label>
+      <label class="rental-option" role="option" aria-selected="false" for="option5">
+        <input type="radio" name="rental" id="option5" value="RM150 10days" />
+        <span class="rental-label">RM150 10days</span>
+      </label>
+    </section>
+  </main>
+
+  <script>
+    const rentalButton = document.getElementById('rentalButton');
+    const optionsPanel = document.getElementById('rental-options');
+    const radioButtons = optionsPanel.querySelectorAll('input[type="radio"]');
+    rentalButton.addEventListener('click', () => {
+      const isVisible = optionsPanel.classList.toggle('visible');
+      rentalButton.setAttribute('aria-expanded', isVisible);
+      if (isVisible) {
+        // Focus first radio for accessibility
+        radioButtons[0].focus();
+      }
+    });
+
+    // Update aria-selected attributes for options on selection
+    radioButtons.forEach(radio => {
+      radio.addEventListener('change', () => {
+        radioButtons.forEach(rb => {
+          const label = rb.closest('label');
+          if(rb.checked) {
+            label.setAttribute('aria-selected', 'true');
+          } else {
+            label.setAttribute('aria-selected', 'false');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
+
