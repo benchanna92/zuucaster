@@ -495,130 +495,130 @@
 </html>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Device Model & Issue Selector</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Device Model & Issue Selector</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-  :root {
-    --color-bg: #ffffff;
-    --color-text: #374151; /* neutral dark gray */
-    --color-text-muted: #6b7280; /* neutral gray */
-    --color-accent: #111827;
-    --color-border: #d1d5db;
-    --radius: 0.75rem;
-    --shadow-light: 0 1px 3px rgb(0 0 0 / 0.1);
-    --font-family: 'Inter', sans-serif;
-  }
+    :root {
+      --color-bg: #ffffff;
+      --color-text: #374151; /* dark neutral */
+      --color-text-muted: #6b7280; /* neutral gray */
+      --color-accent: #111827;
+      --color-border: #d1d5db;
+      --radius: 0.75rem;
+      --shadow-light: 0 1px 3px rgb(0 0 0 / 0.1);
+      --font-family: 'Inter', sans-serif;
+    }
 
-  * {
-    box-sizing: border-box;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  body {
-    margin: 0;
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    font-family: var(--font-family);
-    line-height: 1.5;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    padding: 4rem 1rem;
-  }
+    body {
+      margin: 0;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-family);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 4rem 1rem;
+    }
 
-  .container {
-    max-width: 600px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-  }
+    .container {
+      max-width: 600px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
 
-  h1 {
-    font-weight: 700;
-    font-size: 3rem;
-    margin: 0;
-    color: var(--color-accent);
-    line-height: 1.1;
-  }
+    h1 {
+      font-weight: 700;
+      font-size: 3rem;
+      margin: 0;
+      color: var(--color-accent);
+      line-height: 1.1;
+    }
 
-  p.subtext {
-    font-weight: 400;
-    font-size: 1.125rem;
-    color: var(--color-text-muted);
-    margin-top: 0.5rem;
-  }
+    p.subtext {
+      font-weight: 400;
+      font-size: 1.125rem;
+      color: var(--color-text-muted);
+      margin-top: 0.5rem;
+    }
 
-  form {
-    background: #f9fafb;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-light);
-    padding: 2rem 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.75rem;
-  }
+    form {
+      background: #f9fafb;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-light);
+      padding: 2rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
 
-  label {
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--color-accent);
-    margin-bottom: 0.375rem;
-    display: inline-block;
-  }
+    label {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--color-accent);
+      margin-bottom: 0.375rem;
+      display: inline-block;
+    }
 
-  select, input[type="text"] {
-    font-family: var(--font-family);
-    font-size: 1rem;
-    padding: 0.625rem 0.75rem;
-    border: 1.5px solid var(--color-border);
-    border-radius: var(--radius);
-    background-color: #ffffff;
-    color: var(--color-text);
-    width: 100%;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
+    select, input[type="text"] {
+      font-family: var(--font-family);
+      font-size: 1rem;
+      padding: 0.625rem 0.75rem;
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius);
+      background-color: #ffffff;
+      color: var(--color-text);
+      width: 100%;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
 
-  select:focus, input[type="text"]:focus {
-    outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgb(59 130 246 / 0.3);
-    background-color: #ffffff;
-  }
+    select:focus, input[type="text"]:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgb(59 130 246 / 0.3);
+      background-color: #ffffff;
+    }
 
-  button {
-    margin-top: 1.5rem;
-    padding: 0.75rem 1.5rem;
-    background-color: var(--color-accent);
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 1.125rem;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    align-self: flex-start;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--color-accent);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.125rem;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
 
-  button:hover {
-    background-color: #1e40af;
-    transform: scale(1.05);
-  }
+    button:hover {
+      background-color: #1e40af;
+      transform: scale(1.05);
+    }
 
-  button:focus {
-    outline: 2px solid #2563eb;
-    outline-offset: 2px;
-  }
-</style>
+    button:focus {
+      outline: 2px solid #2563eb;
+      outline-offset: 2px;
+    }
+  </style>
 </head>
 <body>
   <main class="container" role="main">
     <h1>Select Your Device & Issue</h1>
-    <p class="subtext">Choose your model, issue, and enter your location below. On submit, your selection will be sent to WhatsApp.</p>
+    <p class="subtext">Choose your model, issue, and enter your location/state below. On submit, your selection will be sent to WhatsApp.</p>
     <form id="deviceForm" aria-label="Device selection form">
       <div>
         <label for="model">Model</label>
@@ -629,6 +629,9 @@
           <option value="vivo">vivo</option>
           <option value="oppo">oppo</option>
           <option value="realme">realme</option>
+          <option value="OnePlus">OnePlus</option>
+          <option value="Pixel">Pixel</option>
+          <option value="honor">honor</option>
         </select>
       </div>
 
@@ -637,14 +640,17 @@
         <select id="issue" name="issue" required>
           <option value="" disabled selected>Select issue</option>
           <option value="Telco">Telco</option>
-          <option value="Google">Google</option>
+          <option value="google">google</option>
           <option value="Xiaomi FRP">Xiaomi FRP</option>
+          <option value="Auth flash">Auth flash</option>
+          <option value="network issue">network issue</option>
+          <option value="Other">Other</option>
         </select>
       </div>
 
       <div>
-        <label for="location">Location</label>
-        <input type="text" id="location" name="location" placeholder="Enter your location" required />
+        <label for="location">Where you Location/state</label>
+        <input type="text" id="location" name="location" placeholder="Enter your location or state" required />
       </div>
 
       <button type="submit">Send to WhatsApp</button>
@@ -664,7 +670,7 @@
       const phone = '+60178040403';
       // Construct WhatsApp message
       const message = encodeURIComponent(
-        `Device Model: ${model}\nIssue: ${issue}\nLocation: ${location}`
+        `Device Model: ${model}\nIssue: ${issue}\nLocation/state: ${location}`
       );
       // WhatsApp URL with prefilled message
       const url = `https://wa.me/${phone.replace(/\+/g, '')}?text=${message}`;
@@ -673,8 +679,6 @@
   </script>
 </body>
 </html>
-
-
 
  <footer id="contact">
     &copy; 2025 Unlock &amp; Repair Services with Zuu Caster All rights reserved.
