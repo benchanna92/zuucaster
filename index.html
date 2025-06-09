@@ -1,941 +1,292 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zuu &amp; Caster</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
-    /* CSS Reset */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-        Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      /* Black and red gradient background */
-      background: linear-gradient(135deg, #0a0a0a, #7f0a0a);
-      color: #f9fafb; /* off white for text */
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      -webkit-font-feature-settings: "liga" 1, "calt" 1;
-      position: relative;
-    }
-
-    a {
-      color: #e63946;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    a:hover,
-    a:focus {
-      color: #b32a33;
-      outline: none;
-    }
-
-    /* Sticky Header */
-    header {
-      position: sticky;
-      top: 0;
-      background-color: rgba(30,30,30,0.85);
-      backdrop-filter: saturate(180%) blur(8px);
-      border-bottom: 1px solid rgba(230, 57, 70, 0.4);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 3rem;
-      box-shadow: 0 2px 6px rgba(230, 57, 70, 0.3);
-      z-index: 1000;
-      user-select: none;
-    }
-    .logo {
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: #e63946;
-      letter-spacing: -0.015em;
-      user-select: text;
-    }
-    nav a {
-      font-weight: 600;
-      font-size: 1rem;
-      margin-left: 2.25rem;
-      user-select: none;
-      color: #f9fafb;
-    }
-
-    /* Container max width */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Hero Section */
-    .hero {
-      padding: 6rem 0 5rem 0;
-      text-align: center;
-      user-select: none;
-    }
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      color: #e63946;
-      margin: 0 0 1rem 0;
-      line-height: 1.1;
-      text-shadow: 0 0 6px rgba(230, 57, 70, 0.7);
-    }
-    .hero p {
-      font-size: 1.25rem;
-      color: #d1d5db;
-      max-width: 600px;
-      margin: 0 auto 3rem auto;
-      user-select: text;
-    }
-    .btn-primary {
-      background-color: #111111;
-      color: white;
-      font-weight: 700;
-      font-size: 1.125rem;
-      padding: 0.75rem 2.25rem;
-      border: none;
-      border-radius: 0.75rem;
-      cursor: pointer;
-      box-shadow: 0 8px 15px rgba(230, 57, 70, 0.6);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
-      text-decoration: none;
-      display: inline-block;
-      text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
-    }
-    .btn-primary:hover,
-    .btn-primary:focus {
-      background-color: #2c2c2c;
-      box-shadow: 0 12px 20px rgba(230, 57, 70, 0.85);
-      outline: none;
-    }
-
-    /* Services Section */
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2.75rem;
-      padding-bottom: 6rem;
-    }
-
-    .card {
-      background: #1e1e1e;
-      border-radius: 0.75rem;
-      box-shadow: 0 8px 24px rgba(230,57,70,0.3);
-      padding: 2.5rem 2rem 3rem 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      user-select: none;
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-      color: #f9fafb;
-    }
-    .card:hover,
-    .card:focus-within {
-      box-shadow: 0 14px 40px rgba(230, 57, 70, 0.6);
-      transform: translateY(-6px);
-      outline: none;
-    }
-    .card h2 {
-      font-weight: 700;
-      font-size: 2.5rem;
-      color: #e63946;
-      margin: 0;
-      user-select: text;
-      text-shadow: 0 0 8px rgba(230, 57, 70, 0.8);
-    }
-    .services-list {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-      color: #d1d5db;
-      font-weight: 600;
-      font-size: 1.125rem;
-      line-height: 1.5;
-      user-select: text;
-    }
-    .services-list li {
-      padding: 0.25rem 0;
-      border-bottom: 1px solid rgba(230,57,70,0.2);
-      transition: color 0.25s ease;
-      cursor: default;
-      user-select: text;
-    }
-    .services-list li:last-child {
-      border-bottom: none;
-    }
-    .services-list li:hover {
-      color: #b32a33;
-    }
-
-    /* Footer */
-    footer {
-      padding: 3rem 2rem;
-      text-align: center;
-      color: rgba(230, 57, 70, 0.8);
-      font-weight: 400;
-      font-size: 0.9rem;
-      user-select: none;
-      background-color: transparent;
-      border-top: 1px solid rgba(230, 57, 70, 0.4);
-      margin-top: auto;
-    }
-
-    /* Floating WhatsApp Contact Button */
-    .whatsapp-float {
-      position: fixed;
-      right: 2rem;
-      bottom: 2.5rem;
-      background-color: #25D366;
-      color: white;
-      font-weight: 700;
-      font-family: 'Inter', sans-serif;
-      font-size: 1.1rem;
-      border-radius: 9999px;
-      padding: 0.75rem 1.5rem 0.75rem 0.75rem;
-      box-shadow:
-        0 0 8px #25D366,
-        0 0 16px #25D366,
-        0 0 24px #25D366,
-        0 0 32px #25D366;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      cursor: pointer;
-      user-select: none;
-      text-decoration: none;
-      z-index: 10000;
-      animation: rgbBlink 3s infinite;
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-    }
-    .whatsapp-float:hover,
-    .whatsapp-float:focus-visible {
-      box-shadow:
-        0 0 12px #25D366,
-        0 0 28px #e63946,
-        0 0 36px #1db954,
-        0 0 48px #00aabb;
-      transform: scale(1.05);
-      outline: none;
-    }
-    .whatsapp-icon {
-      width: 22px;
-      height: 22px;
-      fill: white;
-      flex-shrink: 0;
-    }
-    /* RGB blinking animation */
-    @keyframes rgbBlink {
-      0%, 100% {
-        box-shadow:
-          0 0 6px #25D366,
-          0 0 14px #25D366,
-          0 0 22px #25D366;
-      }
-      33% {
-        box-shadow:
-          0 0 8px #e63946,
-          0 0 20px #e63946,
-          0 0 30px #e63946;
-      }
-      66% {
-        box-shadow:
-          0 0 10px #00aabb,
-          0 0 24px #00aabb,
-          0 0 38px #00aabb;
-      }
-    }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-      header {
-        padding: 1rem 1.5rem;
-      }
-      nav a {
-        margin-left: 1.25rem;
-        font-size: 0.875rem;
-      }
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      .hero p {
-        font-size: 1rem;
-        max-width: 90vw;
-      }
-      .btn-primary {
-        font-size: 1rem;
-        padding: 0.6rem 1.5rem;
-      }
-      .services {
-        gap: 1.5rem;
-        grid-template-columns: 1fr;
-      }
-      .card h2 {
-        font-size: 2rem;
-      }
-      .services-list {
-        font-size: 1rem;
-      }
-      .whatsapp-float {
-        font-size: 1rem;
-        padding: 0.6rem 1.2rem 0.6rem 0.6rem;
-      }
-      .whatsapp-icon {
-        width: 18px;
-        height: 18px;
-      }
-    }
-  </style>
-</head>
-
-
-
-
-<body>
-  <header>
-    <div class="logo">Unlock &amp; Repair</div>
-    <nav aria-label="Primary navigation">
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <main class="container">
-    <section class="hero" role="banner" aria-label="Hero section">
-      <h1>Secure Phone &amp; Computer Unlock Services With Zuu Caster</h1>
-      <p>Unlock passwords, screen locks, Apple ID, and more for Samsung, iPhone, Honor devices &amp; provide computer repair and custom builds.</p>
-      <a href="https://wa.me/60178040403" target="_blank" rel="noopener" class="btn-primary" aria-label="Contact us on WhatsApp +60178040403">
-        Contact Us
-      </a>
-    </section>
-
-    <section id="services" class="services" aria-label="Our services">
-      <article class="card" tabindex="0" aria-labelledby="phone-unlock-title">
-        <h2 id="phone-unlock-title">Phone Unlock Services</h2>
-        <ul class="services-list">
-          <li>Samsung Google lock</li>
-          <li>Google Lock</li>
-          <li>Telco Unlock</li>
-          <li>Phone Brick</li>
-          <li>iPhone ID Lock</li>
-          <li>iPhone Telco Lock</li>
-          <li>Honor Google Lock / FRP</li>
-        </ul>
-      </article>
-
-      <article class="card" tabindex="0" aria-labelledby="additional-services-title">
-        <h2 id="additional-services-title">Additional Phone Services</h2>
-        <ul class="services-list">
-          <li>Website Design</li>
-          <li>FRP Bypass &amp; Password Reset</li>
-          <li>Forget Apple ID</li>
-          <li>iPad Bypass</li>
-          <li>Upgrade Storage</li>
-          <li>Screen Replacement</li>
-          <li>Glass Replacement</li>
-        </ul>
-      </article>
-
-      <article class="card" tabindex="0" aria-labelledby="computer-services-title">
-        <h2 id="computer-services-title">Computer Services</h2>
-        <ul class="services-list">
-          <li>Built Custom Computer</li>
-          <li>Laptop Service</li>
-        </ul>
-      </article>
-    </section>
-  </main>
-
-  <!-- Floating WhatsApp Contact Button -->
-  <a href="https://wa.me/60178040403" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Contact via WhatsApp +60178040403">
-    <svg class="whatsapp-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="white">
-      <path d="M20.52 3.48A11.89 11.89 0 0012 0C5.373 0 0 5.373 0 12a11.97 11.97 0 001.671 6.027L0 24l6.076-1.647A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12a11.86 11.86 0 00-3.48-8.52zm-8.043 16.257a9.923 9.923 0 01-5.054-1.453l-.363-.215-3.607.979.963-3.522-.236-.377a9.97 9.97 0 0115.596-12.6 9.856 9.856 0 01-7.299 16.237zm5.178-6.407c-.286-.143-1.686-.833-1.946-.928-.26-.094-.448-.143-.637.143-.187.286-.726.928-.89 1.118-.163.187-.326.21-.612.07a8.064 8.064 0 01-2.378-1.468 9.06 9.06 0 01-1.677-2.085c-.175-.304-.018-.468.13-.61.134-.134.3-.35.452-.525a1.962 1.962 0 00.3-.5c.1-.163.05-.305-.025-.448-.075-.143-.637-1.54-.873-2.108-.23-.556-.463-.48-.637-.489l-.544-.01a.93.93 0 00-.675.31c-.23.236-.874.855-.874 2.082 0 1.227.896 2.415 1.02 2.582.125.163 1.764 2.727 4.276 3.82a14.54 14.54 0 001.92.81c.807.33 1.436.281 1.976.17.602-.134 1.85-.755 2.111-1.485.263-.73.263-1.355.188-1.485-.075-.13-.285-.195-.6-.338z"/>
-    </svg>
-    WhatsApp +60178040403
-  </a>
-</body>
-</html>
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RGB Advertising</title>
+    <title>Unlock & Repair Services</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+        :root {
+            --color-bg: #f9f9f9;
+            --color-primary: #0071e3;
+            --color-text-primary: #111;
+            --color-text-secondary: #555;
+            --color-border: #e0e0e0;
+            --spacing: 1.5rem;
+            --border-radius: 8px;
+            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s ease-out;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+        }
+
+        header {
+            padding: var(--spacing);
+            text-align: center;
+            background: white;
+            box-shadow: var(--shadow-light);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+            color: var(--color-primary);
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: var(--spacing);
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .service-list li {
+            margin: 0.5rem 0;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background var(--transition-speed);
+            text-align: center;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn-primary:hover {
+            background: darkblue;
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal {
+            background: white;
+            padding: var(--spacing);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .modal h3 {
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin: 0.5rem 0 0.25rem;
+        }
+
+        select, input[type="text"], input[type="radio"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+        }
+
+        .btn-submit {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background var(--transition-speed);
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background: darkblue;
+        }
+
+        /* Floating WhatsApp button */
+        #whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: black;
-            margin: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 1000;
         }
 
-        .banner {
-            font-size: 48px;
-            font-weight: bold;
-            text-align: center;
-            animation: blink 1s infinite;
-            background: linear-gradient(90deg, red, green, blue);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        #whatsapp-float svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
         }
 
-        @keyframes blink {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
+        @media (max-width: 600px) {
+            .btn-primary {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="banner">SAMSUNG FRP / GOOGLE RM60</div>
-</body>
-</html>
+    <header>
+        <h1>Unlock & Repair Services</h1>
+    </header>
+    <main>
+        <div class="hero">
+            <h2>We Unlock Phone Passwords</h2>
+            <ul class="service-list">
+                <li>SAMSUNG - SCREEN LOCK</li>
+                <li>GOOGLE LOCK</li>
+                <li>NETWORK LOCK</li>
+                <li>BOOTLOADER LOCK</li>
+                <li>IPHONE ID LOCK</li>
+                <li>IPHONE TELCO LOCK</li>
+                <li>HONOR GOOGLE LOCK / FRP</li>
+                <li>FRP BYPASS & PASSWORD RESET</li>
+                <li>FORGET APPLE ID</li>
+                <li>IPAD BYPASS</li>
+                <li>UPGRADE STORAGE</li>
+                <li>SCREEN REPLACEMENT</li>
+                <li>GLASS REPLACEMENT</li>
+                <li>COMPUTER SERVICE</li>
+                <li>BUILT CUSTOM COMPUTER</li>
+                <li>LAPTOP SERVICE</li>
+            </ul>
+            <button class="btn-primary" id="get-started">Get Started</button>
+        </div>
+    </main>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RGB Advertising</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: black;
-            margin: 0;
-        }
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <h3>Service Request Form</h3>
+            <label for="model-select">Model</label>
+            <select id="model-select">
+                <option value="" disabled selected>Select model</option>
+                <option>OPPO</option>
+                <option>REALME</option>
+                <option>HONOR</option>
+                <option>VIVO</option>
+                <option>SAMSUNG</option>
+                <option>XIAOMI</option>
+                <option>TECHNO</option>
+                <option>INFINIX</option>
+                <option>REDMI</option>
+                <option>ONEPLUS</option>
+                <option>PIXEL</option>
+            </select>
 
-        .banner {
-            font-size: 48px;
-            font-weight: bold;
-            text-align: center;
-            animation: blink 1s infinite;
-            background: linear-gradient(90deg, red, green, blue);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+            <label for="issue-select">Issue</label>
+            <select id="issue-select">
+                <option value="" disabled selected>Select issue</option>
+                <option>TELCO</option>
+                <option>SOFTWARE BRICK</option>
+                <option>FRP</option>
+                <option>GOOGLE LOCK</option>
+                <option>HUAWEI ID</option>
+                <option>HONOR ID</option>
+                <option>XIAOMI ACCOUNT</option>
+                <option>XIAOMI FRP</option>
+                <option>NETWORK UNLOCK</option>
+            </select>
 
-        @keyframes blink {
-            0%, 100% {
-                opacity: 1;
+            <label for="location-input">Your Location</label>
+            <input type="text" id="location-input" placeholder="Enter your location" />
+
+            <label>Case Number</label>
+            <div id="case-number">----</div>
+
+            <label>Laptop/PC?</label>
+            <input type="radio" id="laptop-yes" name="laptop" value="Yes" />
+            <label for="laptop-yes">Yes</label>
+            <input type="radio" id="laptop-no" name="laptop" value="No" />
+            <label for="laptop-no">No</label>
+
+            <button class="btn-submit" id="submit-request">Submit</button>
+        </div>
+    </div>
+
+    <a href="https://wa.me/60178040403" target="_blank" id="whatsapp-float" aria-label="Chat with us on WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.52 3.48A11.775 11.775 0 0012 0C5.372 0 0 5.372 0 12a11.64 11.64 0 001.73 6.02L0 24l5.84-1.53a11.625 11.625 0 006.161 1.677C18.627 24 24 18.627 24 12a11.78 11.78 0 00-3.48-8.52zm-8.52 17.52a9.452 9.452 0 01-4.844-1.438l-.35-.22-3.42.833.842-3.333-.234-.357a9.414 9.414 0 1118.3 2.796 6.23 6.23 0 01-3.994 3.62zm5.932-7.104c-.29-.145-1.712-.845-1.978-.94-.267-.097-.462-.145-.658.146-.197.29-.758.94-.93 1.133-.17.197-.34.221-.63.074a8.23 8.23 0 01-2.414-1.49 9.148 9.148 0 01-1.69-2.1c-.18-.31 0-.484.135-.63.14-.145.318-.38.476-.573.156-.195.208-.328.31-.547.1-.22 0-.403-.01-.56-.016-.158-.66-1.59-.908-2.18-.237-.577-.48-.5-.658-.51a3.63 3.63 0 00-.68-.057 2.67 2.67 0 00-.63.094c-.204.09-.623.61-.623 1.492 0 .882.637 1.73.726 1.85.09.124 1.252 1.91 3.038 2.677a10.81 10.81 0 002.765 1.38c.366.155.65.132.89.08.275-.063.84-.343.96-.68.117-.34.117-.627.083-.68-.03-.053-.262-.09-.55-.235z"/>
+        </svg>
+    </a>
+
+    <script>
+        document.getElementById('get-started').addEventListener('click', function() {
+            document.getElementById('modal-overlay').style.display = 'flex';
+            document.getElementById('case-number').textContent = Math.floor(1000 + Math.random() * 9000);
+        });
+
+        document.getElementById('submit-request').addEventListener('click', function() {
+            const model = document.getElementById('model-select').value;
+            const issue = document.getElementById('issue-select').value;
+            const location = document.getElementById('location-input').value;
+            const laptop = document.querySelector('input[name="laptop"]:checked') ? document.querySelector('input[name="laptop"]:checked').value : 'Not specified';
+            const caseNumber = document.getElementById('case-number').textContent;
+
+            const message = `Service Request:%0AModel: ${model}%0AIssue: ${issue}%0ALocation: ${location}%0ALaptop/PC: ${laptop}%0ACase Number: ${caseNumber}`;
+            const phoneNumber = '60178040403';
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
+            window.open(whatsappUrl, '_blank', 'noopener');
+            document.getElementById('modal-overlay').style.display = 'none';
+        });
+
+        document.getElementById('modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
             }
-            50% {
-                opacity: 0.5;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="banner">XIAOMI FRP / GOOGLE RM60</div>
+        });
+    </script>
 </body>
 </html>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RGB Advertising</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: black;
-            margin: 0;
-        }
-
-        .banner {
-            font-size: 20px;
-            font-weight: bold;
-            text-align: center;
-            animation: blink 1s infinite;
-            background: linear-gradient(90deg, red, green, blue);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        @keyframes blink {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="banner">IPAD 2017 below iCloud remove RM50</div>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Report Your Phone Issue</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
-
-  :root {
-    --color-bg: #ffffff;
-    --color-text-primary: #111827;
-    --color-text-secondary: #6b7280;
-    --color-accent: #111827;
-    --border-radius: 0.75rem;
-    --shadow-light: rgba(0,0,0,0.05);
-    --shadow-md: rgba(0,0,0,0.1);
-    --transition-fast: 0.3s ease;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0; padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--color-bg);
-    color: var(--color-text-secondary);
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 4rem 1rem 6rem;
-  }
-
-  .container {
-    max-width: 480px;
-    width: 100%;
-    background: var(--color-bg);
-    border-radius: var(--border-radius);
-    padding: 2.5rem 2.5rem 3rem;
-    box-shadow: 0 4px 12px var(--shadow-md);
-    color: var(--color-text-primary);
-  }
-
-  h1 {
-    font-size: 2.75rem;
-    font-weight: 700;
-    margin: 0 0 1rem;
-    color: var(--color-text-primary);
-    line-height: 1.1;
-  }
-
-  p.subtitle {
-    font-size: 1rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 2.5rem;
-    font-weight: 500;
-  }
-
-  form {
-    width: 100%;
-  }
-
-  label {
-    display: block;
-    margin-bottom: 0.375rem;
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--color-text-primary);
-  }
-
-  select, input[type="text"] {
-    width: 100%;
-    padding: 0.625rem 1rem;
-    font-size: 1rem;
-    border: 1.5px solid #d1d5db;
-    border-radius: var(--border-radius);
-    background-color: #f9fafb;
-    color: var(--color-text-primary);
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-  }
-
-  select:focus, input[type="text"]:focus {
-    outline: none;
-    border-color: var(--color-accent);
-    box-shadow: 0 0 8px var(--shadow-md);
-    background-color: #fff;
-  }
-
-  input[readonly] {
-    background-color: #e5e7eb;
-    cursor: default;
-    user-select: all;
-  }
-
-  .form-group {
-    margin-bottom: 1.75rem;
-  }
-
-  button {
-    width: 100%;
-    padding: 0.875rem 1rem;
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: #fff;
-    background: linear-gradient(90deg, #111827, #374151);
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    user-select: none;
-    transition: background-color var(--transition-fast), transform var(--transition-fast);
-  }
-
-  button:hover,
-  button:focus {
-    background: linear-gradient(90deg, #374151, #111827);
-    transform: scale(1.03);
-    outline: none;
-  }
-
-  footer {
-    text-align: center;
-    margin-top: 3rem;
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-  }
-</style>
-</head>
-<body>
-  <main class="container" role="main" aria-labelledby="main-title">
-    <h1 id="main-title">Report Your Phone Issue</h1>
-    <p class="subtitle">Select the model, issue, and provide your location. A unique code will be generated for your report.</p>
-    <form id="issueForm" aria-describedby="formInstructions" novalidate>
-      <div class="form-group">
-        <label for="modelSelect">Model</label>
-        <select id="modelSelect" name="model" required aria-required="true">
-          <option value="" disabled selected>Select your phone model</option>
-          <option value="OPPO">OPPO</option>
-          <option value="REALME">REALME</option>
-          <option value="SAMSUNG">SAMSUNG</option>
-          <option value="VIVO">VIVO</option>
-          <option value="HONOR">HONOR</option>
-          <option value="XIAOMI">XIAOMI</option>
-          <option value="ONEPLUS">ONEPLUS</option>
-          <option value="REDMI">REDMI</option>
-          <option value="PIXEL">PIXEL</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="issueSelect">Issue</label>
-        <select id="issueSelect" name="issue" required aria-required="true">
-          <option value="" disabled selected>Select the issue</option>
-          <option value="GOOGLE">GOOGLE</option>
-          <option value="FRP">FRP</option>
-          <option value="SCREEN LOCK">SCREEN LOCK</option>
-          <option value="PINCODE">PINCODE</option>
-          <option value="TELCO">TELCO</option>
-          <option value="BRICK">BRICK</option>
-          <option value="AUTO OFF">AUTO OFF</option>
-          <option value="OTHER">OTHER</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="locationInput">Where is your location?</label>
-        <input id="locationInput" name="location" type="text" placeholder="Enter your location" autocomplete="off" required aria-required="true" />
-      </div>
-
-      <div class="form-group">
-        <label for="codeInput">Issue Code (Auto-generated)</label>
-        <input id="codeInput" name="code" type="text" readonly aria-readonly="true" />
-      </div>
-
-      <button type="submit" aria-label="Send details via WhatsApp">Send via WhatsApp</button>
-    </form>
-  </main>
-
-  <script>
-    (function(){
-      const form = document.getElementById('issueForm');
-      const codeInput = document.getElementById('codeInput');
-
-      function generateCode() {
-        return Math.floor(1000 + Math.random() * 9000).toString();
-      }
-
-      function updateCode() {
-        codeInput.value = generateCode();
-      }
-
-      // initialize code on page load
-      updateCode();
-
-      form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const model = form.model.value.trim();
-        const issue = form.issue.value.trim();
-        const location = form.location.value.trim();
-        const code = codeInput.value.trim();
-
-        if (!model || !issue || !location) {
-          alert('Please fill in all fields.');
-          return;
-        }
-
-        // Prepare message content
-        const message = `Phone Issue Report:%0AModel: ${model}%0AIssue: ${issue}%0ALocation: ${location}%0AIssue Code: ${code}`;
-
-        // WhatsApp link to specified number with prefilled message
-        const phoneNumber = '60178040403';
-        const url = `https://wa.me/${phoneNumber}?text=${message}`;
-
-        window.open(url, '_blank');
-      });
-    })();
-  </script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Service Ghaib Telco - WhatsApp Submission</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;800&display=swap');
-
-  :root {
-    --color-bg: #ffffff;
-    --color-text-primary: #111827;
-    --color-text-secondary: #6b7280;
-    --color-input-border: #d1d5db;
-    --color-input-focus: #2563eb;
-    --color-button-bg: #000000;
-    --color-button-text: #ffffff;
-    --border-radius: 0.75rem;
-    --shadow-light: rgba(0, 0, 0, 0.05);
-    --font-family: 'Inter', sans-serif;
-  }
-
-  /* Hacker RGB neon glow animation */
-  @keyframes hackerRGBGlow {
-    0% {
-      box-shadow:
-        0 0 6px #ff0000,
-        0 0 12px #00ff00,
-        0 0 18px #0000ff;
-    }
-    33% {
-      box-shadow:
-        0 0 12px #00ff00,
-        0 0 18px #0000ff,
-        0 0 24px #ff0000;
-    }
-    66% {
-      box-shadow:
-        0 0 18px #0000ff,
-        0 0 24px #ff0000,
-        0 0 30px #00ff00;
-    }
-    100% {
-      box-shadow:
-        0 0 6px #ff0000,
-        0 0 12px #00ff00,
-        0 0 18px #0000ff;
-    }
-  }
-
-  html, body {
-    margin: 0;
-    padding: 0;
-    font-family: var(--font-family);
-    background-color: var(--color-bg);
-    color: var(--color-text-primary);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 64px 16px 80px;
-  }
-
-  main.container {
-    max-width: 1200px;
-    width: 100%;
-    background: #f9fafb;
-    border-radius: var(--border-radius);
-    box-shadow: 0 8px 20px var(--shadow-light);
-    padding: 48px 40px;
-    box-sizing: border-box;
-  }
-
-  h1 {
-    font-weight: 800;
-    font-size: 48px;
-    margin: 0 0 40px;
-    user-select: none;
-    line-height: 1.1;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-
-  label {
-    display: block;
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--color-text-primary);
-    text-align: left;
-  }
-
-  select, input[type="text"] {
-    width: 100%;
-    font-size: 18px;
-    padding: 12px 16px;
-    border: 1.5px solid var(--color-input-border);
-    border-radius: var(--border-radius);
-    background: white;
-    color: var(--color-text-primary);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    box-sizing: border-box;
-    font-family: var(--font-family);
-  }
-
-  select:focus, input[type="text"]:focus {
-    border-color: var(--color-input-focus);
-    outline: none;
-    box-shadow: 0 0 0 3px rgb(37 99 235 / 0.3);
-  }
-
-  select option[disabled] {
-    color: #9ca3af;
-  }
-
-  button.submit-button {
-    width: max-content;
-    background-color: var(--color-button-bg);
-    color: var(--color-button-text);
-    font-weight: 700;
-    font-size: 20px;
-    padding: 14px 48px;
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    animation: hackerRGBGlow 4s linear infinite;
-    transition: transform 0.2s ease;
-    user-select: none;
-    align-self: flex-start;
-  }
-
-  button.submit-button:hover,
-  button.submit-button:focus {
-    transform: scale(1.05);
-    outline: none;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    main.container {
-      padding: 32px 24px;
-    }
-    h1 {
-      font-size: 36px;
-      margin-bottom: 32px;
-    }
-    select, input[type="text"] {
-      font-size: 16px;
-      padding: 10px 14px;
-    }
-    button.submit-button {
-      font-size: 18px;
-      padding: 12px 36px;
-    }
-  }
-</style>
-</head>
-<body>
-  <main class="container" role="main" aria-labelledby="title">
-    <h1 id="title">Service Ghaib telco</h1>
-    <form id="serviceForm" aria-label="Service Ghaib telco submission form">
-      <div>
-        <label for="optionSelect">Option selection</label>
-        <select id="optionSelect" name="optionSelect" required aria-required="true" aria-describedby="optionHelp">
-          <option value="" disabled selected>Select an option</option>
-          <option value="kekal">kekal</option>
-          <option value="sementara">sementara</option>
-        </select>
-      </div>
-      <div>
-        <label for="icNumber">Ic number</label>
-        <input
-          type="text"
-          id="icNumber"
-          name="icNumber"
-          placeholder="Fill your IC number"
-          autocomplete="off"
-          required
-          aria-required="true"
-          aria-describedby="icHelp"
-        />
-      </div>
-      <button type="submit" class="submit-button" aria-label="Send details to WhatsApp">Submit</button>
-    </form>
-  </main>
-  <script>
-    document.getElementById('serviceForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      const optionValue = this.optionSelect.value.trim();
-      const icNumber = this.icNumber.value.trim();
-
-      if (!optionValue) {
-        alert('Please select an option.');
-        this.optionSelect.focus();
-        return;
-      }
-      if (!icNumber) {
-        alert('Please fill your IC number.');
-        this.icNumber.focus();
-        return;
-      }
-
-      // Construct message for WhatsApp
-      const message = `Service Ghaib Blacklist Telco details:\nOption selection: ${optionValue}\nIC number: ${icNumber}`;
-      const encodedMessage = encodeURIComponent(message);
-      const phoneNumber = '60178040403';
-      const waLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-      window.open(waLink, '_blank', 'noopener');
-    });
-  </script>
-</body>
-</html>
-
-
-
- <footer id="contact">
-    &copy; 2025 Unlock &amp; Repair Services with Zuu Caster All rights reserved.
-  </footer>
