@@ -357,22 +357,23 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Part Replacement</title>
+<title>Repair Service - Part Replacement Form</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
   :root {
-    --color-bg: #ffffff;
-    --color-primary: #000000;
-    --color-primary-hover: #222222;
-    --color-text: #374151; /* neutral gray */
-    --color-muted: #6b7280;
-    --color-border: #e5e7eb;
-    --color-overlay-bg: rgba(0,0,0,0.3);
-    --radius: 12px;
-    --shadow-subtle: 0 2px 8px rgba(0,0,0,0.06);
+    --color-bg: #fafafa;
+    --color-bg-overlay: rgba(255 255 255 / 0.95);
+    --color-primary: #0071e3;
+    --color-primary-hover: #005bb5;
+    --color-text-primary: #111;
+    --color-text-secondary: #444;
+    --color-border: #d0d0d0;
+    --border-radius: 12px;
+    --shadow-subtle: 0 2px 8px rgba(0,0,0,0.1);
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --transition: 0.3s ease-out;
-    --max-width: 420px;
   }
 
   * {
@@ -381,139 +382,148 @@
 
   body {
     margin: 0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    min-height: 100vh;
-    padding-bottom: 80px; /* space for fixed button */
+    background: var(--color-bg);
+    font-family: var(--font-family);
+    color: var(--color-text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Fixed bottom button */
-  .btn-fixed-bottom {
+  /* BUTTON FIXED BOTTOM */
+  .btn-part-replacement {
     position: fixed;
-    bottom: 20px;
+    bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 16px 40px;
     background-color: var(--color-primary);
     color: white;
-    font-weight: 700;
-    font-size: 1.125rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 14px 28px;
     border: none;
-    border-radius: var(--radius);
+    border-radius: var(--border-radius);
     box-shadow: var(--shadow-subtle);
     cursor: pointer;
     transition: background-color var(--transition), transform var(--transition);
-    z-index: 1000;
     user-select: none;
+    z-index: 1000;
+    width: max-content;
+    min-width: 180px;
+    text-align: center;
   }
 
-  .btn-fixed-bottom:hover,
-  .btn-fixed-bottom:focus {
+  .btn-part-replacement:hover,
+  .btn-part-replacement:focus {
     background-color: var(--color-primary-hover);
     outline: none;
-    transform: translateX(-50%) scale(1.05);
+    transform: translateX(-50%) scale(1.03);
   }
 
-  /* Modal overlay */
+  /* MODAL OVERLAY */
   .modal-overlay {
     position: fixed;
     inset: 0;
-    background: var(--color-overlay-bg);
+    background: var(--color-bg-overlay);
+    backdrop-filter: saturate(180%) blur(12px);
     display: flex;
     justify-content: center;
     align-items: center;
-    visibility: hidden;
+    padding: 32px 16px;
     opacity: 0;
+    pointer-events: none;
     transition: opacity var(--transition);
     z-index: 1100;
   }
+
   .modal-overlay.active {
-    visibility: visible;
     opacity: 1;
+    pointer-events: auto;
   }
 
-  /* Modal container */
-  .modal {
+  /* FORM CONTAINER */
+  .modal-content {
     background: white;
-    border-radius: var(--radius);
-    width: 90%;
-    max-width: var(--max-width);
-    padding: 36px 36px 28px;
-    box-shadow: var(--shadow-subtle);
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    transform: translateY(16px);
-    transition: transform var(--transition);
-  }
-  .modal-overlay.active .modal {
-    transform: translateY(0);
-  }
-
-  /* Modal header */
-  .modal-header {
-    font-size: 48px;
-    font-weight: 700;
-    color: var(--color-primary);
-    margin: 0 0 8px 0;
-    line-height: 1.1;
-  }
-  .modal-subtitle {
-    font-size: 18px;
-    color: var(--color-muted);
-    margin: 0 0 24px 0;
-    font-weight: 400;
-  }
-
-  /* Form styles */
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  label {
-    font-weight: 600;
-    font-size: 16px;
-    color: var(--color-primary);
-    margin-bottom: 6px;
-    display: block;
-  }
-
-  select, input[type="text"] {
+    border-radius: var(--border-radius);
     width: 100%;
-    padding: 12px 14px;
-    font-size: 16px;
-    font-weight: 400;
-    border: 1.5px solid var(--color-border);
-    border-radius: 0.75rem;
-    color: var(--color-primary);
-    background: white;
-    transition: border-color var(--transition), box-shadow var(--transition);
+    max-width: 480px;
+    box-shadow: var(--shadow-subtle);
+    padding: 32px 32px 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 1rem;
   }
-  select:focus, input[type="text"]:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+
+  /* CLOSE BUTTON */
+  .btn-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color var(--transition);
+  }
+  .btn-close:hover,
+  .btn-close:focus {
+    color: var(--color-primary);
     outline: none;
   }
 
-  /* Submit button */
+  /* FORM LABELS and Inputs */
+  label {
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  select,
+  input[type="text"] {
+    width: 100%;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    padding: 10px 14px;
+    border: 1.5px solid var(--color-border);
+    border-radius: 8px;
+    transition: border-color var(--transition), box-shadow var(--transition);
+    background: white;
+    color: var(--color-text-primary);
+  }
+
+  select:focus,
+  input[type="text"]:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(0 113 227 / 0.25);
+    outline: none;
+  }
+
+  /* Disabled input for case code */
+  input[readonly] {
+    background: #eee;
+    color: #666;
+    cursor: default;
+  }
+
+  /* FORM BUTTON */
   .btn-submit {
-    padding: 16px 0;
+    margin-top: 16px;
     background-color: var(--color-primary);
-    color: white;
-    font-weight: 700;
-    font-size: 1.25rem;
     border: none;
-    border-radius: var(--radius);
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 14px 0;
+    border-radius: var(--border-radius);
     cursor: pointer;
     box-shadow: var(--shadow-subtle);
     transition: background-color var(--transition), transform var(--transition);
+    user-select: none;
   }
+
   .btn-submit:hover,
   .btn-submit:focus {
     background-color: var(--color-primary-hover);
@@ -521,62 +531,46 @@
     transform: scale(1.03);
   }
 
-  /* Close button */
-  .btn-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: transparent;
-    border: none;
-    font-size: 28px;
-    color: var(--color-muted);
-    cursor: pointer;
-    transition: color var(--transition);
-    user-select: none;
-  }
-  .btn-close:hover,
-  .btn-close:focus {
-    color: var(--color-primary-hover);
-    outline: none;
-  }
-
-  .modal-container {
-    position: relative;
+  /* Responsive */
+  @media (max-width: 520px) {
+    .modal-content {
+      padding: 24px 20px 20px;
+      font-size: 0.9rem;
+    }
   }
 </style>
 </head>
 <body>
-<button class="btn-fixed-bottom" id="openModalBtn" aria-haspopup="dialog" aria-controls="partReplacementModal" aria-expanded="false">
-  Part Replacement
-</button>
 
-<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc" tabindex="-1">
-  <div class="modal modal-container" role="document">
-    <button class="btn-close" id="closeModalBtn" aria-label="Close Modal">&times;</button>
-    <h2 class="modal-header" id="modalTitle">Part Replacement Request</h2>
-    <p class="modal-subtitle" id="modalDesc">Please fill in the form below to send your request via WhatsApp.</p>
-    <form id="replacementForm" novalidate>
+<button class="btn-part-replacement" id="openFormBtn" aria-haspopup="dialog" aria-controls="repairFormModal" aria-expanded="false">Part Replacement</button>
+
+<div class="modal-overlay" id="repairFormModal" role="dialog" aria-modal="true" aria-labelledby="formTitle" tabindex="-1">
+  <div class="modal-content" role="document">
+    <button class="btn-close" id="closeFormBtn" aria-label="Close form">&times;</button>
+    <h2 id="formTitle" style="margin:0 0 24px; font-weight:700; font-size:1.5rem; color:#222;">Repair Service Form</h2>
+
+    <form id="repairForm" autocomplete="off">
       <div>
         <label for="partSelect">Part</label>
         <select id="partSelect" name="part" required aria-required="true">
-          <option value="" disabled selected>Select a Part</option>
-          <option>LCD</option>
-          <option>BATTERY</option>
-          <option>CHARGING PORT</option>
-          <option>CAMERA</option>
-          <option>BACKGLASS</option>
-          <option>SCREEN REPLACEMENT</option>
-          <option>SPEAKER</option>
-          <option>ANTHENNA</option>
-          <option>POWER BUTTON</option>
-          <option>FRAME</option>
+          <option value="" disabled selected>Select a part</option>
+          <option value="LCD">LCD</option>
+          <option value="Battery">Battery</option>
+          <option value="Charging Port">Charging Port</option>
+          <option value="Camera">Camera</option>
+          <option value="Backglass">Backglass</option>
+          <option value="Screen Replacement">Screen Replacement</option>
+          <option value="Speaker">Speaker</option>
+          <option value="Antenna">Antenna</option>
+          <option value="Power Button">Power Button</option>
+          <option value="Frame">Frame</option>
         </select>
       </div>
 
       <div>
         <label for="modelSelect">Model</label>
         <select id="modelSelect" name="model" required aria-required="true">
-          <option value="" disabled selected>Select a Model</option>
+          <option value="" disabled selected>Select a model</option>
           <option>OPPO</option>
           <option>SAMSUNG</option>
           <option>REALME</option>
@@ -592,14 +586,14 @@
       </div>
 
       <div>
-        <label for="detailModel">Detail Model</label>
-        <input type="text" id="detailModel" name="detailModel" placeholder="e.g. A1234, Note 10" aria-describedby="detailHelp" />
+        <label for="detailModelInput">Detail Model</label>
+        <input type="text" id="detailModelInput" name="detailModel" placeholder="Fill detail model" required aria-required="true" />
       </div>
 
       <div>
-        <label for="gredSelect">GRED</label>
-        <select id="gredSelect" name="gred" required aria-required="true">
-          <option value="" disabled selected>Select GRED</option>
+        <label for="gradeSelect">Grade</label>
+        <select id="gradeSelect" name="grade" required aria-required="true">
+          <option value="" disabled selected>Select grade</option>
           <option>AAA</option>
           <option>ORIGINAL</option>
         </select>
@@ -611,115 +605,107 @@
       </div>
 
       <div>
-        <label for="caseCode">Case Code (auto-generated)</label>
-        <input type="text" id="caseCode" name="caseCode" readonly aria-readonly="true" />
+        <label for="caseCodeInput">Case Code</label>
+        <input type="text" id="caseCodeInput" name="caseCode" readonly aria-readonly="true" value="" />
       </div>
 
-      <button type="submit" class="btn-submit">Send via WhatsApp</button>
+      <div>
+        <label for="technicianSelect">Technician</label>
+        <select id="technicianSelect" name="technician" required aria-required="true">
+          <option value="" disabled selected>Select a technician</option>
+          <option value="ZuuCaster +60178040403">ZuuCaster +60178040403</option>
+          <option value="RBN LEGACY +60187717730">RBN LEGACY +60187717730</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-submit">Send to WhatsApp</button>
     </form>
   </div>
 </div>
 
 <script>
-  const openModalBtn = document.getElementById('openModalBtn');
-  const modalOverlay = document.getElementById('modalOverlay');
-  const closeModalBtn = document.getElementById('closeModalBtn');
-  const form = document.getElementById('replacementForm');
-  const caseCodeInput = document.getElementById('caseCode');
+  (function() {
+    const openBtn = document.getElementById('openFormBtn');
+    const closeBtn = document.getElementById('closeFormBtn');
+    const modal = document.getElementById('repairFormModal');
+    const form = document.getElementById('repairForm');
+    const caseCodeInput = document.getElementById('caseCodeInput');
+    const whatsappBaseUrl = "https://wa.me/60178040403?text=";
 
-  // Function to generate random 4-digit code as string
-  function generateCaseCode() {
-    return Math.floor(1000 + Math.random() * 9000).toString();
-  }
-
-  // Open modal and generate case code
-  function openModal() {
-    modalOverlay.classList.add('active');
-    openModalBtn.setAttribute('aria-expanded', 'true');
-    caseCodeInput.value = generateCaseCode();
-    document.getElementById('partSelect').focus();
-  }
-
-  // Close modal
-  function closeModal() {
-    modalOverlay.classList.remove('active');
-    openModalBtn.setAttribute('aria-expanded', 'false');
-    openModalBtn.focus();
-  }
-
-  openModalBtn.addEventListener('click', openModal);
-  closeModalBtn.addEventListener('click', closeModal);
-
-  modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) {
-      closeModal();
-    }
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-      closeModal();
-    }
-  });
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    if (!form.part.value) {
-      alert('Please select a Part.');
-      form.part.focus();
-      return;
-    }
-    if (!form.model.value) {
-      alert('Please select a Model.');
-      form.model.focus();
-      return;
-    }
-    if (!form.gred.value) {
-      alert('Please select GRED.');
-      form.gred.focus();
-      return;
-    }
-    if (!form.name.value.trim()) {
-      alert('Please enter your Name.');
-      form.name.focus();
-      return;
+    // Utility function to generate random 4-digit code as string
+    function generateCaseCode() {
+      return Math.floor(1000 + Math.random() * 9000).toString();
     }
 
-    const part = form.part.value;
-    const model = form.model.value;
-    const detailModel = form.detailModel.value.trim() || '-';
-    const gred = form.gred.value;
-    const name = form.name.value.trim();
-    const caseCode = form.caseCode.value;
+    // Open modal and generate new case code
+    function openModal() {
+      modal.classList.add('active');
+      openBtn.setAttribute('aria-expanded', 'true');
+      // generate case code
+      caseCodeInput.value = generateCaseCode();
 
-    const messageLines = [
-      'Part Replacement Request:',
-      `Part: ${part}`,
-      `Model: ${model}`,
-      `Detail Model: ${detailModel}`,
-      `GRED: ${gred}`,
-      `Name: ${name}`,
-      `Case Code: ${caseCode}`,
-    ];
-    const message = encodeURIComponent(messageLines.join('\n'));
+      // Focus first input for accessibility
+      document.getElementById('partSelect').focus();
+    }
 
-    // Numbers to send message to
-    const phones = ['60178040403', '60187717730'];
+    // Close modal and clear form
+    function closeModal() {
+      modal.classList.remove('active');
+      openBtn.setAttribute('aria-expanded', 'false');
+      form.reset();
+      caseCodeInput.value = '';
+      openBtn.focus();
+    }
 
-    // Open multiple whatsapp links in new tabs/windows
-    phones.forEach(phone => {
-      const url = `https://wa.me/${phone}?text=${message}`;
-      window.open(url, '_blank');
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close modal with escape key
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
     });
 
-    closeModal();
-    form.reset();
-  });
-</script>
+    // Submit form handler: encode data and open WhatsApp link in new tab
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
 
+      // Validate required fields (HTML5 validation handles most)
+
+      const part = form.part.value;
+      const model = form.model.value;
+      const detailModel = form.detailModel.value.trim();
+      const grade = form.grade.value;
+      const name = form.name.value.trim();
+      const caseCode = form.caseCode.value;
+      const technician = form.technician.value;
+
+      const message = 
+        `Repair Service Request:%0A` +
+        `- Part: ${part}%0A` +
+        `- Model: ${model}%0A` +
+        `- Detail Model: ${detailModel}%0A` +
+        `- Grade: ${grade}%0A` +
+        `- Name: ${name}%0A` +
+        `- Case Code: ${caseCode}%0A` +
+        `- Technician: ${technician}`;
+
+      const encodedMessage = encodeURIComponent(message).replace(/%20/g, '+');
+
+      const whatsappUrl = whatsappBaseUrl + encodedMessage;
+
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
+      // Optional: close modal after sending
+      closeModal();
+    });
+  })();
+</script>
 </body>
 </html>
+
+
 
 
 
