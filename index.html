@@ -3,351 +3,551 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Multiple Service Center</title>
+<title>Zuucaster IT Solution - Phone Repair & Unlock Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
   :root {
-    --color-bg: #fafafa;
-    --color-bg-alt: #ffffff;
-    --color-primary: #007aff;
-    --color-primary-hover: #005ecb;
-    --color-text: #1c1c1e;
-    --color-text-muted: #6e6e73;
-    --color-border: #d1d1d6;
+    --color-bg: #ffffff;
+    --color-text-primary: #111827;
+    --color-text-secondary: #6b7280;
+    --color-accent: #000000;
+    --color-accent-bg: #111827;
+    --color-accent-hover: #4b5563;
+    --color-border: #e5e7eb;
     --radius: 12px;
-    --shadow-subtle: 0 1px 3px rgba(0,0,0,0.1);
-    --transition-fast: 0.3s ease-out;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2.5rem;
+    --spacing-lg: 5rem;
+    --font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    --transition-default: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --max-width: 1200px;
+    --headline-font-size: 48px;
   }
-  * {
+
+  /* Reset and base styles */
+  *, *::before, *::after {
     box-sizing: border-box;
   }
   body {
-    font-family: 'Inter', sans-serif;
-    background: var(--color-bg);
-    color: var(--color-text);
     margin: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 2rem 1rem;
+    font-family: var(--font-family);
+    background-color: var(--color-bg);
+    color: var(--color-text-secondary);
+    line-height: 1.625;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "liga" 1;
+    font-size: 18px;
   }
-  main {
-    max-width: 480px;
-    width: 100%;
-    background: var(--color-bg-alt);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-subtle);
-    padding: 2rem 2.5rem 3rem;
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--transition-default);
+  }
+  a:hover,
+  a:focus {
+    color: var(--color-accent-hover);
+    outline-offset: 2px;
+  }
+  h1, h2, h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.15;
   }
   h1 {
-    font-weight: 600;
-    margin-bottom: 1.5rem;
+    font-size: var(--headline-font-size);
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-secondary);
+  }
+  /* Container */
+  .container {
+    max-width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
+  }
+
+  /* Header */
+  header {
+    position: sticky;
+    top: 0;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    z-index: 1000;
+  }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+  }
+  .logo {
+    font-weight: 800;
     font-size: 1.75rem;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.05em;
+    color: var(--color-text-primary);
     user-select: none;
   }
-  .service-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
-    gap: 1rem;
+  nav ul {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  nav li a {
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.25rem 0;
+    border-bottom: 3px solid transparent;
+    transition: border-color var(--transition-default), color var(--transition-default);
+    color: var(--color-text-secondary);
+  }
+  nav li a:hover,
+  nav li a:focus {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    background: linear-gradient(135deg, #f9fafb 0%, #fff 100%);
+  }
+  .hero h1 {
+    font-weight: 800;
+    color: var(--color-text-primary);
+    font-size: var(--headline-font-size);
+    margin-bottom: 1rem;
+  }
+  .hero p {
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 2rem;
   }
-  button.service-btn {
-    background: transparent;
-    border: 2px solid var(--color-primary);
-    border-radius: var(--radius);
-    color: var(--color-primary);
+  .btn-whatsapp {
+    background-color: var(--color-accent-bg);
+    color: var(--color-bg);
     font-weight: 600;
-    font-size: 0.9rem;
-    padding: 0.7rem 1.2rem;
+    font-size: 1.125rem;
+    padding: 1rem 3rem;
+    border-radius: var(--radius);
+    border: none;
     cursor: pointer;
-    transition: background var(--transition-fast), color var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 0.15);
+    transition: background-color var(--transition-default), box-shadow var(--transition-default), transform var(--transition-default);
     user-select: none;
+    text-decoration: none;
   }
-  button.service-btn:hover,
-  button.service-btn:focus {
-    background: var(--color-primary);
-    color: white;
+  .btn-whatsapp:hover,
+  .btn-whatsapp:focus {
+    background-color: var(--color-accent-hover);
+    box-shadow: 0 12px 28px rgb(0 0 0 / 0.18);
+    transform: scale(1.05);
+    outline-offset: 4px;
+    outline: 2px solid var(--color-accent-hover);
+  }
+  .btn-whatsapp svg {
+    height: 24px;
+    width: 24px;
+    fill: currentColor;
+  }
+
+  /* Services Section */
+  section {
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+  }
+  #services h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+  }
+  .services-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: var(--spacing-lg);
+    max-width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .service-card {
+    background: var(--color-bg);
+    border: none;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 0.07);
+    border-radius: var(--radius);
+    padding: var(--spacing-md);
+    transition: box-shadow var(--transition-default);
+  }
+  .service-card:hover,
+  .service-card:focus-within {
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.12);
     outline: none;
   }
+  .service-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-text-primary);
+    margin-bottom: 1.25rem;
+  }
+  .service-list {
+    list-style: disc inside;
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Client Detail Form */
+  #contact {
+    max-width: 480px;
+    margin: var(--spacing-lg) auto var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background-color: var(--color-bg);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.08);
+  }
+  #contact h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-primary);
+    text-align: center;
+  }
   form {
-    display: grid;
-    gap: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
   }
   label {
     font-weight: 600;
-    font-size: 0.9rem;
-    display: block;
-    margin-bottom: 0.3rem;
-    color: var(--color-text);
-  }
-  select, input[type="text"] {
-    width: 100%;
-    padding: 0.5rem 0.75rem;
     font-size: 1rem;
-    border: 1.5px solid var(--color-border);
+    color: var(--color-text-primary);
+    margin-bottom: 0.4rem;
+  }
+  input[type="text"],
+  input[type="password"],
+  select {
+    padding: 0.825rem 1.25rem;
     border-radius: var(--radius);
-    background: var(--color-bg-alt);
-    transition: border-color var(--transition-fast);
-    outline-offset: 2px;
-    outline-color: transparent;
+    border: 1px solid var(--color-border);
+    font-size: 1rem;
+    font-family: var(--font-family);
+    color: var(--color-text-primary);
+    transition: border-color var(--transition-default), box-shadow var(--transition-default);
   }
-  select:focus, input[type="text"]:focus {
-    border-color: var(--color-primary);
-    outline-color: var(--color-primary);
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 8px 3px rgb(37 99 235 / 0.35);
   }
-  .submit-btn {
-    background: var(--color-primary);
+  input[readonly] {
+    background-color: #f3f4f6;
+    cursor: not-allowed;
+    color: var(--color-text-secondary);
+  }
+  button[type="submit"] {
+    margin-top: var(--spacing-sm);
+    padding: 1rem 0;
+    background-color: var(--color-accent-bg);
+    color: var(--color-bg);
+    font-weight: 700;
+    font-size: 1.25rem;
     border: none;
     border-radius: var(--radius);
-    color: white;
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: 0.75rem;
     cursor: pointer;
-    transition: background var(--transition-fast);
+    box-shadow: 0 12px 20px rgb(0 0 0 / 0.15);
+    transition: background-color var(--transition-default), transform var(--transition-default);
+    user-select: none;
   }
-  .submit-btn:hover,
-  .submit-btn:focus {
-    background: var(--color-primary-hover);
-    outline: none;
+  button[type="submit"]:hover,
+  button[type="submit"]:focus {
+    background-color: var(--color-accent-hover);
+    transform: scale(1.04);
+    outline-offset: 4px;
+    outline: 2px solid var(--color-accent-hover);
   }
-  .hidden {
-    display: none;
+  /* Accessibility Focus */
+  [tabindex="0"]:focus {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 5px;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+    .services-list {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+    #contact {
+      margin: var(--spacing-md) 1.5rem;
+      padding: var(--spacing-md);
+    }
   }
 </style>
 </head>
 <body>
-<main role="main" aria-label="Multiple Service Center">
-  <h1>Multiple Service Center</h1>
-  <nav class="service-buttons" role="tablist" aria-label="Service selection">
-    <button class="service-btn" role="tab" aria-selected="true" id="btn-frp" aria-controls="form-frp">FRP / GOOGLE</button>
-    <button class="service-btn" role="tab" aria-selected="false" id="btn-telco" aria-controls="form-telco">TELCO UNLOCK</button>
-    <button class="service-btn" role="tab" aria-selected="false" id="btn-apple" aria-controls="form-apple">APPLE ID FORGET</button>
-    <button class="service-btn" role="tab" aria-selected="false" id="btn-rent" aria-controls="form-rent">RENT TOOL</button>
-    <button class="service-btn" role="tab" aria-selected="false" id="btn-blist" aria-controls="form-blist">B/LIST HIDE</button>
-    <button class="service-btn" role="tab" aria-selected="false" id="btn-check" aria-controls="form-check">CHECK TELCO</button>
-    <button class="service-btn" role="tab" aria-selected="false" id="btn-file" aria-controls="form-file">FILE REQUEST</button>
-  </nav>
+<header>
+  <div class="container nav-inner" role="banner">
+    <div class="logo" tabindex="0" aria-label="Zuucaster IT Solution logo">Zuucaster</div>
+    <nav aria-label="Primary navigation">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Client Details</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-  <!-- FRP / GOOGLE FORM -->
-  <form id="form-frp" aria-labelledby="btn-frp">
-    <label for="frp-model">Select Model</label>
-    <select id="frp-model" name="frp-model" required>
-      <option value="" disabled selected>Select model</option>
-      <option value="Samsung">Samsung</option>
-      <option value="Honor">Honor</option>
-      <option value="Redmi">Redmi</option>
-      <option value="Xiaomi">Xiaomi</option>
-      <option value="Vivo">Vivo</option>
-      <option value="Infinix">Infinix</option>
-      <option value="Tecno">Tecno</option>
-      <option value="Huawei">Huawei</option>
-      <option value="Oppo">Oppo</option>
-      <option value="Realme">Realme</option>
-    </select>
-    <button type="submit" class="submit-btn" aria-label="Submit FRP Google service form">Generate Code & Send WhatsApp</button>
-  </form>
+<main>
+  <section class="hero container" aria-label="Introduction hero section">
+    <h1>Zuucaster IT Solution</h1>
+    <p>Your trusted partner for unlocking, hardware repairs & software development services.</p>
+    <a href="https://api.whatsapp.com/send?phone=+60178040403" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Chat with us on WhatsApp +60178040403">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" aria-label="WhatsApp icon">
+        <path fill="currentColor" d="M20.52 3.48A11.868 11.868 0 0012 0C5.373 0 0 5.373 0 12c0 2.115.57 4.078 1.553 5.82L0 24l6.169-1.553A11.948 11.948 0 0012 24c6.627 0 12-5.373 12-12a11.894 11.894 0 00-3.48-8.52zm-8.895 17.796c-1.834 0-3.62-.47-5.178-1.37l-.375-.22-3.66.922.978-3.557-.245-.37a9.877 9.877 0 01-1.6-5.053c0-5.532 4.493-10.025 10.025-10.025 2.676 0 5.192 1.046 7.08 2.934a9.802 9.802 0 012.933 7.1c0 5.532-4.494 10.026-10.027 10.026zm5.282-6.978c-.268-.133-1.58-.78-1.826-.868-.246-.092-.425-.133-.605.132s-.69.868-.846 1.045-.313.2-.58.067a7.809 7.809 0 01-2.294-1.417 8.727 8.727 0 01-1.615-2.005c-.174-.302-.018-.465.13-.613.133-.132.3-.346.45-.52a1.992 1.992 0 00.3-.5c.1-.18.05-.337-.025-.47-.075-.133-.605-1.457-.83-2-.217-.525-.438-.46-.605-.47-.153-.01-.33-.012-.504-.012a1.093 1.093 0 00-.79.37c-.27.27-1.034 1.012-1.034 2.462s1.06 2.87 1.207 3.07c.147.198 2.095 3.2 5.076 4.486.71.306 1.262.49 1.693.627.71.228 1.36.196 1.872.119.572-.086 1.58-.645 1.803-1.268.223-.622.223-1.155.157-1.268-.067-.11-.246-.174-.515-.306z"/>
+      </svg>
+      Chat with us on WhatsApp
+    </a>
+  </section>
 
-  <!-- TELCO UNLOCK FORM -->
-  <form id="form-telco" class="hidden" aria-labelledby="btn-telco">
-    <label for="telco-model">Select Model</label>
-    <select id="telco-model" name="telco-model" required>
-      <option value="" disabled selected>Select model</option>
-      <option value="Samsung">Samsung</option>
-      <option value="Realme">Realme</option>
-      <option value="Oppo">Oppo</option>
-      <option value="Xiaomi">Xiaomi</option>
-      <option value="Honor">Honor</option>
-      <option value="Vivo">Vivo</option>
-    </select>
+  <section id="services" aria-labelledby="servicesTitle" class="container">
+    <h2 id="servicesTitle">Our Services</h2>
+    <div class="services-list" role="list">
+      <article class="service-card" tabindex="0" role="listitem" aria-labelledby="softwareServicesTitle" aria-describedby="softwareServicesDesc">
+        <h3 class="service-title" id="softwareServicesTitle">Software Developer Services</h3>
+        <ul class="service-list" id="softwareServicesDesc" aria-label="Software developer services list">
+          <li>Unlock FRP</li>
+          <li>Unlock Google</li>
+          <li>Unlock Xiaomi account</li>
+          <li>Unlock Telco/Contract device</li>
+          <li>Unlock pin/passcode</li>
+          <li>Reset Apple ID</li>
+          <li>Rent tool software</li>
+          <li>TUTUP BLACKLIST TELCO KEKAL</li>
+          <li>AUTH FLASHER + FILE REQUEST</li>
+          <li>Samsung IMEI unlock by Server</li>
+        </ul>
+      </article>
+      <article class="service-card" tabindex="0" role="listitem" aria-labelledby="hardwareServicesTitle" aria-describedby="hardwareServicesDesc">
+        <h3 class="service-title" id="hardwareServicesTitle">Hardware Services</h3>
+        <ul class="service-list" id="hardwareServicesDesc" aria-label="Hardware services list">
+          <li>LCD replacement</li>
+          <li>Battery replacement</li>
+          <li>Part quotation</li>
+        </ul>
+      </article>
+    </div>
+  </section>
 
-    <label for="telco-detail">Details</label>
-    <input type="text" id="telco-detail" name="telco-detail" placeholder="Enter details" required autocomplete="off" />
-    <button type="submit" class="submit-btn" aria-label="Submit Telco Unlock service form">Generate Code & Send WhatsApp</button>
-  </form>
+  <section id="contact" aria-labelledby="contactTitle" class="container">
+    <h2 id="contactTitle">Client Details</h2>
+    <form id="clientForm" aria-describedby="formDescription" novalidate>
+      <p id="formDescription" style="color: var(--color-text-secondary); font-size: 0.9rem; margin-top: -1rem; margin-bottom: var(--spacing-md);">
+        Case ID is auto-generated for you.
+      </p>
 
-  <!-- APPLE ID FORGET FORM -->
-  <form id="form-apple" class="hidden" aria-labelledby="btn-apple">
-    <label for="apple-model">Model</label>
-    <input type="text" id="apple-model" name="apple-model" placeholder="Enter model" required autocomplete="off" />
+      <label for="caseId">Case ID</label>
+      <input
+        type="text"
+        id="caseId"
+        name="caseId"
+        placeholder="Auto-generated"
+        readonly
+        aria-readonly="true"
+      />
 
-    <label for="apple-status">Status</label>
-    <select id="apple-status" name="apple-status" required>
-      <option value="" disabled selected>Select status</option>
-      <option value="Lost">Lost</option>
-      <option value="Clean">Clean</option>
-    </select>
+      <label for="clientName">Name <sup aria-hidden="true" style="color:#d00;">*</sup></label>
+      <input
+        type="text"
+        id="clientName"
+        name="clientName"
+        placeholder="Enter your full name"
+        required
+        aria-required="true"
+        autocomplete="name"
+      />
 
-    <label for="apple-imei">IMEI</label>
-    <input type="text" id="apple-imei" name="apple-imei" placeholder="Enter IMEI" required autocomplete="off" />
+      <label for="modelBrand">Model Brand <sup aria-hidden="true" style="color:#d00;">*</sup></label>
+      <select
+        id="modelBrand"
+        name="modelBrand"
+        required
+        aria-required="true"
+      >
+        <option value="" disabled selected>Select your phone brand</option>
+        <option value="oppo">OPPO</option>
+        <option value="huawei">HUAWEI</option>
+        <option value="realme">REALME</option>
+        <option value="redmi">REDMI</option>
+        <option value="xiaomi">XIAOMI</option>
+        <option value="honor">HONOR</option>
+        <option value="vivo">VIVO</option>
+        <option value="techno">TECHNO</option>
+        <option value="pova">POVA</option>
+        <option value="nokia">NOKIA</option>
+        <option value="nothing-phone">NOTHING PHONE</option>
+        <option value="other">OTHER</option>
+      </select>
 
-    <button type="submit" class="submit-btn" aria-label="Submit Apple ID Forget service form">Generate Code & Send WhatsApp</button>
-  </form>
+      <label for="detailModel">Detail Model <sup aria-hidden="true" style="color:#d00;">*</sup></label>
+      <input
+        type="text"
+        id="detailModel"
+        name="detailModel"
+        placeholder="Enter the exact model"
+        required
+        aria-required="true"
+        autocomplete="off"
+      />
 
-  <!-- RENT TOOL FORM -->
-  <form id="form-rent" class="hidden" aria-labelledby="btn-rent">
-    <label for="rent-tool">Select Tool</label>
-    <select id="rent-tool" name="rent-tool" required>
-      <option value="" disabled selected>Select tool</option>
-      <option value="UnlockTool">UnlockTool</option>
-      <option value="RTC">RTC</option>
-      <option value="Pandora">Pandora</option>
-    </select>
+      <label for="passcode">Passcode <sup aria-hidden="true" style="color:#d00;">*</sup></label>
+      <input
+        type="password"
+        id="passcode"
+        name="passcode"
+        placeholder="Enter your device passcode"
+        required
+        aria-required="true"
+        autocomplete="off"
+        aria-describedby="passcodeHelp"
+      />
+      <p id="passcodeHelp" style="font-size: 0.9rem; color: var(--color-text-secondary); margin-top: -1rem; margin-bottom: var(--spacing-md);">
+        This is required for unlocking services.
+      </p>
 
-    <label for="rent-time">Select Time</label>
-    <select id="rent-time" name="rent-time" required>
-      <option value="" disabled selected>Select time</option>
-      <option value="6hr">6 Hours</option>
-      <option value="12hr">12 Hours</option>
-      <option value="1day">1 Day</option>
-      <option value="1month">1 Month</option>
-    </select>
+      <label for="servicesSelect">Select Service(s) <sup aria-hidden="true" style="color:#d00;">*</sup></label>
+      <select
+        id="servicesSelect"
+        name="servicesSelect"
+        multiple
+        size="13"
+        required
+        aria-required="true"
+        aria-describedby="servicesHelp"
+      >
+        <optgroup label="Software Developer Services">
+          <option value="unlock-frp">Unlock FRP</option>
+          <option value="unlock-google">Unlock Google</option>
+          <option value="unlock-xiaomi">Unlock Xiaomi account</option>
+          <option value="unlock-telco">Unlock Telco/Contract device</option>
+          <option value="unlock-pin">Unlock pin/passcode</option>
+          <option value="reset-appleid">Reset Apple ID</option>
+          <option value="rent-tool">Rent tool software</option>
+          <option value="tutup-blacklist-telco-kekal">TUTUP BLACKLIST TELCO KEKAL</option>
+          <option value="auth-flasher-file-request">AUTH FLASHER + FILE REQUEST</option>
+          <option value="samsung-imei-unlock-server">Samsung IMEI unlock by Server</option>
+        </optgroup>
+        <optgroup label="Hardware Services">
+          <option value="lcd-replacement">LCD replacement</option>
+          <option value="battery-replacement">Battery replacement</option>
+          <option value="part-quotation">Part quotation</option>
+        </optgroup>
+      </select>
+      <p id="servicesHelp" style="font-size: 0.9rem; color: var(--color-text-secondary); margin-top: 0.25rem; margin-bottom: var(--spacing-md);">
+        Hold Ctrl (Cmd on Mac) to select multiple services.
+      </p>
 
-    <button type="submit" class="submit-btn" aria-label="Submit Rent Tool service form">Generate Code & Send WhatsApp</button>
-  </form>
-
-  <!-- B/LIST HIDE PERMANENTLY FORM -->
-  <form id="form-blist" class="hidden" aria-labelledby="btn-blist">
-    <label for="blist-icno">IC / No</label>
-    <input type="text" id="blist-icno" name="blist-icno" placeholder="Enter IC or No" required autocomplete="off" />
-    <button type="submit" class="submit-btn" aria-label="Submit B/List Hide Permanently service form">Generate Code & Send WhatsApp</button>
-  </form>
-
-  <!-- CHECK TELCO FORM -->
-  <form id="form-check" class="hidden" aria-labelledby="btn-check">
-    <label for="check-model">Select Model</label>
-    <select id="check-model" name="check-model" required>
-      <option value="" disabled selected>Select model</option>
-      <option value="Apple">Apple</option>
-      <option value="Oppo">Oppo</option>
-      <option value="Samsung">Samsung</option>
-      <option value="Realme">Realme</option>
-    </select>
-    <button type="submit" class="submit-btn" aria-label="Submit Check Telco service form">Generate Code & Send WhatsApp</button>
-  </form>
-
-  <!-- FILE REQUEST FORM -->
-  <form id="form-file" class="hidden" aria-labelledby="btn-file">
-    <label for="file-model">Select Model</label>
-    <select id="file-model" name="file-model" required>
-      <option value="" disabled selected>Select model</option>
-      <option value="Oppo">Oppo</option>
-      <option value="Realme">Realme</option>
-      <option value="Vivo">Vivo</option>
-      <option value="Samsung">Samsung</option>
-      <option value="OnePlus">OnePlus</option>
-      <option value="Tecno">Tecno</option>
-      <option value="Redmi">Redmi</option>
-      <option value="Infinix">Infinix</option>
-      <option value="Xiaomi">Xiaomi</option>
-      <option value="Nokia">Nokia</option>
-    </select>
-
-    <label for="file-other">Other Model</label>
-    <input type="text" id="file-other" name="file-other" placeholder="Enter other model" required autocomplete="off" />
-    <button type="submit" class="submit-btn" aria-label="Submit File Request service form">Generate Code & Send WhatsApp</button>
-  </form>
+      <button type="submit" aria-label="Submit client details form">Submit</button>
+    </form>
+  </section>
 </main>
 
+<footer class="container" style="text-align:center; padding:2rem 1rem; color: var(--color-text-secondary); font-size: 0.875rem; user-select:none;">
+  &copy; 2024 Zuucaster IT Solution. All rights reserved.
+</footer>
+
 <script>
-  (() => {
-    const WHATSAPP_NUMBER = '60178040403';
+  function generateCaseId() {
+    return Math.floor(10000 + Math.random() * 90000).toString();
+  }
 
-    // Elements
-    const serviceButtons = document.querySelectorAll('button.service-btn');
-    const forms = {
-      'btn-frp': document.getElementById('form-frp'),
-      'btn-telco': document.getElementById('form-telco'),
-      'btn-apple': document.getElementById('form-apple'),
-      'btn-rent': document.getElementById('form-rent'),
-      'btn-blist': document.getElementById('form-blist'),
-      'btn-check': document.getElementById('form-check'),
-      'btn-file': document.getElementById('form-file'),
-    };
+  const caseIdInput = document.getElementById('caseId');
+  const form = document.getElementById('clientForm');
 
-    let activeBtnId = 'btn-frp';
+  function setNewCaseId() {
+    caseIdInput.value = generateCaseId();
+  }
 
-    function switchForm(btnId) {
-      activeBtnId = btnId;
-      serviceButtons.forEach(btn => {
-        const selected = btn.id === btnId;
-        btn.setAttribute('aria-selected', selected ? 'true' : 'false');
-        forms[btn.id].classList.toggle('hidden', !selected);
-      });
+  window.addEventListener('DOMContentLoaded', () => {
+    setNewCaseId();
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      alert('Please fill out all required fields and select at least one service.');
+      return;
     }
 
-    serviceButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        if(btn.id !== activeBtnId) switchForm(btn.id);
-      });
-    });
+    const formData = new FormData(form);
+    const caseId = formData.get('caseId').trim();
+    const name = formData.get('clientName').trim();
+    const modelBrand = formData.get('modelBrand');
+    const detailModel = formData.get('detailModel').trim();
+    const passcode = formData.get('passcode').trim();
+    const services = formData.getAll('servicesSelect');
 
-    function generate4DigitCode() {
-      return Math.floor(1000 + Math.random() * 9000).toString();
+    if (services.length === 0) {
+      alert('Please select at least one service.');
+      return;
     }
 
-    // Format message for WhatsApp based on service and form data
-    function formatMessage(serviceId, formData, code) {
-      let msg = `Case Code: ${code}%0A`;
-      switch(serviceId) {
-        case 'btn-frp':
-          msg += 'Service: FRP/Google Unlock%0A';
-          msg += `Model: ${formData.get('frp-model')}%0A`;
-          break;
-        case 'btn-telco':
-          msg += 'Service: Telco Unlock%0A';
-          msg += `Model: ${formData.get('telco-model')}%0A`;
-          msg += `Detail: ${formData.get('telco-detail')}%0A`;
-          break;
-        case 'btn-apple':
-          msg += 'Service: Apple ID Forget%0A';
-          msg += `Model: ${formData.get('apple-model')}%0A`;
-          msg += `Status: ${formData.get('apple-status')}%0A`;
-          msg += `IMEI: ${formData.get('apple-imei')}%0A`;
-          break;
-        case 'btn-rent':
-          msg += 'Service: Rent Tool%0A';
-          msg += `Tool: ${formData.get('rent-tool')}%0A`;
-          msg += `Time: ${formData.get('rent-time')}%0A`;
-          break;
-        case 'btn-blist':
-          msg += 'Service: B/List Hide Permanently%0A';
-          msg += `IC/No: ${formData.get('blist-icno')}%0A`;
-          break;
-        case 'btn-check':
-          msg += 'Service: Check Telco%0A';
-          msg += `Model: ${formData.get('check-model')}%0A`;
-          break;
-        case 'btn-file':
-          msg += 'Service: File Request/Auth Flash%0A';
-          msg += `Model: ${formData.get('file-model')}%0A`;
-          msg += `Other Model: ${formData.get('file-other')}%0A`;
-          break;
-      }
-      msg += 'Thank you!';
-      return msg;
+    if (!modelBrand) {
+      alert('Please select your phone model brand.');
+      return;
     }
 
-    // On form submit: generate code, build message, open WhatsApp chat url
-    Object.entries(forms).forEach(([btnId, form]) => {
-      form.addEventListener('submit', e => {
-        e.preventDefault();
-        const formData = new FormData(form);
-        const code = generate4DigitCode();
-        const message = formatMessage(btnId, formData, code);
-        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
-        window.open(url, '_blank', 'noopener');
-        form.reset();
-      });
-    });
+    // Compose WhatsApp message with new fields included
+    let message = 
+      `Hello Zuucaster,%0A` +
+      `Case ID: ${encodeURIComponent(caseId)}%0A` +
+      `Name: ${encodeURIComponent(name)}%0A` +
+      `Model Brand: ${encodeURIComponent(modelBrand)}%0A` +
+      `Detail Model: ${encodeURIComponent(detailModel)}%0A` +
+      `Passcode: ${encodeURIComponent(passcode)}%0A` +
+      `Requested Service(s): ${encodeURIComponent(services.join(', '))}`;
 
-    // Initialize default form
-    switchForm(activeBtnId);
-  })();
+    const waLink = `https://api.whatsapp.com/send?phone=+60178040403&text=${message}`;
+    window.open(waLink, '_blank');
+
+    form.reset();
+    setNewCaseId();
+  });
 </script>
 </body>
 </html>
+
