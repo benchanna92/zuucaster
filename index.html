@@ -554,3 +554,273 @@
 </body>
 </html>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Part Replacement</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+  :root {
+    --color-bg: #f8f8f8;
+    --color-card-bg: #ffffff;
+    --color-accent: #0071e3;
+    --color-text-primary: #1d1d1f;
+    --color-text-secondary: #6e6e73;
+    --color-border: #d1d1d6;
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --transition-fast: 0.3s ease-out;
+    --border-radius: 10px;
+  }
+
+  /* RESET */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  #container {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  button#open-btn {
+    background-color: transparent;
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
+    font-weight: 600;
+    font-size: 1.25rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+    width: 100%;
+  }
+  button#open-btn:hover,
+  button#open-btn:focus {
+    background-color: var(--color-accent);
+    color: white;
+    outline: none;
+    transform: scale(1.05);
+  }
+
+  form#replacement-form {
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-subtle);
+    margin-top: 1.5rem;
+    padding: 2rem 2rem 2.5rem;
+    display: none;
+    flex-direction: column;
+    gap: 1.25rem;
+    animation: fadeSlideDown var(--transition-fast) forwards;
+  }
+
+  form#replacement-form.active {
+    display: flex;
+  }
+
+  label {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.3rem;
+    display: block;
+  }
+
+  select, input[type="text"] {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--font-family);
+    color: var(--color-text-primary);
+    transition: border-color var(--transition-fast);
+  }
+  select:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 6px var(--color-accent);
+  }
+
+  .readonly-field {
+    background: #f0f0f5;
+    color: var(--color-text-secondary);
+    user-select: text;
+  }
+
+  button#submit-btn {
+    background-color: var(--color-accent);
+    border: none;
+    border-radius: var(--border-radius);
+    color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+    margin-top: 0.75rem;
+  }
+  button#submit-btn:hover,
+  button#submit-btn:focus {
+    background-color: #005bb5;
+    outline: none;
+    transform: scale(1.05);
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @keyframes fadeSlideDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+</head>
+<body>
+  <div id="container" role="main">
+    <button id="open-btn" aria-haspopup="dialog" aria-controls="replacement-form" aria-expanded="false">Part Replacement</button>
+    <form id="replacement-form" aria-label="Part replacement form" novalidate>
+      <div class="field-group">
+        <label for="part-select">Part</label>
+        <select name="part" id="part-select" required>
+          <option value="" disabled selected>Select Part</option>
+          <option>LCD</option>
+          <option>BATTERY</option>
+          <option>CHARGING PORT</option>
+          <option>CAMERA</option>
+          <option>BACKGLASS</option>
+          <option>SCREEN REPLACEMENT</option>
+          <option>SPEAKER</option>
+          <option>ANTHENNA</option>
+          <option>POWER BUTTON</option>
+          <option>FRAME</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label for="model-select">Model</label>
+        <select name="model" id="model-select" required>
+          <option value="" disabled selected>Select Model</option>
+          <option>OPPO</option>
+          <option>SAMSUNG</option>
+          <option>REALME</option>
+          <option>HONOR</option>
+          <option>HUAWEI</option>
+          <option>XIAOMI</option>
+          <option>INFINIX</option>
+          <option>APPLE</option>
+          <option>VIVO</option>
+          <option>REDMI</option>
+          <option>OTHER</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label for="grade-select">Grade</label>
+        <select name="grade" id="grade-select" required>
+          <option value="" disabled selected>Select Grade</option>
+          <option>AAA</option>
+          <option>ORIGINAL</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label for="name-input">Name</label>
+        <input type="text" id="name-input" name="name" placeholder="Enter your name" required autocomplete="name" />
+      </div>
+
+      <div class="field-group">
+        <label for="case-code">Case Code (Auto-generated)</label>
+        <input type="text" id="case-code" name="case-code" readonly class="readonly-field" aria-readonly="true" />
+      </div>
+
+      <button type="submit" id="submit-btn">Send to WhatsApp</button>
+    </form>
+  </div>
+
+<script>
+  (() => {
+    const openBtn = document.getElementById('open-btn');
+    const form = document.getElementById('replacement-form');
+    const caseCodeInput = document.getElementById('case-code');
+
+    function generateCaseCode() {
+      return Math.floor(1000 + Math.random() * 9000).toString();
+    }
+
+    function updateCaseCode() {
+      caseCodeInput.value = generateCaseCode();
+    }
+
+    openBtn.addEventListener('click', () => {
+      const expanded = openBtn.getAttribute('aria-expanded') === 'true';
+      if (!expanded) {
+        updateCaseCode();
+        form.classList.add('active');
+        openBtn.setAttribute('aria-expanded', 'true');
+        openBtn.style.display = 'none';
+        // Focus first dropdown for accessibility
+        document.getElementById('part-select').focus();
+      }
+    });
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const part = form.part.value;
+      const model = form.model.value;
+      const grade = form.grade.value;
+      const name = form.name.value.trim();
+      const caseCode = form['case-code'].value;
+
+      if (!part || !model || !grade || !name) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      // Format WhatsApp message
+      const message = encodeURIComponent(
+        `Part Replacement Request:\n` +
+        `Case Code: ${caseCode}\n` +
+        `Part: ${part}\n` +
+        `Model: ${model}\n` +
+        `Grade: ${grade}\n` +
+        `Name: ${name}`
+      );
+
+      const whatsappNumber = '+60178040403';
+      // Open WhatsApp link in new tab
+      window.open(`https://wa.me/${whatsappNumber.replace('+', '')}?text=${message}`, '_blank');
+    });
+  })();
+</script>
+</body>
+</html>
+
+
+
