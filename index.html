@@ -551,3 +551,398 @@
 </body>
 </html>
 
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Zuu Caster AI - Widget Chat Bantuan Telefon</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: transparent;
+  }
+
+  /* Floating minimized button */
+  #chat-minimized-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    background: #b22222;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+    line-height: 56px;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 4px 12px rgba(178,34,34,0.7);
+    z-index: 10000;
+    transition: background-color 0.3s ease;
+  }
+  #chat-minimized-btn:hover,
+  #chat-minimized-btn:focus {
+    background-color: #7f1212;
+    outline: none;
+  }
+  #chat-minimized-btn:focus-visible {
+    outline: 2px solid #fff;
+  }
+
+  /* Chatbox expanded container */
+  .chatbox {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 320px;
+    max-width: 95vw;
+    background: #ffffff;
+    color: #8b0000;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(139,0,0,0.4);
+    display: none; /* hidden by default */
+    flex-direction: column;
+    user-select: none;
+    overflow: hidden;
+    font-size: 13px;
+    z-index: 10001;
+    border: 2px solid #b22222;
+  }
+  .chatbox.active {
+    display: flex;
+  }
+  .header {
+    background: #b22222;
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+  }
+  .close-btn {
+    background: transparent;
+    border: none;
+    color: #ffe6e6;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    user-select: none;
+    transition: color 0.3s ease;
+  }
+  .close-btn:hover,
+  .close-btn:focus {
+    color: #ffcccc;
+    outline: none;
+  }
+  .close-btn:focus-visible {
+    outline: 2px solid #fff;
+  }
+  .messages {
+    background: #fff0f0;
+    padding: 12px 16px;
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: thin;
+    scrollbar-color: #b22222 transparent;
+    max-height: 350px;
+  }
+  .messages::-webkit-scrollbar {
+    width: 7px;
+  }
+  .messages::-webkit-scrollbar-thumb {
+    background-color: #b22222;
+    border-radius: 4px;
+  }
+  .messages::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .message {
+    max-width: 80%;
+    margin-bottom: 10px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+  }
+  .message.user {
+    background: #b22222;
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 2px 6px rgba(178,34,34,0.7);
+  }
+  .message.gpt {
+    background: #f7dada;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    color: #8b0000;
+    box-shadow: 0 2px 6px rgba(139,0,0,0.3);
+  }
+  .whatsapp-link {
+    display: inline-block;
+    margin: 10px auto 14px auto;
+    padding: 8px 18px;
+    background: #b22222;
+    color: white;
+    font-weight: 700;
+    border-radius: 24px;
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+    font-size: 13px;
+    box-shadow: 0 4px 6px rgba(178,34,34,0.6);
+    transition: background-color 0.3s ease;
+    max-width: 80%;
+    text-align: center;
+  }
+  .whatsapp-link:hover,
+  .whatsapp-link:focus {
+    background-color: #7f1212;
+    outline: none;
+  }
+  .controls {
+    display: flex;
+    border-top: 1px solid #b22222;
+    background: #fff0f0;
+    padding: 6px 8px;
+  }
+  .controls input[type="text"] {
+    flex-grow: 1;
+    border: 2px solid #b22222;
+    padding: 10px 14px;
+    font-size: 13px;
+    border-radius: 16px;
+    color: #8b0000;
+    background: #fff;
+    transition: border-color 0.3s ease;
+  }
+  .controls input[type="text"]::placeholder {
+    color: #b22222;
+  }
+  .controls input[type="text"]:focus {
+    outline: none;
+    border-color: #7f1212;
+  }
+  .controls button {
+    margin-left: 8px;
+    background: #b22222;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    padding: 0 18px;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 16px;
+    transition: background-color 0.3s ease;
+  }
+  .controls button:hover,
+  .controls button:focus {
+    background: #7f1212;
+    outline: none;
+  }
+  .finish-btn {
+    margin: 0 auto 14px auto;
+    background: #e63946;
+    border: none;
+    color: white;
+    font-weight: 700;
+    padding: 10px 22px;
+    font-size: 14px;
+    border-radius: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(230,57,70,0.7);
+    transition: background-color 0.3s ease;
+    user-select: none;
+    display: none;
+  }
+  .finish-btn:hover,
+  .finish-btn:focus {
+    background: #9f2930;
+    outline: none;
+  }
+  @media (max-width: 420px) {
+    .chatbox {
+      width: 90vw;
+      right: 12px;
+      bottom: 12px;
+    }
+    #chat-minimized-btn {
+      right: 12px;
+      bottom: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+  <!-- Minimized button -->
+  <button id="chat-minimized-btn" aria-label="Buka chat Zuu Caster AI" title="Buka chat Zuu Caster AI">Zuu AI</button>
+
+  <!-- Expanded chatbox -->
+  <section class="chatbox" role="region" aria-label="Zuu Caster AI pembantu perbualan" aria-live="polite" aria-atomic="true">
+    <header class="header">
+      <h1 style="margin:0; font-size:1.25rem; color:#fff;">Zuu Caster AI</h1>
+      <button class="close-btn" aria-label="Tutup Chatbox" title="Tutup Chatbox">&times;</button>
+    </header>
+    <div class="messages" id="messages" role="log" aria-live="polite" aria-relevant="additions"></div>
+    <form class="controls" id="chatForm" aria-label="Borang mesej">
+      <input type="text" id="inputField" autocomplete="off" placeholder="Taip mesej anda..." aria-required="true" aria-label="Ruangan input mesej" />
+      <button type="submit" aria-label="Hantar mesej">Hantar</button>
+    </form>
+    <button class="finish-btn" id="finishBtn" aria-label="Tamatkan perbualan dan dapatkan kod kes">Tamatkan Perbualan</button>
+  </section>
+
+<script>
+  (function(){
+    const messagesEl = document.getElementById('messages');
+    const form = document.getElementById('chatForm');
+    const input = document.getElementById('inputField');
+    const finishBtn = document.getElementById('finishBtn');
+    const closeBtn = document.querySelector('.close-btn');
+    const minimizedBtn = document.getElementById('chat-minimized-btn');
+    const chatbox = document.querySelector('.chatbox');
+    const whatsappNumber = '60178040403';
+
+    let userIssueMessages = [];
+
+    const gptSimulatedAnswers = [
+      "Terima kasih atas maklumat itu. Boleh ceritakan lebih lanjut?",
+      "Boleh saya tahu model telefon anda?",
+      "Sudah cuba hidupkan semula telefon anda?",
+      "Isu biasa, kami boleh membantu membaikinya dengan pantas.",
+      "Apakah masa mula masalah ini berlaku?",
+      "Teknisi kami pakar dalam masalah ini.",
+      "Sila teruskan, ada apa-apa lagi?",
+      "Boleh terangkan simptom masalah tersebut?",
+      "Ada buat kemaskini baru-baru ini?",
+      "Kami ingin pastikan telefon anda berfungsi sempurna."
+    ];
+
+    function appendMessage(text, sender='gpt') {
+      const msgDiv = document.createElement('div');
+      msgDiv.classList.add('message');
+      if(sender === 'user') {
+        msgDiv.classList.add('user');
+        msgDiv.textContent = text;
+      } else if(sender === 'gpt') {
+        msgDiv.classList.add('gpt');
+        msgDiv.textContent = text;
+      } else if(sender === 'system') {
+        msgDiv.classList.add('gpt');
+        msgDiv.style.fontStyle = 'italic';
+        msgDiv.textContent = text;
+      }
+      messagesEl.appendChild(msgDiv);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function generateCaseCode() {
+      return Math.floor(100000 + Math.random() * 900000).toString();
+    }
+
+    function createWhatsAppLink(caseCode, issueSummary) {
+      const baseUrl = `https://wa.me/${whatsappNumber}`;
+      const message = `Hai, saya telah selesai bersembang dengan Zuu Caster AI. Kod kes saya ialah: ${caseCode}\nIsu yang dilaporkan: ${issueSummary}`;
+      const url = `${baseUrl}?text=${encodeURIComponent(message)}`;
+      const link = document.createElement('a');
+      link.href = url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.className = 'whatsapp-link';
+      link.textContent = 'Hantar Kod Kes ke WhatsApp';
+      link.setAttribute('aria-label', 'Hantar kod kes ke WhatsApp');
+      return link;
+    }
+
+    function simulateGPTResponse() {
+      const idx = Math.floor(Math.random() * gptSimulatedAnswers.length);
+      return gptSimulatedAnswers[idx];
+    }
+
+    function userSendsMessage(text) {
+      userIssueMessages.push(text);
+      appendMessage(text, 'user');
+    }
+    function gptSendsMessage(text) {
+      appendMessage(text, 'gpt');
+    }
+
+    function setInputEnabled(enabled) {
+      input.disabled = !enabled;
+      form.querySelector('button[type=submit]').disabled = !enabled;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const msg = input.value.trim();
+      if(!msg) return;
+      userSendsMessage(msg);
+      input.value = '';
+      setInputEnabled(false);
+
+      await new Promise(res => setTimeout(res, 900));
+
+      const reply = simulateGPTResponse();
+      gptSendsMessage(reply);
+
+      setInputEnabled(true);
+      input.focus();
+      finishBtn.style.display = 'inline-block';
+    });
+
+    finishBtn.addEventListener('click', () => {
+      if(finishBtn.disabled) return;
+      finishBtn.disabled = true;
+      setInputEnabled(false);
+      gptSendsMessage("Terima kasih kerana bersembang. Saya akan menjana kod kes untuk anda...");
+      setTimeout(() => {
+        const caseCode = generateCaseCode();
+        gptSendsMessage(`Kod kes unik anda ialah: ${caseCode}`);
+
+        let issueSummary = userIssueMessages.join(" ");
+        if(issueSummary.length > 200) {
+          issueSummary = issueSummary.slice(0, 197) + '...';
+        }
+
+        const waLink = createWhatsAppLink(caseCode, issueSummary);
+        messagesEl.appendChild(waLink);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+
+        finishBtn.style.display = 'none';
+        finishBtn.disabled = false;
+        setInputEnabled(false);
+      }, 1500);
+    });
+
+    closeBtn.addEventListener('click', () => {
+      chatbox.classList.remove('active');
+      minimizedBtn.style.display = 'block';
+    });
+
+    minimizedBtn.addEventListener('click', () => {
+      chatbox.classList.add('active');
+      minimizedBtn.style.display = 'none';
+      input.focus();
+    });
+
+    // Initial bot greeting
+    // Show greeting only when chatbox actually opened
+    // So move greeting to minimizedBtn click or chatbox open
+  })();
+</script>
+</body>
+</html>
+
