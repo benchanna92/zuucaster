@@ -3,944 +3,360 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Zuucaster IT Solution - Phone Repair & Unlock Services</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+<title>Hide BLACKLIST TELCO Price List</title>
 <style>
-  :root {
-    --color-bg: #ffffff;
-    --color-text-primary: #111827;
-    --color-text-secondary: #6b7280;
-    --color-accent: #000000;
-    --color-accent-bg: #111827;
-    --color-accent-hover: #4b5563;
-    --color-border: #e5e7eb;
-    --radius: 12px;
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 2.5rem;
-    --spacing-lg: 5rem;
-    --font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    --transition-default: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --max-width: 1200px;
-    --headline-font-size: 48px;
-  }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
-  /* Reset and base styles */
+  /* Reset and base */
   *, *::before, *::after {
     box-sizing: border-box;
   }
+
+  html, body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    background-color: #000000; /* fallback */
+    color: #e0e0e0;
+    overflow-x: hidden;
+  }
+
   body {
-    margin: 0;
-    font-family: var(--font-family);
-    background-color: var(--color-bg);
-    color: var(--color-text-secondary);
-    line-height: 1.625;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "liga" 1;
-    font-size: 18px;
-  }
-  a {
-    color: var(--color-accent);
-    text-decoration: none;
-    transition: color var(--transition-default);
-  }
-  a:hover,
-  a:focus {
-    color: var(--color-accent-hover);
-    outline-offset: 2px;
-  }
-  h1, h2, h3 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    line-height: 1.15;
-  }
-  h1 {
-    font-size: var(--headline-font-size);
-  }
-  h2 {
-    font-size: 2rem;
-  }
-  h3 {
-    font-size: 1.25rem;
-  }
-  p {
-    margin-top: 0;
-    margin-bottom: var(--spacing-md);
-    color: var(--color-text-secondary);
-  }
-  /* Container */
-  .container {
-    max-width: var(--max-width);
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: var(--spacing-sm);
-    padding-right: var(--spacing-sm);
+    position: relative;
+    min-height: 100vh;
   }
 
-  /* Header */
-  header {
-    position: sticky;
+  /* Canvas Cover */
+  #matrix-canvas {
+    position: fixed;
     top: 0;
-    background: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    z-index: 1000;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-color: #000; /* fallback in case animation fails */
   }
-  .nav-inner {
+
+  main {
+    position: relative;
+    z-index: 10;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 5rem;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 var(--spacing-sm);
-  }
-  .logo {
-    font-weight: 800;
-    font-size: 1.75rem;
-    letter-spacing: 0.05em;
-    color: var(--color-text-primary);
-    user-select: none;
-  }
-  nav ul {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  nav li a {
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 0.25rem 0;
-    border-bottom: 3px solid transparent;
-    transition: border-color var(--transition-default), color var(--transition-default);
-    color: var(--color-text-secondary);
-  }
-  nav li a:hover,
-  nav li a:focus {
-    color: var(--color-accent);
-    border-bottom-color: var(--color-accent);
-    outline-offset: 3px;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 48px 16px 80px;
   }
 
-  /* Hero Section */
-  .hero {
-    text-align: center;
-    padding-top: var(--spacing-lg);
-    padding-bottom: var(--spacing-lg);
-    background: linear-gradient(135deg, #f9fafb 0%, #fff 100%);
-  }
-  .hero h1 {
-    font-weight: 800;
-    color: var(--color-text-primary);
-    font-size: var(--headline-font-size);
-    margin-bottom: 1rem;
-  }
-  .hero p {
-    font-weight: 400;
-    font-size: 1.25rem;
-    color: var(--color-text-secondary);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 2rem;
-  }
-  .btn-whatsapp {
-    background-color: var(--color-accent-bg);
-    color: var(--color-bg);
-    font-weight: 600;
-    font-size: 1.125rem;
-    padding: 1rem 3rem;
-    border-radius: var(--radius);
-    border: none;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    box-shadow: 0 8px 20px rgb(0 0 0 / 0.15);
-    transition: background-color var(--transition-default), box-shadow var(--transition-default), transform var(--transition-default);
-    user-select: none;
-    text-decoration: none;
-  }
-  .btn-whatsapp:hover,
-  .btn-whatsapp:focus {
-    background-color: var(--color-accent-hover);
-    box-shadow: 0 12px 28px rgb(0 0 0 / 0.18);
-    transform: scale(1.05);
-    outline-offset: 4px;
-    outline: 2px solid var(--color-accent-hover);
-  }
-  .btn-whatsapp svg {
-    height: 24px;
-    width: 24px;
-    fill: currentColor;
-  }
-
-  /* Services Section */
-  section {
-    padding-top: var(--spacing-lg);
-    padding-bottom: var(--spacing-lg);
-  }
-  #services h2 {
-    text-align: center;
-    margin-bottom: var(--spacing-lg);
-  }
-  .services-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
-    gap: var(--spacing-lg);
-    max-width: var(--max-width);
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .service-card {
-    background: var(--color-bg);
-    border: none;
-    box-shadow: 0 8px 16px rgb(0 0 0 / 0.07);
-    border-radius: var(--radius);
-    padding: var(--spacing-md);
-    transition: box-shadow var(--transition-default);
-  }
-  .service-card:hover,
-  .service-card:focus-within {
-    box-shadow: 0 16px 40px rgb(0 0 0 / 0.12);
-    outline: none;
-  }
-  .service-title {
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: var(--color-text-primary);
-    margin-bottom: 1.25rem;
-  }
-  .service-list {
-    list-style: disc inside;
-    font-weight: 400;
-    font-size: 1rem;
-    color: var(--color-text-secondary);
-    line-height: 1.6;
-  }
-
-  /* Client Detail Form */
-  #contact {
+  .container {
+    background: rgba(255 255 255 / 0.05);
+    backdrop-filter: blur(14px);
+    border-radius: 16px;
     max-width: 480px;
-    margin: var(--spacing-lg) auto var(--spacing-lg);
-    padding: var(--spacing-lg);
-    background-color: var(--color-bg);
-    border-radius: var(--radius);
-    box-shadow: 0 10px 30px rgb(0 0 0 / 0.08);
-  }
-  #contact h2 {
-    font-weight: 700;
-    font-size: 2rem;
-    margin-bottom: var(--spacing-md);
-    color: var(--color-text-primary);
+    width: 100%;
+    padding: 32px 28px;
+    box-shadow: 0 8px 24px rgb(0 255 70 / 0.4);
     text-align: center;
   }
+
+  h1 {
+    font-size: 2.75rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #00ff00;
+    text-shadow:
+      0 0 8px #00ff00,
+      0 0 16px #00ff00;
+  }
+
+  p {
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 28px;
+    color: #a0ffa0cc;
+    line-height: 1.4;
+  }
+
   form {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: 16px;
   }
+
   label {
     font-weight: 600;
     font-size: 1rem;
-    color: var(--color-text-primary);
-    margin-bottom: 0.4rem;
-  }
-  input[type="text"],
-  input[type="password"],
-  select {
-    padding: 0.825rem 1.25rem;
-    border-radius: var(--radius);
-    border: 1px solid var(--color-border);
-    font-size: 1rem;
-    font-family: var(--font-family);
-    color: var(--color-text-primary);
-    transition: border-color var(--transition-default), box-shadow var(--transition-default);
-  }
-  input[type="text"]:focus,
-  input[type="password"]:focus,
-  select:focus {
-    outline: none;
-    border-color: var(--color-accent);
-    box-shadow: 0 0 8px 3px rgb(37 99 235 / 0.35);
-  }
-  input[readonly] {
-    background-color: #f3f4f6;
-    cursor: not-allowed;
-    color: var(--color-text-secondary);
-  }
-  button[type="submit"] {
-    margin-top: var(--spacing-sm);
-    padding: 1rem 0;
-    background-color: var(--color-accent-bg);
-    color: var(--color-bg);
-    font-weight: 700;
-    font-size: 1.25rem;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    box-shadow: 0 12px 20px rgb(0 0 0 / 0.15);
-    transition: background-color var(--transition-default), transform var(--transition-default);
+    text-align: left;
+    color: #90ff90;
     user-select: none;
   }
-  button[type="submit"]:hover,
-  button[type="submit"]:focus {
-    background-color: var(--color-accent-hover);
-    transform: scale(1.04);
-    outline-offset: 4px;
-    outline: 2px solid var(--color-accent-hover);
-  }
-  /* Accessibility Focus */
-  [tabindex="0"]:focus {
-    outline: 3px solid var(--color-accent);
-    outline-offset: 5px;
+
+  input[type="text"] {
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: rgba(255 255 255 / 0.15);
+    color: #d0ffd0;
+    text-shadow: 0 0 3px #00ff00;
+    outline-offset: 2px;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
   }
 
-  /* Responsive */
-  @media (max-width: 600px) {
-    .hero h1 {
-      font-size: 2.5rem;
+  input[type="text"]::placeholder {
+    color: #99ff99aa;
+    font-weight: 400;
+  }
+
+  input[type="text"]:focus {
+    background: rgba(255 255 255 / 0.25);
+  }
+
+  button {
+    padding: 14px 0;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #00ff00 0%, #009900 100%);
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #001100;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+    box-shadow:
+      0 0 10px #00ff00,
+      0 0 20px #00ff00 inset;
+    transition: background 0.3s ease, filter 0.3s ease;
+  }
+
+  button:hover,
+  button:focus-visible {
+    filter: brightness(1.2);
+    outline: none;
+    box-shadow:
+      0 0 18px #00ff00,
+      0 0 28px #00ff00 inset;
+  }
+
+  button:disabled {
+    background: #003300;
+    color: #006600;
+    cursor: default;
+    box-shadow: none;
+    filter: none;
+  }
+
+  /* Price list container */
+  #price-list {
+    margin-top: 40px;
+    background: rgba(255 255 255 / 0.12);
+    padding: 28px 24px;
+    border-radius: 16px;
+    box-shadow: 0 6px 15px rgb(0 255 70 / 0.3);
+    color: #b0ffb0;
+    text-align: center;
+  }
+
+  #price-list h2 {
+    font-weight: 700;
+    font-size: 2.25rem;
+    margin-bottom: 24px;
+    color: #00ff00;
+    text-shadow:
+      0 0 6px #00ff00,
+      0 0 12px #00ff00;
+  }
+
+  #price-list .selection-option {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 36px;
+    color: #a0ffa0cc;
+  }
+
+  ul.selection-list {
+    list-style: disc;
+    margin: 0 auto 36px;
+    color: #a0ffa0cc;
+    font-weight: 600;
+    font-size: 1.2rem;
+    max-width: 180px;
+    text-align: left;
+    padding-left: 20px;
+  }
+
+  #price-list a.whatsapp-link {
+    display: inline-block;
+    padding: 14px 36px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 28px;
+    background: #25d366;
+    color: #fafafa;
+    text-decoration: none;
+    box-shadow: 0 0 20px #25d366aa;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  #price-list a.whatsapp-link:hover,
+  #price-list a.whatsapp-link:focus-visible {
+    background: #1ebe57;
+    box-shadow: 0 0 28px #1ebe57cc;
+    outline: none;
+  }
+
+  /* Error message */
+  #error-message {
+    color: #ff6666;
+    font-weight: 600;
+    min-height: 1.4em;
+    margin-top: 8px;
+    visibility: hidden;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    main {
+      padding: 32px 12px 64px;
     }
-    .services-list {
-      grid-template-columns: 1fr;
-      gap: var(--spacing-md);
+    .container {
+      max-width: 100%;
+      padding: 28px 20px;
     }
-    #contact {
-      margin: var(--spacing-md) 1.5rem;
-      padding: var(--spacing-md);
+    h1 {
+      font-size: 2.4rem;
+    }
+    #price-list h2 {
+      font-size: 1.75rem;
     }
   }
 </style>
 </head>
 <body>
-<header>
-  <div class="container nav-inner" role="banner">
-    <div class="logo" tabindex="0" aria-label="Zuucaster IT Solution logo">Zuucaster</div>
-    <nav aria-label="Primary navigation">
-      <ul>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Client Details</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
+<canvas id="matrix-canvas" aria-hidden="true"></canvas>
 <main>
-  <section class="hero container" aria-label="Introduction hero section">
-    <h1>Zuucaster IT Solution</h1>
-    <p>Your trusted partner for unlocking, hardware repairs & software development services.</p>
-    <a href="https://api.whatsapp.com/send?phone=+60178040403" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Chat with us on WhatsApp +60178040403">
-      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" aria-label="WhatsApp icon">
-        <path fill="currentColor" d="M20.52 3.48A11.868 11.868 0 0012 0C5.373 0 0 5.373 0 12c0 2.115.57 4.078 1.553 5.82L0 24l6.169-1.553A11.948 11.948 0 0012 24c6.627 0 12-5.373 12-12a11.894 11.894 0 00-3.48-8.52zm-8.895 17.796c-1.834 0-3.62-.47-5.178-1.37l-.375-.22-3.66.922.978-3.557-.245-.37a9.877 9.877 0 01-1.6-5.053c0-5.532 4.493-10.025 10.025-10.025 2.676 0 5.192 1.046 7.08 2.934a9.802 9.802 0 012.933 7.1c0 5.532-4.494 10.026-10.027 10.026zm5.282-6.978c-.268-.133-1.58-.78-1.826-.868-.246-.092-.425-.133-.605.132s-.69.868-.846 1.045-.313.2-.58.067a7.809 7.809 0 01-2.294-1.417 8.727 8.727 0 01-1.615-2.005c-.174-.302-.018-.465.13-.613.133-.132.3-.346.45-.52a1.992 1.992 0 00.3-.5c.1-.18.05-.337-.025-.47-.075-.133-.605-1.457-.83-2-.217-.525-.438-.46-.605-.47-.153-.01-.33-.012-.504-.012a1.093 1.093 0 00-.79.37c-.27.27-1.034 1.012-1.034 2.462s1.06 2.87 1.207 3.07c.147.198 2.095 3.2 5.076 4.486.71.306 1.262.49 1.693.627.71.228 1.36.196 1.872.119.572-.086 1.58-.645 1.803-1.268.223-.622.223-1.155.157-1.268-.067-.11-.246-.174-.515-.306z"/>
-      </svg>
-      Chat with us on WhatsApp
-    </a>
-  </section>
-
-  <section id="services" aria-labelledby="servicesTitle" class="container">
-    <h2 id="servicesTitle">Our Services</h2>
-    <div class="services-list" role="list">
-      <article class="service-card" tabindex="0" role="listitem" aria-labelledby="softwareServicesTitle" aria-describedby="softwareServicesDesc">
-        <h3 class="service-title" id="softwareServicesTitle">Software Developer Services</h3>
-        <ul class="service-list" id="softwareServicesDesc" aria-label="Software developer services list">
-          <li>Unlock FRP</li>
-          <li>Unlock Google</li>
-          <li>Unlock Xiaomi account</li>
-          <li>Unlock Telco/Contract device</li>
-          <li>Unlock pin/passcode</li>
-          <li>Reset Apple ID</li>
-          <li>Rent tool software</li>
-          <li>TUTUP BLACKLIST TELCO KEKAL</li>
-          <li>AUTH FLASHER + FILE REQUEST</li>
-          <li>Samsung IMEI unlock by Server</li>
-        </ul>
-      </article>
-      <article class="service-card" tabindex="0" role="listitem" aria-labelledby="hardwareServicesTitle" aria-describedby="hardwareServicesDesc">
-        <h3 class="service-title" id="hardwareServicesTitle">Hardware Services</h3>
-        <ul class="service-list" id="hardwareServicesDesc" aria-label="Hardware services list">
-          <li>LCD replacement</li>
-          <li>Battery replacement</li>
-          <li>Part quotation</li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <section id="contact" aria-labelledby="contactTitle" class="container">
-    <h2 id="contactTitle">Client Details</h2>
-    <form id="clientForm" aria-describedby="formDescription" novalidate>
-      <p id="formDescription" style="color: var(--color-text-secondary); font-size: 0.9rem; margin-top: -1rem; margin-bottom: var(--spacing-md);">
-        Case ID is auto-generated for you.
-      </p>
-
-      <label for="caseId">Case ID</label>
+  <section class="container" aria-label="Encrypted code input and price list">
+    <h1>Enter Encrypted Code</h1>
+    <p>Unlock the Hide BLACKLIST TELCO price list by entering the secret code below.</p>
+    <form id="code-form" aria-describedby="code-help" autocomplete="off" novalidate>
+      <label for="code-input">Encrypted Code</label>
       <input
         type="text"
-        id="caseId"
-        name="caseId"
-        placeholder="Auto-generated"
-        readonly
-        aria-readonly="true"
-      />
-
-      <label for="clientName">Name/Company<sup aria-hidden="true" style="color:#d00;">*</sup></label>
-      <input
-        type="text"
-        id="clientName"
-        name="clientName"
-        placeholder="Enter your full name"
-        required
+        id="code-input"
+        name="code-input"
+        placeholder="Enter your code (e.g. 02)"
         aria-required="true"
-        autocomplete="name"
-      />
-
-      <label for="modelBrand">Model Brand <sup aria-hidden="true" style="color:#d00;">*</sup></label>
-      <select
-        id="modelBrand"
-        name="modelBrand"
-        required
-        aria-required="true"
-      >
-        <option value="" disabled selected>Select your phone brand</option>
-        <option value="oppo">OPPO</option>
-        <option value="huawei">HUAWEI</option>
-        <option value="realme">REALME</option>
-        <option value="redmi">REDMI</option>
-        <option value="xiaomi">XIAOMI</option>
-        <option value="honor">HONOR</option>
-        <option value="vivo">VIVO</option>
-        <option value="techno">TECHNO</option>
-        <option value="pova">POVA</option>
-        <option value="nokia">NOKIA</option>
-        <option value="nothing-phone">NOTHING PHONE</option>
-        <option value="other">OTHER</option>
-      </select>
-
-      <label for="detailModel">Detail Model <sup aria-hidden="true" style="color:#d00;">*</sup></label>
-      <input
-        type="text"
-        id="detailModel"
-        name="detailModel"
-        placeholder="Enter the exact model"
-        required
-        aria-required="true"
+        aria-describedby="error-message"
         autocomplete="off"
-      />
-
-      <label for="passcode">Postal code <sup aria-hidden="true" style="color:#d00;">*</sup></label>
-      <input
-        type="password"
-        id="passcode"
-        name="passcode"
-        placeholder="Enter your device passcode"
+        spellcheck="false"
         required
-        aria-required="true"
-        autocomplete="off"
-        aria-describedby="passcodeHelp"
+        inputmode="numeric"
       />
-      <p id="passcodeHelp" style="font-size: 0.9rem; color: var(--color-text-secondary); margin-top: -1rem; margin-bottom: var(--spacing-md);">
-        This is required for unlocking services.
-      </p>
-
-      <label for="servicesSelect">Select Service(s) <sup aria-hidden="true" style="color:#d00;">*</sup></label>
-      <select
-        id="servicesSelect"
-        name="servicesSelect"
-        multiple
-        size="13"
-        required
-        aria-required="true"
-        aria-describedby="servicesHelp"
-      >
-        <optgroup label="Software Developer Services">
-          <option value="unlock-frp">Unlock FRP</option>
-          <option value="unlock-google">Unlock Google</option>
-          <option value="unlock-xiaomi">Unlock Xiaomi account</option>
-          <option value="unlock-telco">Unlock Telco/Contract device</option>
-          <option value="unlock-pin">Unlock pin/passcode</option>
-          <option value="reset-appleid">Reset Apple ID</option>
-          <option value="rent-tool">Rent tool software</option>
-          <option value="tutup-blacklist-telco-kekal">TUTUP BLACKLIST TELCO KEKAL</option>
-          <option value="auth-flasher-file-request">AUTH FLASHER + FILE REQUEST</option>
-          <option value="samsung-imei-unlock-server">Samsung IMEI unlock by Server</option>
-        </optgroup>
-        <optgroup label="Hardware Services">
-          <option value="lcd-replacement">LCD replacement</option>
-          <option value="battery-replacement">Battery replacement</option>
-          <option value="part-quotation">Part quotation</option>
-        </optgroup>
-      </select>
-      <p id="servicesHelp" style="font-size: 0.9rem; color: var(--color-text-secondary); margin-top: 0.25rem; margin-bottom: var(--spacing-md);">
-        Hold Ctrl (Cmd on Mac) to select multiple services.
-      </p>
-
-      <button type="submit" aria-label="Submit client details form">Submit</button>
+      <button type="submit" aria-label="Submit encrypted code to unlock price list">Unlock Price List</button>
+      <div id="error-message" role="alert" aria-live="assertive"></div>
     </form>
+
+    <section id="price-list" aria-live="polite" style="display:none;">
+      <h2>Hide BLACKLIST TELCO</h2>
+      <div class="selection-option">Selection option</div>
+      <ul class="selection-list">
+        <li>NO IC (FILL)</li>
+      </ul>
+      <a
+        href="https://wa.me/60178040403?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20Hide%20BLACKLIST%20TELCO."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="whatsapp-link"
+      >
+        DIRECT SEND TO MY WHATSAPP
+      </a>
+    </section>
   </section>
 </main>
-
-<footer class="container" style="text-align:center; padding:2rem 1rem; color: var(--color-text-secondary); font-size: 0.875rem; user-select:none;">
-  &copy; 2024 Zuucaster IT Solution. All rights reserved.
-</footer>
-
 <script>
-  function generateCaseId() {
-    return Math.floor(10000 + Math.random() * 90000).toString();
+  // Matrix binary rain animation on canvas
+  const canvas = document.getElementById('matrix-canvas');
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let columns;
+  const fontSize = 18;
+  let drops = [];
+
+  const binaryChars = ['0', '1'];
+
+  function initCanvas() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+    columns = Math.floor(width / fontSize);
+    drops = new Array(columns).fill(1);
   }
 
-  const caseIdInput = document.getElementById('caseId');
-  const form = document.getElementById('clientForm');
+  function draw() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.13)';
+    ctx.fillRect(0, 0, width, height);
 
-  function setNewCaseId() {
-    caseIdInput.value = generateCaseId();
-  }
+    ctx.fillStyle = '#00ff00';
+    ctx.font = fontSize + 'px monospace';
 
-  window.addEventListener('DOMContentLoaded', () => {
-    setNewCaseId();
-  });
+    for (let i = 0; i < drops.length; i++) {
+      const text = binaryChars[Math.floor(Math.random() * binaryChars.length)];
+      const x = i * fontSize;
+      const y = drops[i] * fontSize;
 
-  form.addEventListener('submit', e => {
-    e.preventDefault();
+      ctx.fillText(text, x, y);
 
-    if (!form.checkValidity()) {
-      alert('Please fill out all required fields and select at least one service.');
-      return;
-    }
-
-    const formData = new FormData(form);
-    const caseId = formData.get('caseId').trim();
-    const name = formData.get('clientName').trim();
-    const modelBrand = formData.get('modelBrand');
-    const detailModel = formData.get('detailModel').trim();
-    const passcode = formData.get('passcode').trim();
-    const services = formData.getAll('servicesSelect');
-
-    if (services.length === 0) {
-      alert('Please select at least one service.');
-      return;
-    }
-
-    if (!modelBrand) {
-      alert('Please select your phone model brand.');
-      return;
-    }
-
-    // Compose WhatsApp message with new fields included
-    let message = 
-      `Hello Zuucaster,%0A` +
-      `Case ID: ${encodeURIComponent(caseId)}%0A` +
-      `Name: ${encodeURIComponent(name)}%0A` +
-      `Model Brand: ${encodeURIComponent(modelBrand)}%0A` +
-      `Detail Model: ${encodeURIComponent(detailModel)}%0A` +
-      `Passcode: ${encodeURIComponent(passcode)}%0A` +
-      `Requested Service(s): ${encodeURIComponent(services.join(', '))}`;
-
-    const waLink = `https://api.whatsapp.com/send?phone=+60178040403&text=${message}`;
-    window.open(waLink, '_blank');
-
-    form.reset();
-    setNewCaseId();
-  });
-</script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="ms">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Zuu Caster AI - Widget Chat Bantuan Telefon</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: transparent;
-  }
-
-  /* Floating minimized button */
-  #chat-minimized-btn {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 56px;
-    height: 56px;
-    background: #b22222;
-    border-radius: 50%;
-    color: #fff;
-    font-weight: 700;
-    font-size: 12px;
-    text-align: center;
-    line-height: 56px;
-    cursor: pointer;
-    user-select: none;
-    box-shadow: 0 4px 12px rgba(178,34,34,0.7);
-    z-index: 10000;
-    transition: background-color 0.3s ease;
-  }
-  #chat-minimized-btn:hover,
-  #chat-minimized-btn:focus {
-    background-color: #7f1212;
-    outline: none;
-  }
-  #chat-minimized-btn:focus-visible {
-    outline: 2px solid #fff;
-  }
-
-  /* Chatbox expanded container */
-  .chatbox {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 320px;
-    max-width: 95vw;
-    background: #ffffff;
-    color: #8b0000;
-    border-radius: 16px;
-    box-shadow: 0 12px 40px rgba(139,0,0,0.4);
-    display: none; /* hidden by default */
-    flex-direction: column;
-    user-select: none;
-    overflow: hidden;
-    font-size: 13px;
-    z-index: 10001;
-    border: 2px solid #b22222;
-  }
-  .chatbox.active {
-    display: flex;
-  }
-  .header {
-    background: #b22222;
-    padding: 12px 16px;
-    font-weight: 700;
-    font-size: 16px;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-  }
-  .close-btn {
-    background: transparent;
-    border: none;
-    color: #ffe6e6;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 0;
-    user-select: none;
-    transition: color 0.3s ease;
-  }
-  .close-btn:hover,
-  .close-btn:focus {
-    color: #ffcccc;
-    outline: none;
-  }
-  .close-btn:focus-visible {
-    outline: 2px solid #fff;
-  }
-  .messages {
-    background: #fff0f0;
-    padding: 12px 16px;
-    flex-grow: 1;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    scrollbar-width: thin;
-    scrollbar-color: #b22222 transparent;
-    max-height: 350px;
-  }
-  .messages::-webkit-scrollbar {
-    width: 7px;
-  }
-  .messages::-webkit-scrollbar-thumb {
-    background-color: #b22222;
-    border-radius: 4px;
-  }
-  .messages::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .message {
-    max-width: 80%;
-    margin-bottom: 10px;
-    padding: 10px 14px;
-    border-radius: 14px;
-    line-height: 1.4;
-    word-wrap: break-word;
-  }
-  .message.user {
-    background: #b22222;
-    color: #fff;
-    align-self: flex-end;
-    border-bottom-right-radius: 4px;
-    box-shadow: 0 2px 6px rgba(178,34,34,0.7);
-  }
-  .message.gpt {
-    background: #f7dada;
-    align-self: flex-start;
-    border-bottom-left-radius: 4px;
-    color: #8b0000;
-    box-shadow: 0 2px 6px rgba(139,0,0,0.3);
-  }
-  .whatsapp-link {
-    display: inline-block;
-    margin: 10px auto 14px auto;
-    padding: 8px 18px;
-    background: #b22222;
-    color: white;
-    font-weight: 700;
-    border-radius: 24px;
-    cursor: pointer;
-    text-decoration: none;
-    user-select: none;
-    font-size: 13px;
-    box-shadow: 0 4px 6px rgba(178,34,34,0.6);
-    transition: background-color 0.3s ease;
-    max-width: 80%;
-    text-align: center;
-  }
-  .whatsapp-link:hover,
-  .whatsapp-link:focus {
-    background-color: #7f1212;
-    outline: none;
-  }
-  .controls {
-    display: flex;
-    border-top: 1px solid #b22222;
-    background: #fff0f0;
-    padding: 6px 8px;
-  }
-  .controls input[type="text"] {
-    flex-grow: 1;
-    border: 2px solid #b22222;
-    padding: 10px 14px;
-    font-size: 13px;
-    border-radius: 16px;
-    color: #8b0000;
-    background: #fff;
-    transition: border-color 0.3s ease;
-  }
-  .controls input[type="text"]::placeholder {
-    color: #b22222;
-  }
-  .controls input[type="text"]:focus {
-    outline: none;
-    border-color: #7f1212;
-  }
-  .controls button {
-    margin-left: 8px;
-    background: #b22222;
-    border: none;
-    color: #fff;
-    font-weight: 700;
-    padding: 0 18px;
-    font-size: 13px;
-    cursor: pointer;
-    border-radius: 16px;
-    transition: background-color 0.3s ease;
-  }
-  .controls button:hover,
-  .controls button:focus {
-    background: #7f1212;
-    outline: none;
-  }
-  .finish-btn {
-    margin: 0 auto 14px auto;
-    background: #e63946;
-    border: none;
-    color: white;
-    font-weight: 700;
-    padding: 10px 22px;
-    font-size: 14px;
-    border-radius: 24px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(230,57,70,0.7);
-    transition: background-color 0.3s ease;
-    user-select: none;
-    display: none;
-  }
-  .finish-btn:hover,
-  .finish-btn:focus {
-    background: #9f2930;
-    outline: none;
-  }
-  @media (max-width: 420px) {
-    .chatbox {
-      width: 90vw;
-      right: 12px;
-      bottom: 12px;
-    }
-    #chat-minimized-btn {
-      right: 12px;
-      bottom: 12px;
-    }
-  }
-</style>
-</head>
-<body>
-  <!-- Minimized button -->
-  <button id="chat-minimized-btn" aria-label="Buka chat Zuu Caster AI" title="Buka chat Zuu Caster AI">Zuu AI</button>
-
-  <!-- Expanded chatbox -->
-  <section class="chatbox" role="region" aria-label="Zuu Caster AI pembantu perbualan" aria-live="polite" aria-atomic="true">
-    <header class="header">
-      <h1 style="margin:0; font-size:1.25rem; color:#fff;">Zuu Caster AI</h1>
-      <button class="close-btn" aria-label="Tutup Chatbox" title="Tutup Chatbox">&times;</button>
-    </header>
-    <div class="messages" id="messages" role="log" aria-live="polite" aria-relevant="additions"></div>
-    <form class="controls" id="chatForm" aria-label="Borang mesej">
-      <input type="text" id="inputField" autocomplete="off" placeholder="Taip mesej anda..." aria-required="true" aria-label="Ruangan input mesej" />
-      <button type="submit" aria-label="Hantar mesej">Hantar</button>
-    </form>
-    <button class="finish-btn" id="finishBtn" aria-label="Tamatkan perbualan dan dapatkan kod kes">Tamatkan Perbualan</button>
-  </section>
-
-<script>
-  (function(){
-    const messagesEl = document.getElementById('messages');
-    const form = document.getElementById('chatForm');
-    const input = document.getElementById('inputField');
-    const finishBtn = document.getElementById('finishBtn');
-    const closeBtn = document.querySelector('.close-btn');
-    const minimizedBtn = document.getElementById('chat-minimized-btn');
-    const chatbox = document.querySelector('.chatbox');
-    const whatsappNumber = '60178040403';
-
-    let userIssueMessages = [];
-
-    const gptSimulatedAnswers = [
-      "Terima kasih atas maklumat itu. Boleh ceritakan lebih lanjut?",
-      "Boleh saya tahu model telefon anda?",
-      "Sudah cuba hidupkan semula telefon anda?",
-      "Isu biasa, kami boleh membantu membaikinya dengan pantas.",
-      "Apakah masa mula masalah ini berlaku?",
-      "Teknisi kami pakar dalam masalah ini.",
-      "Sila teruskan, ada apa-apa lagi?",
-      "Boleh terangkan simptom masalah tersebut?",
-      "Ada buat kemaskini baru-baru ini?",
-      "Kami ingin pastikan telefon anda berfungsi sempurna."
-    ];
-
-    function appendMessage(text, sender='gpt') {
-      const msgDiv = document.createElement('div');
-      msgDiv.classList.add('message');
-      if(sender === 'user') {
-        msgDiv.classList.add('user');
-        msgDiv.textContent = text;
-      } else if(sender === 'gpt') {
-        msgDiv.classList.add('gpt');
-        msgDiv.textContent = text;
-      } else if(sender === 'system') {
-        msgDiv.classList.add('gpt');
-        msgDiv.style.fontStyle = 'italic';
-        msgDiv.textContent = text;
+      if (y > height && Math.random() > 0.975) {
+        drops[i] = 0;
       }
-      messagesEl.appendChild(msgDiv);
-      messagesEl.scrollTop = messagesEl.scrollHeight;
+      drops[i]++;
     }
+  }
 
-    function generateCaseCode() {
-      return Math.floor(100000 + Math.random() * 900000).toString();
-    }
+  initCanvas();
+  setInterval(draw, 40);
 
-    function createWhatsAppLink(caseCode, issueSummary) {
-      const baseUrl = `https://wa.me/${whatsappNumber}`;
-      const message = `Hai, saya telah selesai bersembang dengan Zuu Caster AI. Kod kes saya ialah: ${caseCode}\nIsu yang dilaporkan: ${issueSummary}`;
-      const url = `${baseUrl}?text=${encodeURIComponent(message)}`;
-      const link = document.createElement('a');
-      link.href = url;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.className = 'whatsapp-link';
-      link.textContent = 'Hantar Kod Kes ke WhatsApp';
-      link.setAttribute('aria-label', 'Hantar kod kes ke WhatsApp');
-      return link;
-    }
+  window.addEventListener('resize', () => {
+    initCanvas();
+  });
 
-    function simulateGPTResponse() {
-      const idx = Math.floor(Math.random() * gptSimulatedAnswers.length);
-      return gptSimulatedAnswers[idx];
-    }
+  // Code validation and form handling
+  (function () {
+    const form = document.getElementById('code-form');
+    const input = document.getElementById('code-input');
+    const errorMsg = document.getElementById('error-message');
+    const priceList = document.getElementById('price-list');
 
-    function userSendsMessage(text) {
-      userIssueMessages.push(text);
-      appendMessage(text, 'user');
-    }
-    function gptSendsMessage(text) {
-      appendMessage(text, 'gpt');
-    }
+    // The encrypted code to unlock the pricelist
+    const secretCode = '02';
 
-    function setInputEnabled(enabled) {
-      input.disabled = !enabled;
-      form.querySelector('button[type=submit]').disabled = !enabled;
-    }
-
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
-      const msg = input.value.trim();
-      if(!msg) return;
-      userSendsMessage(msg);
-      input.value = '';
-      setInputEnabled(false);
+      const val = input.value.trim();
 
-      await new Promise(res => setTimeout(res, 900));
+      if (!val) {
+        errorMsg.textContent = 'Please enter the encrypted code.';
+        errorMsg.style.visibility = 'visible';
+        priceList.style.display = 'none';
+        return;
+      }
 
-      const reply = simulateGPTResponse();
-      gptSendsMessage(reply);
-
-      setInputEnabled(true);
-      input.focus();
-      finishBtn.style.display = 'inline-block';
+      if (val === secretCode) {
+        errorMsg.style.visibility = 'hidden';
+        priceList.style.display = 'block';
+        input.value = '';
+        input.disabled = true;
+        this.querySelector('button').disabled = true;
+        input.setAttribute('aria-disabled', 'true');
+        input.setAttribute('aria-readonly', 'true');
+        this.setAttribute('aria-hidden', 'true');
+      } else {
+        errorMsg.textContent = 'Invalid code. Please try again.';
+        errorMsg.style.visibility = 'visible';
+        priceList.style.display = 'none';
+      }
     });
-
-    finishBtn.addEventListener('click', () => {
-      if(finishBtn.disabled) return;
-      finishBtn.disabled = true;
-      setInputEnabled(false);
-      gptSendsMessage("Terima kasih kerana bersembang. Saya akan menjana kod kes untuk anda...");
-      setTimeout(() => {
-        const caseCode = generateCaseCode();
-        gptSendsMessage(`Kod kes unik anda ialah: ${caseCode}`);
-
-        let issueSummary = userIssueMessages.join(" ");
-        if(issueSummary.length > 200) {
-          issueSummary = issueSummary.slice(0, 197) + '...';
-        }
-
-        const waLink = createWhatsAppLink(caseCode, issueSummary);
-        messagesEl.appendChild(waLink);
-        messagesEl.scrollTop = messagesEl.scrollHeight;
-
-        finishBtn.style.display = 'none';
-        finishBtn.disabled = false;
-        setInputEnabled(false);
-      }, 1500);
-    });
-
-    closeBtn.addEventListener('click', () => {
-      chatbox.classList.remove('active');
-      minimizedBtn.style.display = 'block';
-    });
-
-    minimizedBtn.addEventListener('click', () => {
-      chatbox.classList.add('active');
-      minimizedBtn.style.display = 'none';
-      input.focus();
-    });
-
-    // Initial bot greeting
-    // Show greeting only when chatbox actually opened
-    // So move greeting to minimizedBtn click or chatbox open
   })();
 </script>
 </body>
