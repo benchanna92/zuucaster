@@ -3,437 +3,311 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mobile Phone Repair and Service</title>
+<title>Repair and Service Mobile Phone</title>
+<!-- Google Inter font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
   /* Reset and base */
   *, *::before, *::after {
     box-sizing: border-box;
   }
   body {
     margin: 0;
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #1f2937; /* Dark slate blue */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #F1F3F4; /* WhatsApp-like light gray background */
+    color: #202124; /* Dark text for high contrast */
     min-height: 100vh;
-    color: #f3f4f6; /* Light gray */
     display: flex;
     flex-direction: column;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
-  a {
-    color: #3b82f6; /* Bright blue */
-    text-decoration: none;
-  }
-  a:hover,
-  a:focus {
-    text-decoration: underline;
-  }
-
-  /* Layout */
-  header, footer {
-    background-color: #111827; /* Darker blue-gray */
-    padding: 1.5rem 2rem;
-    text-align: center;
-    box-shadow: inset 0 -1px 0 rgb(255 255 255 / 0.1);
-    color: #e0e7ff; /* Light blue-gray */
-  }
+  /* Header */
   header {
+    background-color: #34A853; /* WhatsApp primary green */
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.15);
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 10;
+    user-select: none;
   }
-  .header-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    max-width: 960px;
-    margin: 0 auto;
-  }
-  .header-content img {
-    width: 40px;
-    height: 28px;
-    border-radius: 4px;
-    object-fit: cover;
-    box-shadow: 0 0 8px rgba(59, 130, 246, 0.8);
+  header .material-icons {
+    font-size: 32px;
   }
   header h1 {
-    font-weight: 700;
-    font-size: 1.9rem;
-    margin: 0;
-    user-select: none;
-    letter-spacing: 0.06em;
-    color: #bfdbfe; /* Soft blue */
-    text-shadow: 0 0 5px rgba(59, 130, 246, 0.8);
+    font-weight: 600;
+    font-size: 1.5rem;
   }
-  main.container {
-    max-width: 640px;
-    margin: 4rem auto 6rem;
-    padding: 0 1rem;
-    text-align: center;
-  }
-
-  /* Buttons and interaction */
-  .buttons {
+  /* Main content container */
+  main {
+    flex: 1;
     display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-  button {
-    background: linear-gradient(135deg, #2563eb, #3b82f6);
-    border: none;
-    border-radius: 12px;
-    padding: 14px 28px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-width: 180px;
-    justify-content: center;
-    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.7);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  button .material-icons {
-    font-size: 28px;
-    transition: transform 0.3s ease;
-  }
-  button:hover {
-    background: linear-gradient(135deg, #1e40af, #2563eb);
-    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.8);
-  }
-  button:hover .material-icons {
-    transform: rotate(15deg);
-  }
-  button:focus-visible {
-    outline-offset: 3px;
-    outline: 3px solid #1e40af;
-  }
-
-  /* Message preview */
-  .message-box {
-    margin-top: 3rem;
-    background-color: #374151; /* Deep muted blue-gray */
-    padding: 1.5rem 2rem;
-    border-radius: 16px;
-    box-shadow: inset 0 0 10px rgba(59, 130, 246, 0.3);
-    font-size: 1.1rem;
-    max-width: 640px;
-    margin-left: auto;
-    margin-right: auto;
-    color: #e0e7ff;
-    min-height: 72px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    text-align: center;
-  }
-  .message-box span.icon {
-    color: #3b82f6;
-    font-size: 26px;
-  }
-
-  /* Issue selection containers */
-  .issue-selection {
-    margin-top: 2rem;
-    display: none; /* Hidden by default */
     flex-direction: column;
-    gap: 12px;
-    max-width: 640px;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 32px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+    gap: 48px;
+  }
+  /* Intro text */
+  .intro {
     text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
   }
-  .issue-selection.active {
-    display: flex;
-  }
-  .issue-selection p {
+  .intro h2 {
     font-weight: 600;
-    font-size: 1.1rem;
-    color: #bfdbfe;
-    margin: 0;
+    font-size: 2rem;
+    margin-bottom: 12px;
+    color: #137333; /* Dark green accent */
   }
-  .issue-buttons {
+  .intro p {
+    font-size: 1.125rem;
+    color: #5F6368;
+    line-height: 1.5;
+  }
+  /* Button group */
+  .button-group {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
-    margin-top: 0.5rem;
+    gap: 32px;
+    flex-wrap: wrap;
   }
-  .issue-button {
-    background: #2563eb;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 18px;
-    color: white;
-    cursor: pointer;
+  /* Repair buttons */
+  .repair-button {
+    background-color: white;
+    border: 2px solid #34A853;
+    color: #34A853;
     font-weight: 600;
-    font-size: 1rem;
-    transition: background-color 0.25s ease;
-    min-width: 160px;
-    user-select: none;
+    font-size: 1.25rem;
+    padding: 16px 40px;
+    border-radius: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 220px;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgb(52 168 83 / 0.2);
   }
-  .issue-button:hover,
-  .issue-button:focus-visible {
-    background: #1e40af;
+  .repair-button:hover,
+  .repair-button:focus {
+    background-color: #34A853;
+    color: white;
+    outline: none;
+    box-shadow: 0 6px 14px rgba(52, 168, 83, 0.5);
+  }
+  .repair-button .material-icons {
+    font-size: 28px;
+  }
+  /* Service selection */
+  .service-selection {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .service-button {
+    background-color: white;
+    border: 2px solid #34A853;
+    color: #34A853;
+    font-weight: 600;
+    font-size: 1.125rem;
+    padding: 12px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .service-button:hover,
+  .service-button:focus {
+    background-color: #34A853;
+    color: white;
     outline: none;
   }
-
-  /* Details info */
-  .detail-info {
-    margin-top: 2rem;
-    background-color: #1e293b;
-    border-radius: 14px;
-    padding: 1.5rem 2rem;
-    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.6);
-    max-width: 640px;
-    color: #dbeafe;
+  /* Business details */
+  .business-details {
     text-align: center;
-    font-weight: 600;
+    margin-top: 32px;
     font-size: 1rem;
-    user-select: none;
+    color: #5F6368;
   }
-  .detail-info p {
-    margin: 0.25rem 0;
-  }
-
-  /* Footer */
-  footer {
-    font-size: 0.9rem;
-    user-select: none;
-  }
-  footer a {
-    color: #3b82f6;
-    font-weight: 600;
-  }
-
-  /* Responsive */
-  @media (max-width: 480px) {
-    header h1 {
+  /* Responsive breakpoints */
+  @media (max-width: 600px) {
+    main {
+      padding: 24px 16px;
+      gap: 32px;
+    }
+    .intro h2 {
       font-size: 1.5rem;
     }
-    button {
-      font-size: 1rem;
-      padding: 12px 20px;
-      min-width: 140px;
-    }
-    main.container {
-      margin-top: 3rem;
-      margin-bottom: 5rem;
-      padding: 0 0.5rem;
-    }
-    .message-box {
-      font-size: 1rem;
-      min-height: 60px;
+    .repair-button, .service-button {
+      min-width: 100%;
+      padding: 16px;
+      font-size: 1.125rem;
       justify-content: center;
     }
-    .issue-buttons {
-      gap: 8px;
-    }
-    .issue-button {
-      min-width: 120px;
-      font-size: 0.9rem;
-      padding: 8px 14px;
+    .button-group {
+      gap: 24px;
     }
   }
 </style>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 </head>
 <body>
-<header role="banner" aria-label="Site header with brand name and Malaysia flag">
-  <div class="header-content">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Flag_of_Malaysia.svg/320px-Flag_of_Malaysia.svg.png" alt="Flag of Malaysia, a rectangle with 14 red and white stripes and a blue canton with yellow crescent and 14-point star" />
-    <h1>Repair &amp; Service Mobile Phone</h1>
-  </div>
+<header role="banner">
+  <span class="material-icons" aria-hidden="true">smartphone</span>
+  <h1>Mobile Phone Repair & Service</h1>
 </header>
-
-<main class="container" role="main" aria-label="Main content area">
-  <p>Welcome! Choose the repair type below to quickly contact us on WhatsApp.</p>
-  <div class="buttons" role="group" aria-label="Repair options">
-    <button id="softwareBtn" aria-describedby="softwareDesc" title="Contact for software repair via WhatsApp">
-      <span class="material-icons" aria-hidden="true">memory</span>
+<main>
+  <section class="intro" aria-label="Introduction">
+    <h2>Fast & Reliable Mobile Repairs</h2>
+    <p>Select the type of repair you need, and we will connect you directly on WhatsApp to get started quickly.</p>
+  </section>
+  <section class="button-group" role="region" aria-label="Repair type selection">
+    <button type="button" class="repair-button" id="softwareRepair" aria-describedby="softwareDesc">
+      <span class="material-icons" aria-hidden="true" focusable="false">memory</span>
       SOFTWARE Repair
     </button>
-    <button id="hardwareBtn" aria-describedby="hardwareDesc" title="Contact for hardware repair via WhatsApp">
-      <span class="material-icons" aria-hidden="true">build</span>
+    <button type="button" class="repair-button" id="hardwareRepair" aria-describedby="hardwareDesc">
+      <span class="material-icons" aria-hidden="true" focusable="false">build</span>
       HARDWARE Repair
     </button>
-  </div>
-
-  <div class="message-box" id="demoChat" tabindex="0" aria-live="polite" aria-atomic="true" aria-label="Message preview area">
-    <span class="material-icons icon" aria-hidden="true">chat</span>
-    <span>Welcome! Please select a service type to chat with us on WhatsApp.</span>
-  </div>
-
-  <!-- Hardware Issues Selection -->
-  <div class="issue-selection" id="hardwareSelection" role="region" aria-label="Select your hardware issue" hidden>
-    <p><strong>Select your hardware issue:</strong></p>
-    <div class="issue-buttons" role="group" aria-label="Hardware issues selection">
-      <button class="issue-button" data-issue="Water damage">Water damage</button>
-      <button class="issue-button" data-issue="Phone can't turn on">Phone can't turn on</button>
-      <button class="issue-button" data-issue="CPU repair">CPU</button>
-      <button class="issue-button" data-issue="Charging problem">Charging problem</button>
-      <button class="issue-button" data-issue="Sound problem">Sound problem</button>
-      <button class="issue-button" data-issue="Display problem">Display problem</button>
-      <button class="issue-button" data-issue="Face ID problem">Face ID problem</button>
-      <button class="issue-button" data-issue="Network problem">Network problem</button>
-    </div>
-  </div>
-
-  <div class="detail-info" id="hardwareDetailInfo" hidden aria-live="polite" aria-atomic="true" role="region" aria-label="Hardware issue detail and contact info">
-    <p><strong>V EXPERT MOBILE REPAIR</strong></p>
-    <p>No tel: 01129333332</p>
-    <p>7, JALAN BUNGA TANJUNG 8, TAMAN PUTRA, AMPANG<br>56100 KUALA LUMPUR</p>
-    <p id="hardwareSelectedIssueText"></p>
-  </div>
-
-  <!-- Software Issues Selection -->
-  <div class="issue-selection" id="softwareSelection" role="region" aria-label="Select your software issue" hidden>
-    <p><strong>Select your software issue:</strong></p>
-    <div class="issue-buttons" role="group" aria-label="Software issues selection">
-      <button class="issue-button" data-issue="Telco Unlock/contract phone">Telco Unlock/contract phone</button>
-      <button class="issue-button" data-issue="Xiaomi FRP/PIN/Passcode">Xiaomi FRP/PIN/Passcode</button>
-      <button class="issue-button" data-issue="Honor PIN/Passcode">Honor PIN/Passcode</button>
-      <button class="issue-button" data-issue="Software Tool Rental">Software Tool Rental</button>
-      <button class="issue-button" data-issue="DOWNGRADE FIRMWARE">DOWNGRADE FIRMWARE</button>
-      <button class="issue-button" data-issue="RESET IPAD/IPHONE ID">RESET IPAD/IPHONE ID</button>
-      <button class="issue-button" data-issue="Firmware STOCK">Firmware STOCK</button>
-      <button class="issue-button" data-issue="Samsung Google">Samsung Google</button>
-    </div>
-  </div>
-
-  <div class="detail-info" id="softwareDetailInfo" hidden aria-live="polite" aria-atomic="true" role="region" aria-label="Software issue detail and contact info">
-    <p><strong>ZUU CASTER IT SOLUTION</strong></p>
-    <p>No tel: 01178040403</p>
-    <p>TAMAN DAYA JOHOR BAHRU</p>
-    <p id="softwareSelectedIssueText"></p>
-  </div>
-
+  </section>
+  <section class="service-selection" id="hardwareServices" aria-label="Hardware Services">
+    <h3>Select Your Hardware Issue</h3>
+    <button type="button" class="service-button" data-issue="Water damage">Water damage</button>
+    <button type="button" class="service-button" data-issue="Phone can't turn on">Phone can't turn on</button>
+    <button type="button" class="service-button" data-issue="CPU">CPU</button>
+    <button type="button" class="service-button" data-issue="Charging problem">Charging problem</button>
+    <button type="button" class="service-button" data-issue="Sound problem">Sound problem</button>
+    <button type="button" class="service-button" data-issue="Display problem">Display problem</button>
+    <button type="button" class="service-button" data-issue="Face ID problem">Face ID problem</button>
+    <button type="button" class="service-button" data-issue="Network problem">Network problem</button>
+  </section>
+  <section class="service-selection" id="softwareServices" aria-label="Software Services">
+    <h3>Select Your Software Issue</h3>
+    <button type="button" class="service-button" data-issue="Telco Unlock/contract phone">Telco Unlock/contract phone</button>
+    <button type="button" class="service-button" data-issue="Xiaomi FRP/PIN/Passcode">Xiaomi FRP/PIN/Passcode</button>
+    <button type="button" class="service-button" data-issue="Honor/PIN/Passcode">Honor/PIN/Passcode</button>
+    <button type="button" class="service-button" data-issue="Software Tool Rental">Software Tool Rental</button>
+    <button type="button" class="service-button" data-issue="Downgrade Firmware">Downgrade Firmware</button>
+    <button type="button" class="service-button" data-issue="Reset iPad/iPhone ID">Reset iPad/iPhone ID</button>
+    <button type="button" class="service-button" data-issue="Firmware Stock">Firmware Stock</button>
+    <button type="button" class="service-button" data-issue="Samsung Google">Samsung Google</button>
+  </section>
+  <section class="business-details" id="businessDetails"></section>
 </main>
-
-<footer role="contentinfo">
-  &copy; 2024 Repair and Service Mobile Phone. &nbsp;
-  <a href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-</footer>
-
 <script>
-  const phoneNumberHardware = '01129333332'; // V EXPERT MOBILE REPAIR
-  const phoneNumberSoftware = '01178040403'; // ZUU CASTER IT SOLUTION
+  (function(){
+    // Phone numbers for WhatsApp contact
+    const hardwarePhoneNumber = "01129333332"; // Hardware repair contact
+    const softwarePhoneNumber = "01178040403"; // Software repair contact
 
-  const demoChat = document.getElementById('demoChat');
+    // Template messages for different repair types
+    const hardwareMessages = {
+      "Water damage": "Hello, I have a water damage issue with my mobile phone.",
+      "Phone can't turn on": "Hello, my phone can't turn on.",
+      "CPU": "Hello, I have a CPU issue with my mobile phone.",
+      "Charging problem": "Hello, I have a charging problem with my mobile phone.",
+      "Sound problem": "Hello, I have a sound problem with my mobile phone.",
+      "Display problem": "Hello, I have a display problem with my mobile phone.",
+      "Face ID problem": "Hello, I have a Face ID problem with my mobile phone.",
+      "Network problem": "Hello, I have a network problem with my mobile phone."
+    };
 
-  // Hardware elements
-  const hardwareBtn = document.getElementById('hardwareBtn');
-  const hardwareSelection = document.getElementById('hardwareSelection');
-  const hardwareDetailInfo = document.getElementById('hardwareDetailInfo');
-  const hardwareSelectedIssueText = document.getElementById('hardwareSelectedIssueText');
-  const hardwareIssueButtons = hardwareSelection.querySelectorAll('.issue-button');
+    const softwareMessages = {
+      "Telco Unlock/contract phone": "Hello, I need help with unlocking my contract phone.",
+      "Xiaomi FRP/PIN/Passcode": "Hello, I need help with Xiaomi FRP/PIN/Passcode.",
+      "Honor/PIN/Passcode": "Hello, I need help with Honor PIN/Passcode.",
+      "Software Tool Rental": "Hello, I need to rent a software tool.",
+      "Downgrade Firmware": "Hello, I need to downgrade my firmware.",
+      "Reset iPad/iPhone ID": "Hello, I need to reset my iPad/iPhone ID.",
+      "Firmware Stock": "Hello, I need firmware stock for my device.",
+      "Samsung Google": "Hello, I need help with Samsung Google."
+    };
 
-  // Software elements
-  const softwareBtn = document.getElementById('softwareBtn');
-  const softwareSelection = document.getElementById('softwareSelection');
-  const softwareDetailInfo = document.getElementById('softwareDetailInfo');
-  const softwareSelectedIssueText = document.getElementById('softwareSelectedIssueText');
-  const softwareIssueButtons = softwareSelection.querySelectorAll('.issue-button');
+    /**
+     * Encode text message for URL
+     * @param {string} text
+     * @returns {string}
+     */
+    function encodeMessage(text){
+      return encodeURIComponent(text);
+    }
 
-  function generateWhatsAppLink(phoneNumber, issue) {
-    const baseURL = 'https://wa.me/' + phoneNumber.replace(/\D/g,'');
-    const message = encodeURIComponent(
-      `Hello, I would like to inquire about repair service: ${issue} for my mobile phone.`
-    );
-    return baseURL + '?text=' + message;
-  }
+    /**
+     * Generate WhatsApp link URL
+     * @param {string} phone - phone number with country code (e.g. 1234567890)
+     * @param {string} msg - text message
+     * @returns {string}
+     */
+    function generateWhatsAppLink(phone, msg){
+      return `https://wa.me/${phone}?text=${encodeMessage(msg)}`;
+    }
 
-  function clearAllSelections() {
-    hardwareSelection.hidden = true;
-    hardwareDetailInfo.hidden = true;
-    hardwareSelectedIssueText.textContent = '';
-    softwareSelection.hidden = true;
-    softwareDetailInfo.hidden = true;
-    softwareSelectedIssueText.textContent = '';
-  }
+    /**
+     * Handle repair type selection
+     * @param {string} type - 'software' or 'hardware'
+     */
+    function onRepairTypeSelected(type){
+      document.getElementById('hardwareServices').style.display = 'none';
+      document.getElementById('softwareServices').style.display = 'none';
+      document.getElementById('businessDetails').innerHTML = '';
 
-  softwareBtn.addEventListener('click', () => {
-    clearAllSelections();
-    demoChat.style.opacity = '0';
-    setTimeout(() => {
-      demoChat.innerHTML = `
-        <span class="material-icons icon" aria-hidden="true">memory</span>
-        <span>You have selected <strong>SOFTWARE</strong> repair. Please select your issue below.</span>
-      `;
-      demoChat.style.opacity = '1';
-      demoChat.focus();
-    }, 200);
-    softwareSelection.hidden = false;
-  });
+      if (type === 'software') {
+        document.getElementById('softwareServices').style.display = 'flex';
+        document.getElementById('businessDetails').innerHTML = `
+          <strong>ZUU CASTER IT SOLUTION</strong><br>
+          No tel: 01178040403<br>
+          TAMAN DAYA JOHOR BAHRU
+        `;
+      } else if (type === 'hardware') {
+        document.getElementById('hardwareServices').style.display = 'flex';
+        document.getElementById('businessDetails').innerHTML = `
+          <strong>V EXPERT MOBILE REPAIR</strong><br>
+          No tel: 01129333332<br>
+          7, JALAN BUNGA TANJUNG 8, TAMAN PUTRA, AMPANG<br>
+          56100 KUALA LUMPUR
+        `;
+      }
+    }
 
-  hardwareBtn.addEventListener('click', () => {
-    clearAllSelections();
-    demoChat.style.opacity = '0';
-    setTimeout(() => {
-      demoChat.innerHTML = `
-        <span class="material-icons icon" aria-hidden="true">build</span>
-        <span>You have selected <strong>HARDWARE</strong> repair. Please select your issue below.</span>
-      `;
-      demoChat.style.opacity = '1';
-      demoChat.focus();
-    }, 200);
-    hardwareSelection.hidden = false;
-  });
+    /**
+     * Handle service selection
+     * @param {string} type - 'hardware' or 'software'
+     * @param {string} issue - selected issue
+     */
+    function onServiceSelected(type, issue){
+      const msg = type === 'hardware' ? hardwareMessages[issue] : softwareMessages[issue];
+      const phone = type === 'hardware' ? hardwarePhoneNumber : softwarePhoneNumber;
+      const url = generateWhatsAppLink(phone, msg);
+      // Redirect user to WhatsApp web or app
+      window.location.href = url;
+    }
 
-  hardwareIssueButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const issue = button.getAttribute('data-issue');
-      hardwareSelectedIssueText.textContent = `Selected issue: ${issue}`;
-      hardwareDetailInfo.hidden = false;
-      demoChat.innerHTML = `
-        <span class="material-icons icon" aria-hidden="true">chat_bubble</span>
-        <span>You selected <strong>${issue}</strong>. Click the button below to chat with V EXPERT MOBILE REPAIR about this issue on WhatsApp.</span>
-      `;
-      demoChat.focus();
-      createOrUpdateChatButton(phoneNumberHardware, issue);
+    // Add event listeners
+    document.getElementById('softwareRepair').addEventListener('click', function(){
+      onRepairTypeSelected('software');
     });
-  });
-
-  softwareIssueButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const issue = button.getAttribute('data-issue');
-      softwareSelectedIssueText.textContent = `Selected issue: ${issue}`;
-      softwareDetailInfo.hidden = false;
-      demoChat.innerHTML = `
-        <span class="material-icons icon" aria-hidden="true">chat_bubble</span>
-        <span>You selected <strong>${issue}</strong>. Click the button below to chat with ZUU CASTER IT SOLUTION about this issue on WhatsApp.</span>
-      `;
-      demoChat.focus();
-      createOrUpdateChatButton(phoneNumberSoftware, issue);
+    document.getElementById('hardwareRepair').addEventListener('click', function(){
+      onRepairTypeSelected('hardware');
     });
-  });
 
-  function createOrUpdateChatButton(phoneNumber, issue) {
-    let chatBtn = document.getElementById('chatIssueBtn');
-    if(!chatBtn){
-      chatBtn = document.createElement('button');
-      chatBtn.id = 'chatIssueBtn';
-      chatBtn.type = 'button';
-      chatBtn.style.marginTop = '1rem';
-      chatBtn.style.background = '#3b82f6';
-      chatBtn.style.color = '#fff';
-      chatBtn.style.border = 'none';
-      chatBtn.style.padding = '12px 24px';
-      chatBtn.style.borderRadius = '12px';
-      chatBtn.style.fontWeight = '700';
-      chatBtn.style.fontSize = '1rem';
-      chatBtn.style.cursor = 'pointer';
-      chatBtn.style.boxShadow = '0 6px 15px rgba(59, 130, 246, 0.7)';
-      chatBtn.style.display = 'inline-flex';
-      chatBtn.style.alignItems = 'center';
-      chatBtn.style.gap = '8px';
-      chatBtn.innerHTML = `<span class="material-icons" aria-hidden="true" style="font-size:22px;">chat</
+    // Add event listeners for service buttons
+    document.querySelectorAll('.service-button').forEach(button => {
+      button.addEventListener('click', function(){
+        const issue = this.getAttribute('data-issue');
+        const type = this.closest('.service-selection').id === 'hardwareServices' ? 'hardware' : 'software';
+        onServiceSelected(type, issue);
+      });
+    });
+  })();
+</script>
+</body>
+</html>
