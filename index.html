@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hide BLACKLIST TELCO Price List</title>
+<title>Mobile Phone Repair and Service</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
@@ -11,353 +11,385 @@
   *, *::before, *::after {
     box-sizing: border-box;
   }
-
-  html, body {
-    margin: 0;
-    height: 100%;
-    font-family: 'Inter', sans-serif;
-    background-color: #000000; /* fallback */
-    color: #e0e0e0;
-    overflow-x: hidden;
-  }
-
   body {
-    position: relative;
+    margin: 0;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #1f2937; /* Dark slate blue */
     min-height: 100vh;
-  }
-
-  /* Canvas Cover */
-  #matrix-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    background-color: #000; /* fallback in case animation fails */
-  }
-
-  main {
-    position: relative;
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding: 48px 16px 80px;
-  }
-
-  .container {
-    background: rgba(255 255 255 / 0.05);
-    backdrop-filter: blur(14px);
-    border-radius: 16px;
-    max-width: 480px;
-    width: 100%;
-    padding: 32px 28px;
-    box-shadow: 0 8px 24px rgb(0 255 70 / 0.4);
-    text-align: center;
-  }
-
-  h1 {
-    font-size: 2.75rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: #00ff00;
-    text-shadow:
-      0 0 8px #00ff00,
-      0 0 16px #00ff00;
-  }
-
-  p {
-    font-weight: 500;
-    font-size: 1rem;
-    margin-bottom: 28px;
-    color: #a0ffa0cc;
-    line-height: 1.4;
-  }
-
-  form {
+    color: #f3f4f6; /* Light gray */
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a {
+    color: #3b82f6; /* Bright blue */
+    text-decoration: none;
+  }
+  a:hover,
+  a:focus {
+    text-decoration: underline;
   }
 
-  label {
-    font-weight: 600;
-    font-size: 1rem;
-    text-align: left;
-    color: #90ff90;
-    user-select: none;
+  /* Layout */
+  header, footer {
+    background-color: #111827; /* Darker blue-gray */
+    padding: 1.5rem 2rem;
+    text-align: center;
+    box-shadow: inset 0 -1px 0 rgb(255 255 255 / 0.1);
+    color: #e0e7ff; /* Light blue-gray */
   }
-
-  input[type="text"] {
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: none;
-    font-size: 1.1rem;
-    font-weight: 600;
-    background: rgba(255 255 255 / 0.15);
-    color: #d0ffd0;
-    text-shadow: 0 0 3px #00ff00;
-    outline-offset: 2px;
-    transition: background-color 0.3s ease;
-    text-transform: uppercase;
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
-
-  input[type="text"]::placeholder {
-    color: #99ff99aa;
-    font-weight: 400;
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 960px;
+    margin: 0 auto;
   }
-
-  input[type="text"]:focus {
-    background: rgba(255 255 255 / 0.25);
+  .header-content img {
+    width: 40px;
+    height: 28px;
+    border-radius: 4px;
+    object-fit: cover;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.8);
   }
-
-  button {
-    padding: 14px 0;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #00ff00 0%, #009900 100%);
-    border: none;
-    font-size: 1.2rem;
+  header h1 {
     font-weight: 700;
-    color: #001100;
-    letter-spacing: 1.2px;
-    cursor: pointer;
-    box-shadow:
-      0 0 10px #00ff00,
-      0 0 20px #00ff00 inset;
-    transition: background 0.3s ease, filter 0.3s ease;
+    font-size: 1.9rem;
+    margin: 0;
+    user-select: none;
+    letter-spacing: 0.06em;
+    color: #bfdbfe; /* Soft blue */
+    text-shadow: 0 0 5px rgba(59, 130, 246, 0.8);
   }
-
-  button:hover,
-  button:focus-visible {
-    filter: brightness(1.2);
-    outline: none;
-    box-shadow:
-      0 0 18px #00ff00,
-      0 0 28px #00ff00 inset;
-  }
-
-  button:disabled {
-    background: #003300;
-    color: #006600;
-    cursor: default;
-    box-shadow: none;
-    filter: none;
-  }
-
-  /* Price list container */
-  #price-list {
-    margin-top: 40px;
-    background: rgba(255 255 255 / 0.12);
-    padding: 28px 24px;
-    border-radius: 16px;
-    box-shadow: 0 6px 15px rgb(0 255 70 / 0.3);
-    color: #b0ffb0;
+  main.container {
+    max-width: 640px;
+    margin: 4rem auto 6rem;
+    padding: 0 1rem;
     text-align: center;
   }
 
-  #price-list h2 {
-    font-weight: 700;
-    font-size: 2.25rem;
-    margin-bottom: 24px;
-    color: #00ff00;
-    text-shadow:
-      0 0 6px #00ff00,
-      0 0 12px #00ff00;
+  /* Buttons and interaction */
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
   }
-
-  #price-list .selection-option {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 36px;
-    color: #a0ffa0cc;
-  }
-
-  ul.selection-list {
-    list-style: disc;
-    margin: 0 auto 36px;
-    color: #a0ffa0cc;
-    font-weight: 600;
-    font-size: 1.2rem;
-    max-width: 180px;
-    text-align: left;
-    padding-left: 20px;
-  }
-
-  #price-list a.whatsapp-link {
-    display: inline-block;
-    padding: 14px 36px;
+  button {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    border: none;
+    border-radius: 12px;
+    padding: 14px 28px;
     font-size: 1.2rem;
     font-weight: 700;
-    border-radius: 28px;
-    background: #25d366;
-    color: #fafafa;
-    text-decoration: none;
-    box-shadow: 0 0 20px #25d366aa;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 180px;
+    justify-content: center;
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.7);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  button .material-icons {
+    font-size: 28px;
+    transition: transform 0.3s ease;
+  }
+  button:hover {
+    background: linear-gradient(135deg, #1e40af, #2563eb);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.8);
+  }
+  button:hover .material-icons {
+    transform: rotate(15deg);
+  }
+  button:focus-visible {
+    outline-offset: 3px;
+    outline: 3px solid #1e40af;
   }
 
-  #price-list a.whatsapp-link:hover,
-  #price-list a.whatsapp-link:focus-visible {
-    background: #1ebe57;
-    box-shadow: 0 0 28px #1ebe57cc;
+  /* Message preview */
+  .message-box {
+    margin-top: 3rem;
+    background-color: #374151; /* Deep muted blue-gray */
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    box-shadow: inset 0 0 10px rgba(59, 130, 246, 0.3);
+    font-size: 1.1rem;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #e0e7ff;
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+  }
+  .message-box span.icon {
+    color: #3b82f6;
+    font-size: 26px;
+  }
+
+  /* Hardware issue selection */
+  .issue-selection {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  .issue-selection p {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #bfdbfe;
+    margin: 0;
+  }
+  .issue-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 0.5rem;
+  }
+  .issue-button {
+    background: #2563eb;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.25s ease;
+    min-width: 160px;
+    user-select: none;
+  }
+  .issue-button:hover,
+  .issue-button:focus-visible {
+    background: #1e40af;
     outline: none;
   }
 
-  /* Error message */
-  #error-message {
-    color: #ff6666;
+  /* Details info */
+  .detail-info {
+    margin-top: 2rem;
+    background-color: #1e293b;
+    border-radius: 14px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.6);
+    max-width: 640px;
+    color: #dbeafe;
+    text-align: center;
     font-weight: 600;
-    min-height: 1.4em;
-    margin-top: 8px;
-    visibility: hidden;
+    font-size: 1rem;
+    user-select: none;
+  }
+  .detail-info p {
+    margin: 0.25rem 0;
   }
 
-  /* Responsive adjustments */
+  /* Footer */
+  footer {
+    font-size: 0.9rem;
+    user-select: none;
+  }
+  footer a {
+    color: #3b82f6;
+    font-weight: 600;
+  }
+
+  /* Responsive */
   @media (max-width: 480px) {
-    main {
-      padding: 32px 12px 64px;
+    header h1 {
+      font-size: 1.5rem;
     }
-    .container {
-      max-width: 100%;
-      padding: 28px 20px;
+    button {
+      font-size: 1rem;
+      padding: 12px 20px;
+      min-width: 140px;
     }
-    h1 {
-      font-size: 2.4rem;
+    main.container {
+      margin-top: 3rem;
+      margin-bottom: 5rem;
+      padding: 0 0.5rem;
     }
-    #price-list h2 {
-      font-size: 1.75rem;
+    .message-box {
+      font-size: 1rem;
+      min-height: 60px;
+      justify-content: center;
+    }
+    .issue-buttons {
+      gap: 8px;
+    }
+    .issue-button {
+      min-width: 120px;
+      font-size: 0.9rem;
+      padding: 8px 14px;
     }
   }
 </style>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 </head>
 <body>
-<canvas id="matrix-canvas" aria-hidden="true"></canvas>
-<main>
-  <section class="container" aria-label="Encrypted code input and price list">
-    <h1>Enter Encrypted Code</h1>
-    <p>Unlock the Hide BLACKLIST TELCO price list by entering the secret code below.</p>
-    <form id="code-form" aria-describedby="code-help" autocomplete="off" novalidate>
-      <label for="code-input">Encrypted Code</label>
-      <input
-        type="text"
-        id="code-input"
-        name="code-input"
-        placeholder="Enter your code (e.g. 02)"
-        aria-required="true"
-        aria-describedby="error-message"
-        autocomplete="off"
-        spellcheck="false"
-        required
-        inputmode="numeric"
-      />
-      <button type="submit" aria-label="Submit encrypted code to unlock price list">Unlock Price List</button>
-      <div id="error-message" role="alert" aria-live="assertive"></div>
-    </form>
+<header role="banner" aria-label="Site header with brand name and Malaysia flag">
+  <div class="header-content">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Flag_of_Malaysia.svg/320px-Flag_of_Malaysia.svg.png" alt="Flag of Malaysia, a rectangle with 14 red and white stripes and a blue canton with yellow crescent and 14-point star" />
+    <h1>Repair &amp; Service Mobile Phone</h1>
+  </div>
+</header>
 
-    <section id="price-list" aria-live="polite" style="display:none;">
-      <h2>Hide BLACKLIST TELCO</h2>
-      <div class="selection-option">Selection option</div>
-      <ul class="selection-list">
-        <li>NO IC (FILL)</li>
-      </ul>
-      <a
-        href="https://wa.me/60178040403?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20Hide%20BLACKLIST%20TELCO."
-        target="_blank"
-        rel="noopener noreferrer"
-        class="whatsapp-link"
-      >
-        DIRECT SEND TO MY WHATSAPP
-      </a>
-    </section>
-  </section>
+<main class="container" role="main" aria-label="Main content area">
+  <p>Welcome! Choose the repair type below to quickly contact us on WhatsApp.</p>
+  <div class="buttons" role="group" aria-label="Repair options">
+    <button id="softwareBtn" aria-describedby="softwareDesc" title="Contact for software repair via WhatsApp">
+      <span class="material-icons" aria-hidden="true">memory</span>
+      SOFTWARE Repair
+    </button>
+    <button id="hardwareBtn" aria-describedby="hardwareDesc" title="Contact for hardware repair via WhatsApp">
+      <span class="material-icons" aria-hidden="true">build</span>
+      HARDWARE Repair
+    </button>
+  </div>
+
+  <div class="message-box" id="demoChat" tabindex="0" aria-live="polite" aria-atomic="true" aria-label="Message preview area">
+    <span class="material-icons icon" aria-hidden="true">chat</span>
+    <span>Welcome! Please select a service type to chat with us on WhatsApp.</span>
+  </div>
+
+  <div class="issue-selection" id="issueSelection" aria-live="polite" aria-atomic="true" role="region" aria-label="Select your hardware issue" hidden>
+    <p><strong>Select your hardware issue:</strong></p>
+    <div class="issue-buttons" role="group" aria-label="Hardware issues selection">
+      <button class="issue-button" data-issue="Water damage">Water damage</button>
+      <button class="issue-button" data-issue="Phone can't turn on">Phone can't turn on</button>
+      <button class="issue-button" data-issue="CPU repair">CPU</button>
+      <button class="issue-button" data-issue="Charging problem">Charging problem</button>
+      <button class="issue-button" data-issue="Sound problem">Sound problem</button>
+      <button class="issue-button" data-issue="Display problem">Display problem</button>
+      <button class="issue-button" data-issue="Face ID problem">Face ID problem</button>
+      <button class="issue-button" data-issue="Network problem">Network problem</button>
+    </div>
+  </div>
+
+  <div class="detail-info" id="detailInfo" aria-live="polite" aria-atomic="true" role="region" aria-label="Selected issue and contact information" hidden>
+    <p><strong>V EXPERT MOBILE REPAIR</strong></p>
+    <p>No tel: 01129333332</p>
+    <p>7, JALAN BUNGA TANJUNG 8, TAMAN PUTRA, AMPANG<br>56100 KUALA LUMPUR</p>
+    <p id="selectedIssueText"></p>
+  </div>
 </main>
+
+<footer role="contentinfo">
+  &copy; 2024 Repair and Service Mobile Phone. &nbsp;
+  <a href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+</footer>
+
 <script>
-  // Matrix binary rain animation on canvas
-  const canvas = document.getElementById('matrix-canvas');
-  const ctx = canvas.getContext('2d');
-  let width, height;
-  let columns;
-  const fontSize = 18;
-  let drops = [];
+  const phoneNumber = '01129333332'; // Use full international format if needed
+  
+  const demoChat = document.getElementById('demoChat');
+  const issueSelection = document.getElementById('issueSelection');
+  const detailInfo = document.getElementById('detailInfo');
+  const selectedIssueText = document.getElementById('selectedIssueText');
+  const softwareBtn = document.getElementById('softwareBtn');
+  const hardwareBtn = document.getElementById('hardwareBtn');
+  const issueButtons = document.querySelectorAll('.issue-button');
 
-  const binaryChars = ['0', '1'];
-
-  function initCanvas() {
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
-    columns = Math.floor(width / fontSize);
-    drops = new Array(columns).fill(1);
+  function generateWhatsAppLink(issue) {
+    const baseURL = 'https://wa.me/' + phoneNumber.replace(/\D/g,'');
+    const message = encodeURIComponent(
+      `Hello, I would like to inquire about hardware repair: ${issue} for my mobile phone.`
+    );
+    return baseURL + '?text=' + message;
   }
 
-  function draw() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.13)';
-    ctx.fillRect(0, 0, width, height);
-
-    ctx.fillStyle = '#00ff00';
-    ctx.font = fontSize + 'px monospace';
-
-    for (let i = 0; i < drops.length; i++) {
-      const text = binaryChars[Math.floor(Math.random() * binaryChars.length)];
-      const x = i * fontSize;
-      const y = drops[i] * fontSize;
-
-      ctx.fillText(text, x, y);
-
-      if (y > height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-      drops[i]++;
-    }
+  function clearSelections() {
+    issueSelection.hidden = true;
+    detailInfo.hidden = true;
+    selectedIssueText.textContent = '';
   }
 
-  initCanvas();
-  setInterval(draw, 40);
-
-  window.addEventListener('resize', () => {
-    initCanvas();
+  softwareBtn.addEventListener('click', () => {
+    clearSelections();
+    demoChat.style.opacity = '0';
+    setTimeout(() => {
+      demoChat.innerHTML = `
+        <span class="material-icons icon" aria-hidden="true">chat_bubble</span>
+        <span>You have selected <strong>SOFTWARE</strong> repair. Clicking this button will open WhatsApp to chat with us immediately.</span>
+      `;
+      demoChat.style.opacity = '1';
+      demoChat.focus();
+    }, 200);
+    window.open('https://wa.me/' + phoneNumber.replace(/\D/g,'') + '?text=' + encodeURIComponent('Hello, I would like to inquire about SOFTWARE repair service for my mobile phone.'), '_blank', 'noopener');
   });
 
-  // Code validation and form handling
-  (function () {
-    const form = document.getElementById('code-form');
-    const input = document.getElementById('code-input');
-    const errorMsg = document.getElementById('error-message');
-    const priceList = document.getElementById('price-list');
+  hardwareBtn.addEventListener('click', () => {
+    demoChat.style.opacity = '0';
+    setTimeout(() => {
+      demoChat.innerHTML = `
+        <span class="material-icons icon" aria-hidden="true">chat_bubble</span>
+        <span>You have selected <strong>HARDWARE</strong> repair. Please select your issue below.</span>
+      `;
+      demoChat.style.opacity = '1';
+      demoChat.focus();
+    }, 200);
+    issueSelection.hidden = false;
+    detailInfo.hidden = true;
+    selectedIssueText.textContent = '';
+  });
 
-    // The encrypted code to unlock the pricelist
-    const secretCode = '02';
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const val = input.value.trim();
-
-      if (!val) {
-        errorMsg.textContent = 'Please enter the encrypted code.';
-        errorMsg.style.visibility = 'visible';
-        priceList.style.display = 'none';
-        return;
-      }
-
-      if (val === secretCode) {
-        errorMsg.style.visibility = 'hidden';
-        priceList.style.display = 'block';
-        input.value = '';
-        input.disabled = true;
-        this.querySelector('button').disabled = true;
-        input.setAttribute('aria-disabled', 'true');
-        input.setAttribute('aria-readonly', 'true');
-        this.setAttribute('aria-hidden', 'true');
-      } else {
-        errorMsg.textContent = 'Invalid code. Please try again.';
-        errorMsg.style.visibility = 'visible';
-        priceList.style.display = 'none';
-      }
+  issueButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const issue = button.getAttribute('data-issue');
+      selectedIssueText.textContent = `Selected issue: ${issue}`;
+      detailInfo.hidden = false;
+      demoChat.innerHTML = `
+        <span class="material-icons icon" aria-hidden="true">chat_bubble</span>
+        <span>You selected <strong>${issue}</strong>. Click the button below to chat with us about this issue on WhatsApp.</span>
+      `;
+      demoChat.focus();
+      createOrUpdateChatButton(issue);
     });
-  })();
+  });
+
+  function createOrUpdateChatButton(issue) {
+    let chatBtn = document.getElementById('chatIssueBtn');
+    if(!chatBtn){
+      chatBtn = document.createElement('button');
+      chatBtn.id = 'chatIssueBtn';
+      chatBtn.type = 'button';
+      chatBtn.style.marginTop = '1rem';
+      chatBtn.style.background = '#3b82f6';
+      chatBtn.style.color = '#fff';
+      chatBtn.style.border = 'none';
+      chatBtn.style.padding = '12px 24px';
+      chatBtn.style.borderRadius = '12px';
+      chatBtn.style.fontWeight = '700';
+      chatBtn.style.fontSize = '1rem';
+      chatBtn.style.cursor = 'pointer';
+      chatBtn.style.boxShadow = '0 6px 15px rgba(59, 130, 246, 0.7)';
+      chatBtn.style.display = 'inline-flex';
+      chatBtn.style.alignItems = 'center';
+      chatBtn.style.gap = '8px';
+      chatBtn.innerHTML = `<span class="material-icons" aria-hidden="true" style="font-size:22px;">chat</span> Chat about this issue`;
+      chatBtn.addEventListener('click', () => {
+        const link = generateWhatsAppLink(issue);
+        window.open(link, '_blank', 'noopener');
+      });
+      detailInfo.appendChild(chatBtn);
+    }
+  }
 </script>
 </body>
 </html>
