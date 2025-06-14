@@ -206,8 +206,8 @@
 <script>
   (function(){
     // Phone numbers for WhatsApp contact
-    const hardwarePhoneNumber = "01129333332"; // Hardware repair contact
-    const softwarePhoneNumber = "01178040403"; // Software repair contact
+    const hardwarePhoneNumber = "+601129333332"; // Hardware repair contact
+    const softwarePhoneNumber = "+60178040403"; // Software repair contact
 
     // Template messages for different repair types
     const hardwareMessages = {
@@ -243,7 +243,7 @@
 
     /**
      * Generate WhatsApp link URL
-     * @param {string} phone - phone number with country code (e.g. 1234567890)
+     * @param {string} phone - phone number with country code (e.g. 60112345678)
      * @param {string} msg - text message
      * @returns {string}
      */
@@ -264,14 +264,14 @@
         document.getElementById('softwareServices').style.display = 'flex';
         document.getElementById('businessDetails').innerHTML = `
           <strong>ZUU CASTER IT SOLUTION</strong><br>
-          No tel: 01178040403<br>
+          No tel: ${softwarePhoneNumber}<br>
           TAMAN DAYA JOHOR BAHRU
         `;
       } else if (type === 'hardware') {
         document.getElementById('hardwareServices').style.display = 'flex';
         document.getElementById('businessDetails').innerHTML = `
           <strong>V EXPERT MOBILE REPAIR</strong><br>
-          No tel: 01129333332<br>
+          No tel: ${hardwarePhoneNumber}<br>
           7, JALAN BUNGA TANJUNG 8, TAMAN PUTRA, AMPANG<br>
           56100 KUALA LUMPUR
         `;
