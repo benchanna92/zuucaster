@@ -133,22 +133,27 @@
     align-items: center;
     gap: 12px;
     justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
   }
   .message-box span.icon {
     color: #3b82f6;
     font-size: 26px;
   }
 
-  /* Hardware issue selection */
+  /* Issue selection containers */
   .issue-selection {
     margin-top: 2rem;
-    display: flex;
+    display: none; /* Hidden by default */
     flex-direction: column;
     gap: 12px;
     max-width: 640px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+  }
+  .issue-selection.active {
+    display: flex;
   }
   .issue-selection p {
     font-weight: 600;
@@ -268,7 +273,8 @@
     <span>Welcome! Please select a service type to chat with us on WhatsApp.</span>
   </div>
 
-  <div class="issue-selection" id="issueSelection" aria-live="polite" aria-atomic="true" role="region" aria-label="Select your hardware issue" hidden>
+  <!-- Hardware Issues Selection -->
+  <div class="issue-selection" id="hardwareSelection" role="region" aria-label="Select your hardware issue" hidden>
     <p><strong>Select your hardware issue:</strong></p>
     <div class="issue-buttons" role="group" aria-label="Hardware issues selection">
       <button class="issue-button" data-issue="Water damage">Water damage</button>
@@ -282,12 +288,35 @@
     </div>
   </div>
 
-  <div class="detail-info" id="detailInfo" aria-live="polite" aria-atomic="true" role="region" aria-label="Selected issue and contact information" hidden>
+  <div class="detail-info" id="hardwareDetailInfo" hidden aria-live="polite" aria-atomic="true" role="region" aria-label="Hardware issue detail and contact info">
     <p><strong>V EXPERT MOBILE REPAIR</strong></p>
     <p>No tel: 01129333332</p>
     <p>7, JALAN BUNGA TANJUNG 8, TAMAN PUTRA, AMPANG<br>56100 KUALA LUMPUR</p>
-    <p id="selectedIssueText"></p>
+    <p id="hardwareSelectedIssueText"></p>
   </div>
+
+  <!-- Software Issues Selection -->
+  <div class="issue-selection" id="softwareSelection" role="region" aria-label="Select your software issue" hidden>
+    <p><strong>Select your software issue:</strong></p>
+    <div class="issue-buttons" role="group" aria-label="Software issues selection">
+      <button class="issue-button" data-issue="Telco Unlock/contract phone">Telco Unlock/contract phone</button>
+      <button class="issue-button" data-issue="Xiaomi FRP/PIN/Passcode">Xiaomi FRP/PIN/Passcode</button>
+      <button class="issue-button" data-issue="Honor PIN/Passcode">Honor PIN/Passcode</button>
+      <button class="issue-button" data-issue="Software Tool Rental">Software Tool Rental</button>
+      <button class="issue-button" data-issue="DOWGRADE FIRMWARE">DOWNGRADE FIRMWARE</button>
+      <button class="issue-button" data-issue="RESET IPAD/IPHONE ID">RESET IPAD/IPHONE ID</button>
+      <button class="issue-button" data-issue="Firmware STOCK">Firmware STOCK</button>
+      <button class="issue-button" data-issue="Samsung Google">Samsung Google</button>
+    </div>
+  </div>
+
+  <div class="detail-info" id="softwareDetailInfo" hidden aria-live="polite" aria-atomic="true" role="region" aria-label="Software issue detail and contact info">
+    <p><strong>ZUU CASTER IT SOLUTION</strong></p>
+    <p>No tel: 01178040403</p>
+    <p>TAMAN DAYA JOHOR BAHRU</p>
+    <p id="softwareSelectedIssueText"></p>
+  </div>
+
 </main>
 
 <footer role="contentinfo">
@@ -296,74 +325,99 @@
 </footer>
 
 <script>
-  const phoneNumber = '01129333332'; // Use full international format if needed
-  
-  const demoChat = document.getElementById('demoChat');
-  const issueSelection = document.getElementById('issueSelection');
-  const detailInfo = document.getElementById('detailInfo');
-  const selectedIssueText = document.getElementById('selectedIssueText');
-  const softwareBtn = document.getElementById('softwareBtn');
-  const hardwareBtn = document.getElementById('hardwareBtn');
-  const issueButtons = document.querySelectorAll('.issue-button');
+  const phoneNumberHardware = '01129333332'; // V EXPERT MOBILE REPAIR
+  const phoneNumberSoftware = '01178040403'; // ZUU CASTER IT SOLUTION
 
-  function generateWhatsAppLink(issue) {
+  const demoChat = document.getElementById('demoChat');
+
+  // Hardware elements
+  const hardwareBtn = document.getElementById('hardwareBtn');
+  const hardwareSelection = document.getElementById('hardwareSelection');
+  const hardwareDetailInfo = document.getElementById('hardwareDetailInfo');
+  const hardwareSelectedIssueText = document.getElementById('hardwareSelectedIssueText');
+  const hardwareIssueButtons = hardwareSelection.querySelectorAll('.issue-button');
+
+  // Software elements
+  const softwareBtn = document.getElementById('softwareBtn');
+  const softwareSelection = document.getElementById('softwareSelection');
+  const softwareDetailInfo = document.getElementById('softwareDetailInfo');
+  const softwareSelectedIssueText = document.getElementById('softwareSelectedIssueText');
+  const softwareIssueButtons = softwareSelection.querySelectorAll('.issue-button');
+
+  function generateWhatsAppLink(phoneNumber, issue) {
     const baseURL = 'https://wa.me/' + phoneNumber.replace(/\D/g,'');
     const message = encodeURIComponent(
-      `Hello, I would like to inquire about hardware repair: ${issue} for my mobile phone.`
+      `Hello, I would like to inquire about repair service: ${issue} for my mobile phone.`
     );
     return baseURL + '?text=' + message;
   }
 
-  function clearSelections() {
-    issueSelection.hidden = true;
-    detailInfo.hidden = true;
-    selectedIssueText.textContent = '';
+  function clearAllSelections() {
+    hardwareSelection.hidden = true;
+    hardwareDetailInfo.hidden = true;
+    hardwareSelectedIssueText.textContent = '';
+    softwareSelection.hidden = true;
+    softwareDetailInfo.hidden = true;
+    softwareSelectedIssueText.textContent = '';
   }
 
   softwareBtn.addEventListener('click', () => {
-    clearSelections();
+    clearAllSelections();
     demoChat.style.opacity = '0';
     setTimeout(() => {
       demoChat.innerHTML = `
-        <span class="material-icons icon" aria-hidden="true">chat_bubble</span>
-        <span>You have selected <strong>SOFTWARE</strong> repair. Clicking this button will open WhatsApp to chat with us immediately.</span>
+        <span class="material-icons icon" aria-hidden="true">memory</span>
+        <span>You have selected <strong>SOFTWARE</strong> repair. Please select your issue below.</span>
       `;
       demoChat.style.opacity = '1';
       demoChat.focus();
     }, 200);
-    window.open('https://wa.me/' + phoneNumber.replace(/\D/g,'') + '?text=' + encodeURIComponent('Hello, I would like to inquire about SOFTWARE repair service for my mobile phone.'), '_blank', 'noopener');
+    softwareSelection.hidden = false;
   });
 
   hardwareBtn.addEventListener('click', () => {
+    clearAllSelections();
     demoChat.style.opacity = '0';
     setTimeout(() => {
       demoChat.innerHTML = `
-        <span class="material-icons icon" aria-hidden="true">chat_bubble</span>
+        <span class="material-icons icon" aria-hidden="true">build</span>
         <span>You have selected <strong>HARDWARE</strong> repair. Please select your issue below.</span>
       `;
       demoChat.style.opacity = '1';
       demoChat.focus();
     }, 200);
-    issueSelection.hidden = false;
-    detailInfo.hidden = true;
-    selectedIssueText.textContent = '';
+    hardwareSelection.hidden = false;
   });
 
-  issueButtons.forEach(button => {
+  hardwareIssueButtons.forEach(button => {
     button.addEventListener('click', () => {
       const issue = button.getAttribute('data-issue');
-      selectedIssueText.textContent = `Selected issue: ${issue}`;
-      detailInfo.hidden = false;
+      hardwareSelectedIssueText.textContent = `Selected issue: ${issue}`;
+      hardwareDetailInfo.hidden = false;
       demoChat.innerHTML = `
         <span class="material-icons icon" aria-hidden="true">chat_bubble</span>
-        <span>You selected <strong>${issue}</strong>. Click the button below to chat with us about this issue on WhatsApp.</span>
+        <span>You selected <strong>${issue}</strong>. Click the button below to chat with V EXPERT MOBILE REPAIR about this issue on WhatsApp.</span>
       `;
       demoChat.focus();
-      createOrUpdateChatButton(issue);
+      createOrUpdateChatButton(phoneNumberHardware, issue);
     });
   });
 
-  function createOrUpdateChatButton(issue) {
+  softwareIssueButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const issue = button.getAttribute('data-issue');
+      softwareSelectedIssueText.textContent = `Selected issue: ${issue}`;
+      softwareDetailInfo.hidden = false;
+      demoChat.innerHTML = `
+        <span class="material-icons icon" aria-hidden="true">chat_bubble</span>
+        <span>You selected <strong>${issue}</strong>. Click the button below to chat with ZUU CASTER IT SOLUTION about this issue on WhatsApp.</span>
+      `;
+      demoChat.focus();
+      createOrUpdateChatButton(phoneNumberSoftware, issue);
+    });
+  });
+
+  function createOrUpdateChatButton(phoneNumber, issue) {
     let chatBtn = document.getElementById('chatIssueBtn');
     if(!chatBtn){
       chatBtn = document.createElement('button');
@@ -384,13 +438,34 @@
       chatBtn.style.gap = '8px';
       chatBtn.innerHTML = `<span class="material-icons" aria-hidden="true" style="font-size:22px;">chat</span> Chat about this issue`;
       chatBtn.addEventListener('click', () => {
-        const link = generateWhatsAppLink(issue);
+        const link = generateWhatsAppLink(phoneNumber, issue);
         window.open(link, '_blank', 'noopener');
       });
-      detailInfo.appendChild(chatBtn);
+      // Append button to visible detail info container
+      if(phoneNumber === phoneNumberHardware)
+        hardwareDetailInfo.appendChild(chatBtn);
+      else
+        softwareDetailInfo.appendChild(chatBtn);
+    } else {
+      // Update button listener for new issue and number
+      chatBtn.onclick = () => {
+        const link = generateWhatsAppLink(phoneNumber, issue);
+        window.open(link, '_blank', 'noopener');
+      };
+      // Ensure button is in correct detail info container
+      if(phoneNumber === phoneNumberHardware){
+        if(chatBtn.parentNode !== hardwareDetailInfo) {
+          chatBtn.remove();
+          hardwareDetailInfo.appendChild(chatBtn);
+        }
+      } else {
+        if(chatBtn.parentNode !== softwareDetailInfo) {
+          chatBtn.remove();
+          softwareDetailInfo.appendChild(chatBtn);
+        }
+      }
     }
   }
 </script>
 </body>
 </html>
-
