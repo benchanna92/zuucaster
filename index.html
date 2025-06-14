@@ -303,7 +303,7 @@
       <button class="issue-button" data-issue="Xiaomi FRP/PIN/Passcode">Xiaomi FRP/PIN/Passcode</button>
       <button class="issue-button" data-issue="Honor PIN/Passcode">Honor PIN/Passcode</button>
       <button class="issue-button" data-issue="Software Tool Rental">Software Tool Rental</button>
-      <button class="issue-button" data-issue="DOWGRADE FIRMWARE">DOWNGRADE FIRMWARE</button>
+      <button class="issue-button" data-issue="DOWNGRADE FIRMWARE">DOWNGRADE FIRMWARE</button>
       <button class="issue-button" data-issue="RESET IPAD/IPHONE ID">RESET IPAD/IPHONE ID</button>
       <button class="issue-button" data-issue="Firmware STOCK">Firmware STOCK</button>
       <button class="issue-button" data-issue="Samsung Google">Samsung Google</button>
@@ -436,36 +436,4 @@
       chatBtn.style.display = 'inline-flex';
       chatBtn.style.alignItems = 'center';
       chatBtn.style.gap = '8px';
-      chatBtn.innerHTML = `<span class="material-icons" aria-hidden="true" style="font-size:22px;">chat</span> Chat about this issue`;
-      chatBtn.addEventListener('click', () => {
-        const link = generateWhatsAppLink(phoneNumber, issue);
-        window.open(link, '_blank', 'noopener');
-      });
-      // Append button to visible detail info container
-      if(phoneNumber === phoneNumberHardware)
-        hardwareDetailInfo.appendChild(chatBtn);
-      else
-        softwareDetailInfo.appendChild(chatBtn);
-    } else {
-      // Update button listener for new issue and number
-      chatBtn.onclick = () => {
-        const link = generateWhatsAppLink(phoneNumber, issue);
-        window.open(link, '_blank', 'noopener');
-      };
-      // Ensure button is in correct detail info container
-      if(phoneNumber === phoneNumberHardware){
-        if(chatBtn.parentNode !== hardwareDetailInfo) {
-          chatBtn.remove();
-          hardwareDetailInfo.appendChild(chatBtn);
-        }
-      } else {
-        if(chatBtn.parentNode !== softwareDetailInfo) {
-          chatBtn.remove();
-          softwareDetailInfo.appendChild(chatBtn);
-        }
-      }
-    }
-  }
-</script>
-</body>
-</html>
+      chatBtn.innerHTML = `<span class="material-icons" aria-hidden="true" style="font-size:22px;">chat</
